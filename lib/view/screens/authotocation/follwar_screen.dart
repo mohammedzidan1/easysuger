@@ -1,0 +1,88 @@
+import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/view/custom_widet/custom_default_button.dart';
+import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:flutter/material.dart';
+
+class FollwarScreen extends StatelessWidget {
+  const FollwarScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(alignment: Alignment.bottomCenter, children: [
+        Container(
+          padding: EdgeInsets.only(left: 20, top: 140),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(color: ColorsApp.primaryColor),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              CustomText(
+                text: "Welcom To ",
+                fontSise: 25,
+                fontWeight: FontWeight.w400,
+              ),
+              CustomText(
+                text: "Easy Sugar ",
+                fontSise: 50,
+                fontWeight: FontWeight.bold,
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(15),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+          //  mainAxisAlignment: MainAxisAlignment.,
+          crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 45),
+                  child: CustomText(text: "Enter the patient code to follow him",color: Colors.black,fontSise: 23,fontWeight: FontWeight.w700,),
+                )),
+              const SizedBox(height: 30,),
+              const CustomTextField(
+                lableText: "Patient Code",
+              ),
+              const SizedBox(height: 20,),
+              const CustomTextField(
+                lableText: "Your Name",
+              ),
+              const SizedBox(height: 30,),
+              CustomDefaultButton(
+                radius: 10.0,
+                text: "Start",
+                ontap: () {},
+                width: 130,
+              ),
+            ],
+          ),
+          height: 450,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(40.0),
+                topLeft: Radius.circular(40.0)),
+          ),
+        ),
+        SafeArea(
+          child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ))),
+        )
+      ]),
+    );
+  }
+}

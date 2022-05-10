@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "791318390750",
+    "project_id": "easysugar-9cc44",
+    "storage_bucket": "easysugar-9cc44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791318390750:android:0b076f991c930e2ef81f4f",
+        "android_client_info": {
+          "package_name": "com.example.easysugar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791318390750-ihq43l81okltl41610295ccqp24aktl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easysugar",
+            "certificate_hash": "02a05e34777a0b4277761769915cd3babaf57a09"
+          }
+        },
+        {
+          "client_id": "791318390750-98s3is2ca13g4u130vgs8gj75asqq6j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQL7Ienzf7hM0K8UMYRUw0Eb7RNoadduY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791318390750-98s3is2ca13g4u130vgs8gj75asqq6j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
