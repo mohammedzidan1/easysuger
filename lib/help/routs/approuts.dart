@@ -26,11 +26,11 @@ class AppRouts {
         case RoutsNames.homeScreenForPatient:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
         case RoutsNames.predictionScreen:
-        return MaterialPageRoute(builder: (_) => const PredictionScreen());
+        return MaterialPageRoute(builder: (_) =>  PredictionScreen());
         case RoutsNames.homeScreenForDoctor:
         return MaterialPageRoute(builder: (_) => const HomeScreenForDoctor());
          case RoutsNames.addRecordScreen:
-        return MaterialPageRoute(builder: (_) => const AddRecordScreen());
+        return MaterialPageRoute(builder: (_) =>  AddRecordScreen());
          case RoutsNames.settingsScreen:
         return MaterialPageRoute(builder: (_) =>  SettingsScreen());
        
