@@ -5,7 +5,7 @@ import 'custom_text.dart';
 class CustomButtonSocial extends StatelessWidget {
   final String? text;
   final String? imageName;
-  final Function? onPress;
+  final VoidCallback? onPress;
 
   CustomButtonSocial({
     @required this.text,
@@ -17,17 +17,14 @@ class CustomButtonSocial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 28),
-     width: 240,
+      width: 240,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(11),
         color: Colors.grey.shade200,
-        
       ),
       child: TextButton(
-        onPressed: (){
-          onPress;
-        },
-        child:  Row(
+        onPressed: onPress,
+        child: Row(
           children: [
             Image.asset(imageName!),
             SizedBox(
@@ -41,9 +38,7 @@ class CustomButtonSocial extends StatelessWidget {
             ),
           ],
         ),
-        ),
-        
-      
+      ),
     );
   }
 }
