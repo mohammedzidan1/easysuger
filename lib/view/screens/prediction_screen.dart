@@ -1,10 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
+import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_drob_down_menu.dart';
 import 'package:easysugar/view/custom_widet/custom_drob_menue_long_action.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../custom_widet/custom_add_prediction.dart';
@@ -16,6 +19,7 @@ class PredictionScreen extends StatefulWidget {
   @override
   State<PredictionScreen> createState() => _PredictionScreenState();
 }
+
 //hiiiiiiiiiiiiiiii
 //lllllllllllll
 class _PredictionScreenState extends State<PredictionScreen> {
@@ -31,7 +35,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
   var timeController = TextEditingController();
 
   var dateController = TextEditingController();
-    
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +67,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     firstDate: DateTime.now(),
                     lastDate: DateTime.parse('2030-10-03'),
                   ).then((value) {
-                    dateController.text = value.toString();
+                    dateController.text = DateFormat.yMMMd().format(value!);
                   });
                   print("object");
                 },
@@ -79,12 +83,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       context: context,
                       initialTime: TimeOfDay.now(),
                     ).then((value) {
-                      timeController.text = value!.toString();
+                      timeController.text =
+                          value!.format(context).split('/').first.toString();
 
                       print(value.format(context));
                     });
                   },
                   lableText: "Time",
+                  controller: timeController,
                   assetsImage: "assets/images/icons8-music-time-100.png"),
               DropdownButton<String>(
                 value: selectedItemTypeOfFood,
@@ -99,11 +105,13 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ),
               CustomAddPrediction(
                 onTap: () {},
+                controller: mealController,
                 assetsImage: "assets/images/icons8-meal-100.png",
                 lableText: "Meal",
               ),
               CustomAddPrediction(
                 onTap: () {},
+                controller: activityController,
                 assetsImage: "assets/images/icons8-activity-64.png",
                 lableText: "Activity type",
               ),
@@ -119,6 +127,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ),
               CustomAddPrediction(
                 onTap: () {},
+                controller: glucoseController,
                 assetsImage: "assets/images/icons8-insulin-pen-48.png",
                 lableText: "Glucose measurement",
               ),
@@ -156,7 +165,31 @@ class _PredictionScreenState extends State<PredictionScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          UserModel userModel = UserModel(
+            date: dateController.text,
+            time: timeController.text,
+            lunch: selectedItemTypeOfFood,
+            meal: mealController.text,
+            activityType: activityController.text,
+            duration: durationControllar.text,
+            glucose: glucoseController.text,
+          );
+          userModel.update(
+            data: {
+              "time": timeController.text,
+              "date": dateController.text,
+              "activityType": activityController.text,
+              "duration": durationControllar.text,
+              "glucose": glucoseController.text,
+              // "longAction": longAction,
+              "lunch": selectedItemTypeOfFood,
+              "meal": mealController.text,
+              // "shortAction": shortAction,
+            },
+            docId: FirebaseAuth.instance.currentUser?.uid,
+          );
+        },
         child: const Icon(
           Icons.add,
         ),

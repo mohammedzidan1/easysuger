@@ -38,8 +38,10 @@ dependencies:
   equatable: ^2.0.3
   animated_splash_screen: ^1.2.0
   firestore_model: ^0.9.7
+  cloud_firestore: ^3.1.14
   firebase_auth: ^3.3.16
   firebase_core: ^1.15.0
+  easy_localization: ^3.0.0
 dev_dependencies:
   flutter_test:
 

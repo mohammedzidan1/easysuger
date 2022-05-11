@@ -21,11 +21,13 @@ class AuthBloc extends Cubit<AuthState> {
       print("userF ${user}");
       print("userModel ${userModel?.docId}");
       print("stateUserId ${state.user.docId}");
-      userId = state.user.docId;
     }
   }
 
-  String? userId;
+  void userModel({UserModel? user}) async {
+    UserModel? userModel = state.user;
+    userModel.meal = user!.meal;
+  }
 
   void logOut(context) async {
     await AuthService().logout();
