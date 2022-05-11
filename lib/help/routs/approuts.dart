@@ -31,8 +31,8 @@ class AppRouts {
         return MaterialPageRoute(builder: (_) => const HomeScreenForDoctor());
          case RoutsNames.addRecordScreen:
         return MaterialPageRoute(builder: (_) =>  AddRecordScreen());
-         case RoutsNames.settingsScreen:
-        return MaterialPageRoute(builder: (_) =>  SettingsScreen());
+        //  case RoutsNames.settingsScreen:
+        // return MaterialPageRoute(builder: (_) =>  SettingsScreen());
        
     }
     return null;

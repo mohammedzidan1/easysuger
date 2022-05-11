@@ -57,7 +57,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
         height: MediaQuery.of(context).size.height * .8,
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.only(left: 10, top: 30),
+          padding: const EdgeInsets.all(13),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(children: [
@@ -129,11 +129,43 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 15,
               ),
+             
+              const SizedBox(height: 15,),
+
               Row(
+                children: [
+                     const CustomText(
+                    text: " Choose your meal",
+                    color: ColorsApp.primaryColor,
+                  ),
+                  SizedBox(width: 10.0,),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .6,
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: ColorsApp.primaryColor),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: DropdownButton<String>(
+                      value: selectedItemTypeOfFood,
+                      items: typeOfFoodList.map((e) {
+                        return DropdownMenuItem(value: e, child: Text(e));
+                      }).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedItemTypeOfFood = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+                const SizedBox(height: 15,),
+             Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const CustomText(
-                    text: " Time of meal",
+                    text: " cal",
                     color: ColorsApp.primaryColor,
                   ),
                   const SizedBox(
@@ -143,42 +175,32 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
-                      controller: durationControllar,
-                      lableText: "duration ?",
+                      controller: calController,
+                      lableText: "cal ?",
                     ),
                   ),
                 ],
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * .6,
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorsApp.primaryColor),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: DropdownButton<String>(
-                  value: selectedItemTypeOfFood,
-                  items: typeOfFoodList.map((e) {
-                    return DropdownMenuItem(value: e, child: Text(e));
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      selectedItemTypeOfFood = value!;
-                    });
-                  },
-                ),
-              ),
-              CustomAddPrediction(
-                onTap: () {},
-                controller: calController,
-                assetsImage: "assets/images/icons8-meal-100.png",
-                lableText: "cal",
-              ),
-              CustomAddPrediction(
-                onTap: () {},
-                controller: calController,
-                assetsImage: "assets/images/icons8-meal-100.png",
-                lableText: "carbs",
+                const SizedBox(height: 15,),
+              Row(
+                //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const CustomText(
+                    text: " Carbs",
+                    color: ColorsApp.primaryColor,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .6,
+                    child: CustomTextField(
+                      color: Colors.white12,
+                      controller:carbsController,
+                      lableText: "carbs ?",
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10.0,
@@ -190,7 +212,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 children: const [
                   CustomText(
                     text: "Short Action",
-                    color: Colors.black,
+                    color: ColorsApp.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                   SizedBox(
@@ -206,7 +228,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 children: const [
                   CustomText(
                       text: "Long Action",
-                      color: Colors.black,
+                      color: ColorsApp.primaryColor,
                       fontWeight: FontWeight.bold),
                   SizedBox(
                     width: 8,
