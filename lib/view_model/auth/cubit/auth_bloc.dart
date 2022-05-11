@@ -86,4 +86,39 @@ class AuthBloc extends Cubit<AuthState> {
       print('loading verify email');
     }
   }
+
+  void signInWithGoogle(context) async {
+    UserCredential? user = await AuthService().signInWithGoogle();
+    print(user.user!.email);
+
+    if (user.user != null) {
+      UserModel userModel = UserModel.fromAuth(user.user!);
+      if (!await userModel.exists(user.user!.uid)) {
+        await userModel.create(docId: user.user!.uid);
+      }
+      print('provider: ${user.user!.providerData.single.providerId}');
+      await getUserData();
+      Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForPatient);
+
+      // Modular.to.pushReplacementNamed(AppRoutes.mainHome);
+
+    } else {}
+  }
+
+  void signInWithFacebook() async {
+    UserCredential user = await AuthService().signInWithFaceBook();
+    print('email${user.user?.email!}');
+    print('phoneNumber${user.user?.phoneNumber}');
+    print('displayName${user.user?.displayName}');
+
+    if (user.user != null) {
+      UserModel userModel = UserModel.fromAuth(user.user!);
+      if (!await userModel.exists(userModel.docId!)) {
+        await userModel.create(docId: userModel.docId!);
+      }
+      print('provider: ${user.user?.providerData.single.providerId}');
+      await getUserData();
+      // Modular.to.pushReplacementNamed(AppRoutes.mainHome);
+    }
+  }
 }
