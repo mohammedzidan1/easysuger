@@ -47,7 +47,7 @@ class CustomDrawer extends StatelessWidget {
                               Column(
                                 children: [
                                   CustomText(
-                                    text: user?.userName,
+                                    text: user?.displayName,
                                     fontSise: 20,
                                     fontWeight: FontWeight.bold,
                                   ),

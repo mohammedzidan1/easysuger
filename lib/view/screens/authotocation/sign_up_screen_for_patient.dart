@@ -181,7 +181,9 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
               ),
               CustomButtonSocial(
                 text: ' Facebook',
-                onPress: () {},
+                onPress: () {
+                  AuthBloc().signInWithFacebook();
+                },
                 imageName: 'assets/images/facebook.png',
               ),
 

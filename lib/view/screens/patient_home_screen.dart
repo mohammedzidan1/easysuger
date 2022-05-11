@@ -62,89 +62,98 @@ class _HomeScreenState extends State<HomeScreen> {
                       customBuildContainer(context),
                       Padding(
                         padding: const EdgeInsets.only(top: 60),
-                        child: customContainer(
-                          context,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CustomText(
-                                  text: user?.glucose,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                Column(
-                                  children: [
-                                    CustomText(
-                                      text: user?.longAction,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    CustomText(
-                                      text: user?.shortAction,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Flexible(
-                                        child: CustomText(
-                                          text: user?.lunch,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      // const SizedBox(
-                                      //   height: 2,
-                                      // ),
-                                      Flexible(
-                                        child: CustomText(
-                                          text: "carbs-",
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      // const SizedBox(
-                                      //   height: 2,
-                                      // ),
-                                      Flexible(
-                                        child: CustomText(
+                        child: customContainer(context,
+                            child: user?.date != ''
+                                ? Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        CustomText(
                                           text: user?.glucose,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w700,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    CustomText(
-                                      text: user?.activityType,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
+                                        Column(
+                                          children: [
+                                            CustomText(
+                                              text: user?.longAction,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            CustomText(
+                                              text: user?.shortAction,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Flexible(
+                                                child: CustomText(
+                                                  text: user?.lunch,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              // const SizedBox(
+                                              //   height: 2,
+                                              // ),
+                                              Flexible(
+                                                child: CustomText(
+                                                  text: user?.carbs,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              // const SizedBox(
+                                              //   height: 2,
+                                              // ),
+                                              Flexible(
+                                                child: CustomText(
+                                                  text: user?.cal,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            CustomText(
+                                              text: user?.activityType,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            CustomText(
+                                              text: "${user?.duration} m",
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 5,
+                                  )
+                                : const Center(
+                                    child: Text(
+                                      'No Prediction Yet',
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22),
                                     ),
-                                    CustomText(
-                                      text: "${user?.duration} m",
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                  )),
                       ),
                     ],
                   ),

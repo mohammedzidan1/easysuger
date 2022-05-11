@@ -12,7 +12,8 @@ class UserModel extends FirestoreModel<UserModel> {
   late String date;
   late String time;
   late String lunch;
-  late String meal;
+  late String cal;
+  late String carbs;
   late String activityType;
   late String duration;
   late String glucose;
@@ -34,7 +35,8 @@ class UserModel extends FirestoreModel<UserModel> {
     this.glucose = '',
     this.longAction = '',
     this.lunch = '',
-    this.meal = '',
+    this.cal = '',
+    this.carbs = '',
     this.shortAction = '',
   });
 
@@ -60,7 +62,8 @@ class UserModel extends FirestoreModel<UserModel> {
         "glucose": glucose,
         "longAction": longAction,
         "lunch": lunch,
-        "meal": meal,
+        "cal": cal,
+        "carbs": carbs,
         "shortAction": shortAction,
       };
 
@@ -78,7 +81,8 @@ class UserModel extends FirestoreModel<UserModel> {
     this.glucose = map['glucose'] ?? '';
     this.longAction = map['longAction'] ?? '';
     this.lunch = map['lunch'] ?? '';
-    this.meal = map['meal'] ?? '';
+    this.cal = map['cal'] ?? '';
+    this.carbs = map['carbs'] ?? '';
     this.shortAction = map['shortAction'] ?? '';
   }
 

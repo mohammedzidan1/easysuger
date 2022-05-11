@@ -129,16 +129,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 15,
               ),
-             
-              const SizedBox(height: 15,),
-
+              const SizedBox(
+                height: 15,
+              ),
               Row(
                 children: [
-                     const CustomText(
+                  const CustomText(
                     text: " Choose your meal",
                     color: ColorsApp.primaryColor,
                   ),
-                  SizedBox(width: 10.0,),
+                  SizedBox(
+                    width: 10.0,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width * .6,
                     padding: EdgeInsets.all(10.0),
@@ -160,8 +162,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   ),
                 ],
               ),
-                const SizedBox(height: 15,),
-             Row(
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const CustomText(
@@ -181,7 +185,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   ),
                 ],
               ),
-                const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -196,7 +202,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
-                      controller:carbsController,
+                      controller: carbsController,
                       lableText: "carbs ?",
                     ),
                   ),
@@ -247,7 +253,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
             date: dateController.text,
             time: timeController.text,
             lunch: selectedItemTypeOfFood,
-            meal: calController.text,
             activityType: activityController.text,
             duration: durationControllar.text,
             glucose: glucoseController.text,
@@ -261,7 +266,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
               "glucose": glucoseController.text,
               // "longAction": longAction,
               "lunch": selectedItemTypeOfFood,
-              "meal": calController.text,
+              "cal": calController.text,
+              "carbs": carbsController.text,
               // "shortAction": shortAction,
             },
             docId: FirebaseAuth.instance.currentUser?.uid,
