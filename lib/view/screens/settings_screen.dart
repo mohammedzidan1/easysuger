@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
@@ -37,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
-          child: ModelStreamSingleBuilder<UserModel>(
+          child: ModelSingleBuilder<UserModel>(
               docId: FirebaseAuth.instance.currentUser?.uid,
               onSuccess: (user) {
                 return Column(
@@ -72,27 +73,16 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                          hintText: user?.email,
-                          hintStyle: TextStyle(color: Colors.black)),
-                    ),
                     CustomTextField(
-                      // controller: nameControllar,
-                      onTap: () {
-                        //nameControllar.text="";
-                      },
-                      lableText: "Name",
+                      controller: nameController,
+                      lableText: user?.displayName,
                       width: MediaQuery.of(context).size.width * .8,
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
                     CustomTextField(
-                      // controller: nameControllar,
-                      onTap: () {
-                        //nameControllar.text="";
-                      },
+                      controller: emailController,
                       lableText: user?.email,
                       width: MediaQuery.of(context).size.width * .8,
                     ),
@@ -100,11 +90,8 @@ class SettingsScreen extends StatelessWidget {
                       height: 20.0,
                     ),
                     CustomTextField(
-                      // controller: nameControllar,
-                      onTap: () {
-                        //nameControllar.text="";
-                      },
-                      lableText: "Phone",
+                      controller: phoneController,
+                      lableText: user?.numPhone,
                       width: MediaQuery.of(context).size.width * .8,
                     ),
                     const SizedBox(
@@ -112,12 +99,18 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     CustomDefaultButton(
                       text: "Update",
-                      ontap: () {},
+                      ontap: () {
+                        user?.save(setOptions: SetOptions(merge: true));
+                      },
                       height: 50,
                       width: 260,
                     ),
                   ],
-
+                );
+              }),
+        ),
+      ),
+    );
   }
 
   // bool isUpdate(UserModel? user) {
@@ -129,4 +122,4 @@ class SettingsScreen extends StatelessWidget {
   //   ;
   //   return true;
   // }
-
+}
