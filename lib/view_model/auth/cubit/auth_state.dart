@@ -2,7 +2,7 @@ import 'package:easysugar/model/users.dart';
 import 'package:equatable/equatable.dart';
 
 class AuthState extends Equatable {
-  UserModel user = UserModel();
+  late final UserModel user;
 
   late final bool isWrite;
 

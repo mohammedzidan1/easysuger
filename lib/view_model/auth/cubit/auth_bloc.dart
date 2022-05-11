@@ -19,13 +19,19 @@ class AuthBloc extends Cubit<AuthState> {
       //print("uid ${userModel.uId}");
       emit(state.copyWith(user: userModel));
       print("userF ${user}");
-      print("userModel ${userModel}");
+      print("userModel ${userModel?.docId}");
+      print("stateUserId ${state.user.docId}");
+      userId = state.user.docId;
     }
   }
 
+  String? userId;
+
   void logOut(context) async {
     await AuthService().logout();
-    Navigator.pushReplacementNamed(context, RoutsNames.tapBarForRegestrationScreen,arguments: 1);
+    Navigator.pushReplacementNamed(
+        context, RoutsNames.tapBarForRegestrationScreen,
+        arguments: 1);
   }
 
   void createAccount({context, UserModel? userModel}) async {

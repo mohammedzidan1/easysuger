@@ -8,8 +8,19 @@ import 'package:flutter/services.dart';
 
 import '../custom_widet/custom_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    AuthBloc().getUserData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +72,9 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               CustomText(
                                 text: "Bas",
                                 color: Colors.black,
@@ -69,14 +82,16 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                           Column(
+                          Column(
                             children: const [
                               CustomText(
                                 text: "carbs-",
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               CustomText(
                                 text: "cal-",
                                 color: Colors.black,
@@ -84,14 +99,16 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                           Column(
+                          Column(
                             children: const [
                               CustomText(
                                 text: "running",
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               CustomText(
                                 text: "20m",
                                 color: Colors.black,
