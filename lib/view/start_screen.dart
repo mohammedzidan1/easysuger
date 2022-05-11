@@ -7,7 +7,7 @@ import 'custom_widet/custom_default_button.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
-//lkjhgfdfghjklllllllllllllllll
+//lkjhgfdfghjkl7777777777777777777777777
   @override
   Widget build(BuildContext context) {
     return Scaffold(
