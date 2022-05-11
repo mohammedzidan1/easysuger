@@ -28,7 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ModelStreamSingleBuilder<UserModel>(
+        parentModel: AuthBloc().state.user,
         docId: FirebaseAuth.instance.currentUser?.uid,
+        onError: (e) => Text('error'),
+        onEmpty: () => Text('no result'),
         onSuccess: (user) {
           return Scaffold(
               appBar: AppBar(

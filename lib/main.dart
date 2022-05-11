@@ -1,5 +1,6 @@
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/approuts.dart';
+import 'package:easysugar/model/perdictions.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_model/firestore_model.dart';
@@ -10,6 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   FirestoreModel.injectAll([
     UserModel(),
+    Prediction(),
   ]);
   runApp(MyApp(
     appRouts: AppRouts(),
