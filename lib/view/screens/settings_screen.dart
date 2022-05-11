@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 
@@ -37,85 +39,75 @@ class SettingsScreen extends StatelessWidget {
         margin: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
           child: ModelSingleBuilder<UserModel>(
-              // docId: FirebaseAuth.instance.currentUser?.uid,
+              docId: FirebaseAuth.instance.currentUser?.uid,
               onSuccess: (user) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'email ${user?.email}',
-                  style: TextStyle(color: Colors.black),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      const CircleAvatar(
-                        radius: 80,
-                        backgroundImage:
-                            AssetImage("assets/images/icons8-meal-100.png"),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          const CircleAvatar(
+                            radius: 80,
+                            backgroundImage:
+                                AssetImage("assets/images/icons8-meal-100.png"),
+                          ),
+                          Container(
+                              margin: const EdgeInsets.all(16.0),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 233, 231, 231),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: IconButton(
+                                  //  color: Colors.white,
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.camera_alt,
+                                    size: 30,
+                                  )))
+                        ],
                       ),
-                      Container(
-                          margin: const EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 233, 231, 231),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: IconButton(
-                              //  color: Colors.white,
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.camera_alt,
-                                size: 30,
-                              )))
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                CustomTextField(
-                  // controller: nameControllar,
-                  onTap: () {
-                    //nameControllar.text="";
-                  },
-                  lableText: "Name",
-                  width: MediaQuery.of(context).size.width * .8,
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                CustomTextField(
-                  // controller: nameControllar,
-                  onTap: () {
-                    //nameControllar.text="";
-                  },
-                  lableText: user?.email,
-                  width: MediaQuery.of(context).size.width * .8,
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                CustomTextField(
-                  // controller: nameControllar,
-                  onTap: () {
-                    //nameControllar.text="";
-                  },
-                  lableText: "Phone",
-                  width: MediaQuery.of(context).size.width * .8,
-                ),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                CustomDefaultButton(
-                  text: "Update",
-                  ontap: () {},
-                  height: 50,
-                  width: 260,
-                ),
-              ],
-            );
-          }),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    CustomTextField(
+                      controller: nameController,
+                      lableText: user?.displayName,
+                      width: MediaQuery.of(context).size.width * .8,
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    CustomTextField(
+                      controller: emailController,
+                      lableText: user?.email,
+                      width: MediaQuery.of(context).size.width * .8,
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    CustomTextField(
+                      controller: phoneController,
+                      lableText: user?.numPhone,
+                      width: MediaQuery.of(context).size.width * .8,
+                    ),
+                    const SizedBox(
+                      height: 50.0,
+                    ),
+                    CustomDefaultButton(
+                      text: "Update",
+                      ontap: () {
+                        user?.save(setOptions: SetOptions(merge: true));
+                      },
+                      height: 50,
+                      width: 260,
+                    ),
+                  ],
+                );
+              }),
         ),
       ),
     );
