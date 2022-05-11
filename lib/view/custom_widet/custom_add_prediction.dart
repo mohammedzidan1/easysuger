@@ -26,23 +26,22 @@ class CustomAddPrediction extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              radius: 30,
+              radius: 24,
               backgroundImage: AssetImage(assetsImage!),
             ),
             const SizedBox(
               width: 10.0,
             ),
-            Expanded(
-              child: CustomTextField(
-                readOnly: readOnly!,
-                onTap: () {
-                  onTap!();
-                },
-                controller: controller,
-                color: color,
-              //  width: MediaQuery.of(context).size.width*.7,
-                lableText: lableText,
-              ),
+            CustomTextField(
+              width: MediaQuery.of(context).size.width*.5,
+              readOnly: readOnly!,
+              onTap: () {
+                onTap!();
+              },
+              controller: controller,
+              color: color,
+            //  width: MediaQuery.of(context).size.width*.7,
+              lableText: lableText,
             ),
           ],
         ),

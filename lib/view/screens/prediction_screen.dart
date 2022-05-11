@@ -25,7 +25,7 @@ class PredictionScreen extends StatefulWidget {
 class _PredictionScreenState extends State<PredictionScreen> {
   String selectedItemTypeOfFood = "lunch";
   List<String> typeOfFoodList = ["lunch", "dinner", "breakfast"];
-  var mealController = TextEditingController();
+  var calController = TextEditingController();
 
   var activityController = TextEditingController();
   var durationControllar = TextEditingController();
@@ -35,6 +35,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
   var timeController = TextEditingController();
 
   var dateController = TextEditingController();
+  var carbsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +54,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 icon: const Icon(Icons.home))
           ]),
       body: Container(
+        height: MediaQuery.of(context).size.height * .8,
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.all(27.0),
+          padding: const EdgeInsets.only(left: 10, top: 30),
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Column(children: [
               CustomAddPrediction(
                 readOnly: true,
@@ -92,22 +95,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   lableText: "Time",
                   controller: timeController,
                   assetsImage: "assets/images/icons8-music-time-100.png"),
-              DropdownButton<String>(
-                value: selectedItemTypeOfFood,
-                items: typeOfFoodList.map((e) {
-                  return DropdownMenuItem(value: e, child: Text(e));
-                }).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedItemTypeOfFood = value!;
-                  });
-                },
-              ),
               CustomAddPrediction(
                 onTap: () {},
-                controller: mealController,
-                assetsImage: "assets/images/icons8-meal-100.png",
-                lableText: "Meal",
+                controller: glucoseController,
+                assetsImage: "assets/images/icons8-insulin-pen-48.png",
+                lableText: "Glucose measurement",
               ),
               CustomAddPrediction(
                 onTap: () {},
@@ -115,21 +107,84 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 assetsImage: "assets/images/icons8-activity-64.png",
                 lableText: "Activity type",
               ),
-              const SizedBox(
-                height: 10.0,
+              Row(
+                children: [
+                  const CustomText(
+                    text: "duration of activity",
+                    color: ColorsApp.primaryColor,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .6,
+                    child: CustomTextField(
+                      color: Colors.white12,
+                      controller: durationControllar,
+                      lableText: "duration ?",
+                    ),
+                  ),
+                ],
               ),
-              CustomTextField(
-                controller: durationControllar,
-                lableText: "duration ?",
-              ),
               const SizedBox(
-                height: 10.0,
+                height: 15,
+              ),
+              Row(
+                //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const CustomText(
+                    text: " Time of meal",
+                    color: ColorsApp.primaryColor,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .6,
+                    child: CustomTextField(
+                      color: Colors.white12,
+                      controller: durationControllar,
+                      lableText: "duration ?",
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * .6,
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: ColorsApp.primaryColor),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButton<String>(
+                  value: selectedItemTypeOfFood,
+                  items: typeOfFoodList.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      selectedItemTypeOfFood = value!;
+                    });
+                  },
+                ),
               ),
               CustomAddPrediction(
                 onTap: () {},
-                controller: glucoseController,
-                assetsImage: "assets/images/icons8-insulin-pen-48.png",
-                lableText: "Glucose measurement",
+                controller: calController,
+                assetsImage: "assets/images/icons8-meal-100.png",
+                lableText: "cal",
+              ),
+              CustomAddPrediction(
+                onTap: () {},
+                controller: calController,
+                assetsImage: "assets/images/icons8-meal-100.png",
+                lableText: "carbs",
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const SizedBox(
+                height: 10.0,
               ),
               Row(
                 children: const [
@@ -170,7 +225,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
             date: dateController.text,
             time: timeController.text,
             lunch: selectedItemTypeOfFood,
-            meal: mealController.text,
+            meal: calController.text,
             activityType: activityController.text,
             duration: durationControllar.text,
             glucose: glucoseController.text,
@@ -184,7 +239,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
               "glucose": glucoseController.text,
               // "longAction": longAction,
               "lunch": selectedItemTypeOfFood,
-              "meal": mealController.text,
+              "meal": calController.text,
               // "shortAction": shortAction,
             },
             docId: FirebaseAuth.instance.currentUser?.uid,
@@ -194,7 +249,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           Icons.add,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
       drawer: const CustomDrawer(),
     );
   }

@@ -16,7 +16,9 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+     
       text!,
+       overflow:TextOverflow.clip,
       style:
           TextStyle(color: color!, fontSize: fontSise, fontWeight: fontWeight),
     );

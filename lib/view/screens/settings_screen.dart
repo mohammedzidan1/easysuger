@@ -77,6 +77,7 @@ class SettingsScreen extends StatelessWidget {
                 height: 20.0,
               ),
               CustomTextField(
+                lableText: "Email",
                 // controller: nameControllar,
                 onTap: () {
                   //nameControllar.text="";
