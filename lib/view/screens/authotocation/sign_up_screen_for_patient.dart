@@ -134,6 +134,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                   print(emailController.text);
                   print(passwordController.text);
                   UserModel userModel = UserModel(
+                    displayName: nameController.text,
                     userName: nameController.text,
                     email: emailController.text,
                     numPhone: phoneController.text,

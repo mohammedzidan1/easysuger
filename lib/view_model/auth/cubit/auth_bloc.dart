@@ -19,13 +19,15 @@ class AuthBloc extends Cubit<AuthState> {
       //print("uid ${userModel.uId}");
       emit(state.copyWith(user: userModel));
       print("userF ${user}");
-      print("userModel ${userModel?.docId}");
+      print("userModel ${state.user.toMap}");
       print("stateUserId ${state.user.docId}");
     }
   }
 
-  UserModel userModel() {
-    return state.user;
+  userModel() async {
+    String? id = FirebaseAuth.instance.currentUser?.uid;
+    UserModel? userModel = await FirestoreModel.use<UserModel>().find(id!);
+    return userModel!;
   }
 
   void logOut(context) async {
@@ -39,8 +41,8 @@ class AuthBloc extends Cubit<AuthState> {
     User? user =
         await AuthService().register(userModel!.email, userModel.password);
     if (user != null) {
-      userModel?.docId = user.uid;
-      await userModel?.create(docId: user.uid);
+      userModel.docId = user.uid;
+      await userModel.create(docId: user.uid);
       Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForPatient);
     } else {
       print('user not found');
