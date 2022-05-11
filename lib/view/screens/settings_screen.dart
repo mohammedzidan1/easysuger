@@ -1,4 +1,3 @@
-import 'package:easysugar/view/custom_widet/custom_button.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,11 @@ import '../custom_widet/custom_default_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
-  var nameControllar = TextEditingController();
+
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,14 +48,12 @@ class SettingsScreen extends StatelessWidget {
                           AssetImage("assets/images/icons8-meal-100.png"),
                     ),
                     Container(
-                                           margin: const EdgeInsets.all(16.0),
-
-                        decoration:  BoxDecoration(
-                          color: const Color.fromARGB(255, 233, 231, 231),
-                          borderRadius: BorderRadius.circular(20)
-                        ),
+                        margin: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 233, 231, 231),
+                            borderRadius: BorderRadius.circular(20)),
                         child: IconButton(
-                        //  color: Colors.white,
+                            //  color: Colors.white,
                             onPressed: () {},
                             icon: const Icon(
                               Icons.camera_alt,
@@ -65,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                 height: 20.0,
               ),
               CustomTextField(
-                controller: nameControllar,
+                // controller: nameControllar,
                 onTap: () {
                   //nameControllar.text="";
                 },
@@ -76,18 +77,18 @@ class SettingsScreen extends StatelessWidget {
                 height: 20.0,
               ),
               CustomTextField(
-                controller: nameControllar,
+                // controller: nameControllar,
                 onTap: () {
                   //nameControllar.text="";
                 },
-                lableText: "Email",
+                // lableText: userModel?.email,
                 width: MediaQuery.of(context).size.width * .8,
               ),
               const SizedBox(
                 height: 20.0,
               ),
               CustomTextField(
-                controller: nameControllar,
+                // controller: nameControllar,
                 onTap: () {
                   //nameControllar.text="";
                 },
@@ -109,4 +110,14 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+
+  // bool isUpdate(UserModel? user) {
+  //   if (user?.email == emailController.text ||
+  //       user?.userName == nameController.text ||
+  //       user?.numPhone == phoneController.text) {
+  //     return false;
+  //   }
+  //   ;
+  //   return true;
+  // }
 }

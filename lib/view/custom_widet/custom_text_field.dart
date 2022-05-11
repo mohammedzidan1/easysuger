@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String? lableText;
+  final String? initValue;
   final IconData? prefexIcon;
   final IconData? sufixIcon;
   final double? width;
@@ -14,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {Key? key,
       this.onTap,
+      this.initValue = '',
       this.onChanged,
       this.controller,
       this.color = const Color.fromARGB(255, 246, 245, 245),
@@ -38,9 +40,7 @@ class CustomTextField extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 10, top: 1),
             child: TextFormField(
-                onChanged: (s) {
-                  onChanged!(s);
-                },
+                // initialValue: initValue!,
                 readOnly: readOnly!,
                 controller: controller,
                 onTap: () {

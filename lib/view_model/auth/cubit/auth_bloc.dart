@@ -24,9 +24,8 @@ class AuthBloc extends Cubit<AuthState> {
     }
   }
 
-  void userModel({UserModel? user}) async {
-    UserModel? userModel = state.user;
-    userModel.meal = user!.meal;
+  UserModel userModel() {
+    return state.user;
   }
 
   void logOut(context) async {
