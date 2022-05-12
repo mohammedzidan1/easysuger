@@ -44,6 +44,7 @@ dependencies:
   flutter_facebook_auth: ^4.3.0
   firebase_core: ^1.15.0
   easy_localization: ^3.0.0
+  url_launcher: ^6.1.2
 dev_dependencies:
   flutter_test:
 

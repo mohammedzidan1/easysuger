@@ -117,7 +117,10 @@ class CustomDrawer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buildDrawerItem(context,
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.emergencyScreen);
+                        },
                             text: "Emergency",
                             imagUrl: "assets/images/icons8-emergency-64.png",
                             fontSize: 23,
