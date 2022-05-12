@@ -107,17 +107,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 assetsImage: "assets/images/icons8-activity-64.png",
                 lableText: "Activity type",
               ),
-              Row(
+              Column(
                 children: [
                   const CustomText(
+                    fontWeight: FontWeight.bold,
                     text: "duration of activity",
                     color: ColorsApp.primaryColor,
                   ),
                   const SizedBox(
-                    width: 10,
+                    height: 10,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * .6,
+                    //width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
                       controller: durationControllar,
@@ -127,22 +128,22 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
+
+              Column(
                 children: [
                   const CustomText(
+                    fontWeight: FontWeight.bold,
+
                     text: " Choose your meal",
                     color: ColorsApp.primaryColor,
                   ),
                   SizedBox(
-                    width: 10.0,
+                    height: 10.0,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * .6,
+                    width: MediaQuery.of(context).size.width ,
                     padding: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                       border: Border.all(color: ColorsApp.primaryColor),
@@ -165,18 +166,20 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 15,
               ),
-              Row(
+              Column(
                 //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const CustomText(
+                    fontWeight: FontWeight.bold,
+
                     text: " cal",
                     color: ColorsApp.primaryColor,
                   ),
                   const SizedBox(
-                    width: 10,
+                    height: 10,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * .6,
+                    //width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
                       controller: calController,
@@ -188,18 +191,20 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 15,
               ),
-              Row(
+              Column(
                 //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const CustomText(
+                    fontWeight: FontWeight.bold,
+
                     text: " Carbs",
                     color: ColorsApp.primaryColor,
                   ),
                   const SizedBox(
-                    width: 10,
+                    height: 10,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * .6,
+                   // width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
                       controller: carbsController,
@@ -214,7 +219,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 10.0,
               ),
-              Row(
+              Column(
                 children: const [
                   CustomText(
                     text: "Short Action",
@@ -222,24 +227,24 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                   SizedBox(
-                    width: 8,
+                    height: 10,
                   ),
-                  Expanded(child: CustomDrobDownMenuShortAction()),
+                  CustomDrobDownMenuShortAction(),
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
-              Row(
+              Column(
                 children: const [
                   CustomText(
                       text: "Long Action",
                       color: ColorsApp.primaryColor,
                       fontWeight: FontWeight.bold),
                   SizedBox(
-                    width: 8,
+                  height: 10,
                   ),
-                  Expanded(child: CustomDrobDownMenuLongAction()),
+                   CustomDrobDownMenuLongAction(),
                 ],
               ),
             ]),

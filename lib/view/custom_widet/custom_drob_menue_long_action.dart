@@ -20,14 +20,14 @@ class _CustomDrobDownMenuLongActionState
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .6,
+      width: MediaQuery.of(context).size.width ,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         border: Border.all(color: ColorsApp.primaryColor),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Column(
+       // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DropdownButton<String>(
             value: selectedItemLongAction,

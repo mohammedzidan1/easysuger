@@ -75,6 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: Colors.black,
                                           fontWeight: FontWeight.w700,
                                         ),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
                                         Column(
                                           children: [
                                             CustomText(
@@ -102,9 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                               ),
-                                              // const SizedBox(
-                                              //   height: 2,
-                                              // ),
+                                              const SizedBox(
+                                                height: .9,
+                                              ),
                                               Flexible(
                                                 child: CustomText(
                                                   text: user?.carbs,
@@ -112,9 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                               ),
-                                              // const SizedBox(
-                                              //   height: 2,
-                                              // ),
+                                              const SizedBox(
+                                                height: .9,
+                                              ),
                                               Flexible(
                                                 child: CustomText(
                                                   text: user?.cal,
@@ -147,11 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   )
                                 : const Center(
                                     child: Text(
-                                      'No Prediction Yet',
+                                      'No Prediction Yet !',
                                       style: TextStyle(
                                           color: Colors.red,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 22),
+                                          fontSize: 20),
                                     ),
                                   )),
                       ),
