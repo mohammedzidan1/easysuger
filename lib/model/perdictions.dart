@@ -8,6 +8,8 @@ class Prediction extends SubCollectionModel<Prediction> {
   late String activityType;
   late String duration;
   late String glucose;
+  late String cal;
+  late String carbs;
   late String shortAction;
   late String longAction;
 
@@ -21,6 +23,8 @@ class Prediction extends SubCollectionModel<Prediction> {
     this.lunch = '',
     this.meal = '',
     this.shortAction = '',
+    this.cal = '',
+    this.carbs = '',
   });
 
   @override
@@ -34,6 +38,8 @@ class Prediction extends SubCollectionModel<Prediction> {
         "lunch": lunch,
         "meal": meal,
         "shortAction": shortAction,
+        "cal": cal,
+        "carbs": carbs,
       };
 
   Prediction.fromMap(Map<String, dynamic> map) {
@@ -46,6 +52,8 @@ class Prediction extends SubCollectionModel<Prediction> {
     this.lunch = map['lunch'] ?? '';
     this.meal = map['meal'] ?? '';
     this.shortAction = map['shortAction'] ?? '';
+    this.cal = map['cal'] ?? '';
+    this.carbs = map['carbs'] ?? '';
   }
 
   @override

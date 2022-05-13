@@ -20,7 +20,8 @@ class PredictionScreen extends StatefulWidget {
   State<PredictionScreen> createState() => _PredictionScreenState();
 }
 
-
+//hiiiiiiiiiiiiiiii
+//lllllllllllll
 class _PredictionScreenState extends State<PredictionScreen> {
   String selectedItemTypeOfFood = "lunch";
   List<String> typeOfFoodList = ["lunch", "dinner", "breakfast"];
@@ -51,8 +52,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   Navigator.pushNamed(context, RoutsNames.homeScreenForPatient);
                 },
                 icon: const Icon(Icons.home))
-          ]
-          ),
+          ]),
       body: Container(
         height: MediaQuery.of(context).size.height * .8,
         width: MediaQuery.of(context).size.width,
@@ -72,6 +72,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   ).then((value) {
                     dateController.text = DateFormat.yMMMd().format(value!);
                   });
+                  print("object");
                 },
                 lableText: "Date",
                 controller: dateController,
@@ -129,21 +130,19 @@ class _PredictionScreenState extends State<PredictionScreen> {
               const SizedBox(
                 height: 10,
               ),
-
               Column(
                 children: [
                   const CustomText(
                     fontWeight: FontWeight.bold,
-
                     text: " Choose your meal",
                     color: ColorsApp.primaryColor,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10.0,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width ,
-                    padding: const EdgeInsets.all(10.0),
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                       border: Border.all(color: ColorsApp.primaryColor),
                       borderRadius: BorderRadius.circular(10),
@@ -170,7 +169,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 children: [
                   const CustomText(
                     fontWeight: FontWeight.bold,
-
                     text: " cal",
                     color: ColorsApp.primaryColor,
                   ),
@@ -195,7 +193,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 children: [
                   const CustomText(
                     fontWeight: FontWeight.bold,
-
                     text: " Carbs",
                     color: ColorsApp.primaryColor,
                   ),
@@ -203,7 +200,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     height: 10,
                   ),
                   Container(
-                   // width: MediaQuery.of(context).size.width * .6,
+                    // width: MediaQuery.of(context).size.width * .6,
                     child: CustomTextField(
                       color: Colors.white12,
                       controller: carbsController,
@@ -219,37 +216,31 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 height: 10.0,
               ),
               Column(
-                children:  [
-                  const CustomText(
+                children: const [
+                  CustomText(
                     text: "Short Action",
                     color: ColorsApp.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width ,
-
-                    child: const CustomDrobDownMenuShortAction()),
+                  CustomDrobDownMenuShortAction(),
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
               Column(
-                children:  [
-                  const CustomText(
+                children: const [
+                  CustomText(
                       text: "Long Action",
                       color: ColorsApp.primaryColor,
                       fontWeight: FontWeight.bold),
-                  const SizedBox(
-                  height: 10,
+                  SizedBox(
+                    height: 10,
                   ),
-                   SizedBox(
-                                         width: MediaQuery.of(context).size.width ,
-
-                     child: const CustomDrobDownMenuLongAction()),
+                  CustomDrobDownMenuLongAction(),
                 ],
               ),
             ]),
