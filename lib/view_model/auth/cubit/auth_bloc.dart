@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/perdictions.dart';
+import 'package:easysugar/model/rebort.dart';
 import 'package:easysugar/model/survey.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
@@ -12,7 +13,9 @@ import 'auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
   late AuthService? authService;
+
   AuthBloc({this.authService}) : super(AuthState(user: UserModel()));
+
   Future<void> getUserData() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -139,6 +142,27 @@ class AuthBloc extends Cubit<AuthState> {
     prediction?.cal = cal;
     prediction?.carbs = cal;
     await prediction?.create();
+  }
+
+  void createReport(
+    String date,
+    time,
+    fasting,
+    reminder,
+    pills,
+  ) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    UserModel? userModel =
+        await FirestoreModel.use<UserModel>().find(user!.uid);
+    Report? report = userModel?.subCollection<Report>();
+    report?.date = date;
+    report?.time = time;
+
+    report?.fasting = fasting;
+    report?.reminder = reminder;
+    report?.pills = pills;
+
+    await report?.create();
   }
 
   void createSurvey({

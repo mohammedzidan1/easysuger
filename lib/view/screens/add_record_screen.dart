@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easysugar/help/my_colors_app.dart';
-import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_drob_menue_long_action.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../custom_widet/custom_drob_down_menu.dart';
@@ -18,7 +18,12 @@ class AddRecordScreen extends StatefulWidget {
 
 class _AddRecordScreenState extends State<AddRecordScreen> {
   String selectedItemPills = "Metformin Tablets";
-    List<String> pillsList = ["Metformin Tablets", "Omformin", "Glucophage 100 mg","other"];
+  List<String> pillsList = [
+    "Metformin Tablets",
+    "Omformin",
+    "Glucophage 100 mg",
+    "other"
+  ];
 
   var timeController = TextEditingController();
   var otheController = TextEditingController();
@@ -49,21 +54,20 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
-           
             Row(
               children: [
                 CustomDefaultButton(
                   height: 50,
                   text: "Date",
                   ontap: () {
-                     showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime.parse('2030-10-03'),
-                  ).then((value) {
-                    dateController.text = DateFormat.yMMMd().format(value!);
-                  });
+                    showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime.parse('2030-10-03'),
+                    ).then((value) {
+                      dateController.text = DateFormat.yMMMd().format(value!);
+                    });
                   },
                   // color: Colors.grey[400],
                   width: 100,
@@ -71,11 +75,12 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                 Container(
                   width: 100,
                   child: TextFormField(
+                    readOnly: true,
                     controller: dateController,
                     decoration: const InputDecoration(
-      
+
                         //label:Text("kkkk"),
-      
+
                         hintText: ""),
                   ),
                 ),
@@ -96,7 +101,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                     ).then((value) {
                       timeController.text =
                           value!.format(context).split('/').first.toString();
-
                     });
                   },
                   // color: Colors.grey[400],
@@ -105,12 +109,13 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                 Container(
                   width: 100,
                   child: TextFormField(
+                    readOnly: true,
                     controller: timeController,
                     onTap: () {},
                     decoration: const InputDecoration(
-      
+
                         //label:Text("kkkk"),
-      
+
                         hintText: ""),
                   ),
                 ),
@@ -160,56 +165,76 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
             const SizedBox(
               height: 18.0,
             ),
-            buildFormFeild(context, text: "Fasting", controller: fastingController),
+            buildFormFeild(context,
+                text: "Fasting", controller: fastingController),
             const SizedBox(
               height: 18.0,
             ),
-           
-      
-            buildFormFeild(context, text: "Reminder", controller: fastingController),
-            const SizedBox(height: 18.0,),
-              Padding(
-               padding: const EdgeInsets.only(left: 10.0),
-               child: Row(
-                 mainAxisAlignment: MainAxisAlignment.start,
-                 children: [
-                   Container(
-                              width: MediaQuery.of(context).size.width*.6 ,
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: ColorsApp.primaryColor),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: DropdownButton<String>(
-                                value: selectedItemPills,
-                                items: pillsList.map((e) {
-                                  return DropdownMenuItem(value: e, child: Text(e));
-                                }).toList(),
-                                onChanged: (String? value) {
-      
-                                  setState(() {
-                                    selectedItemPills = value!;
-                                    
-                                  });
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 6.0,
-                            ),
-                            const CustomText(text: "Pills",color: Colors.black,fontSise: 17,fontWeight: FontWeight.bold,),
-                           
-                 ],
-               ),
-             ),
-             const SizedBox(height: 18.0,),
-              selectedItemPills=="other"?buildFormFeild(context,text: "Other",controller: otheController):Container()
+            buildFormFeild(context,
+                text: "Reminder", controller: reminderController),
+            const SizedBox(
+              height: 18.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * .6,
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: ColorsApp.primaryColor),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: DropdownButton<String>(
+                      value: selectedItemPills,
+                      items: pillsList.map((e) {
+                        return DropdownMenuItem(value: e, child: Text(e));
+                      }).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedItemPills = value!;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 6.0,
+                  ),
+                  const CustomText(
+                    text: "Pills",
+                    color: Colors.black,
+                    fontSise: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 18.0,
+            ),
+            selectedItemPills == "other"
+                ? buildFormFeild(context,
+                    text: "Other", controller: otheController)
+                : Container()
           ]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          print(
+              "${dateController.text} ${timeController.text} ${fastingController.text} ${reminderController.text},");
+          AuthBloc().createReport(
+              dateController.text,
+              timeController.text,
+              fastingController.text,
+              reminderController.text,
+              otheController.text == ''
+                  ? selectedItemPills
+                  : otheController.text);
+        },
         child: const Icon(
           Icons.add,
         ),

@@ -2,7 +2,6 @@ import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/view/custom_widet/custom_curve.dart';
 import 'package:flutter/material.dart';
 
-import '../custom_widet/custom_background_curve.dart';
 import '../custom_widet/custom_text.dart';
 
 class FollwerNameScreen extends StatelessWidget {
