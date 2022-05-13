@@ -1,6 +1,7 @@
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_background_curve.dart';
+import 'package:easysugar/view/custom_widet/custom_curve.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Stack(
                     alignment: Alignment.topCenter,
                     children: [
-                      Background(),
+                      CustomBackground(),
                       customBuildContainer(context),
                       Padding(
                         padding: const EdgeInsets.only(top: 60),
@@ -184,7 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 10,
                               ),
                               CustomButton(
-                                ontap: () {},
+                                ontap: () {
+                                   Navigator.pushNamed(
+                                      context, RoutsNames.statisticsScreen);
+                                },
                                 text: "Statistics",
                                 radiusLeftTop: 25,
                                 fontSize: 22.0,

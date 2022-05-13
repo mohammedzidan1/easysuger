@@ -6,6 +6,7 @@ import '../../help/constant.dart';
 import '../../help/my_colors_app.dart';
 
 class CustomDrobDownMenuShortAction extends StatefulWidget {
+ 
   const CustomDrobDownMenuShortAction({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +21,8 @@ class _CustomDrobDownMenuShortActionState
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width ,
+      //width: MediaQuery.of(context).size.width ,
+    // width: w,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         border: Border.all(color: ColorsApp.primaryColor),

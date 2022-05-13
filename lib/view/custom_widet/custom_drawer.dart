@@ -144,6 +144,9 @@ class CustomDrawer extends StatelessWidget {
                             fontSize: 18),
                         buildDrawerItem(context, text: "update", fontSize: 18),
                         buildDrawerItem(context,
+                        ontap: (){
+                          Navigator.pushNamed(context, RoutsNames.follwarNameScreen);
+                        },
                             text: "Followers", fontSize: 18),
                         buildDrawerItem(context,
                             text: "Doctor reseervation", fontSize: 18),
@@ -154,7 +157,12 @@ class CustomDrawer extends StatelessWidget {
                           imagUrl: "assets/images/icons8-new-contact-50.png",
                         ),
                         buildDrawerItem(
+                           
                           context,
+                          ontap: () {
+                            Navigator.pushNamed(
+                                context, RoutsNames.reportScreen);
+                          },
                           text: "Report",
                           fontSize: 18,
                           imagUrl: "assets/images/icons8-report-64.png",

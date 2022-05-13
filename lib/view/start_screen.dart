@@ -23,7 +23,7 @@ class StartScreen extends StatelessWidget {
             children: [
               CustomDefaultButton(
                 ontap: () {
-                  Navigator.pushNamed(
+                  Navigator.pushReplacementNamed(
                       context, RoutsNames.tapBarForRegestrationScreen,
                       arguments: 1);
                 },
@@ -35,7 +35,7 @@ class StartScreen extends StatelessWidget {
               CustomDefaultButton(
                 text: "Doctor",
                 ontap: () {
-                  Navigator.pushNamed(
+                  Navigator.pushReplacementNamed(
                       context, RoutsNames.tapBarForRegestrationScreen,
                       arguments: 2);
                 },
@@ -46,7 +46,7 @@ class StartScreen extends StatelessWidget {
               CustomDefaultButton(
                 text: "Follwar",
                 ontap: () {
-                  Navigator.pushNamed(context, RoutsNames.follwarScreen);
+                  Navigator.pushReplacementNamed(context, RoutsNames.follwarScreen);
                 },
               ),
             ],

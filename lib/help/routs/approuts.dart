@@ -3,12 +3,14 @@ import 'package:easysugar/view/screens/authotocation/follwar_screen.dart';
 import 'package:easysugar/view/screens/authotocation/regestration_screen.dart';
 import 'package:easysugar/view/screens/doctor_home_screen.dart';
 import 'package:easysugar/view/screens/emergency.dart';
+import 'package:easysugar/view/screens/follwer_name_screen.dart';
 import 'package:easysugar/view/screens/prediction_screen.dart';
+import 'package:easysugar/view/screens/rebort_screen.dart';
 import 'package:easysugar/view/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../view/screens/patient_home_screen.dart';
 import '../../view/screens/settings_screen.dart';
+import '../../view/screens/statistics_screen.dart';
 import 'routs_name.dart';
 
 class AppRouts {
@@ -18,7 +20,6 @@ class AppRouts {
         return MaterialPageRoute(builder: (_) => const MainSplashScrrn());
       case RoutsNames.tapBarForRegestrationScreen:
         int number = settings.arguments as int;
-
         return MaterialPageRoute(
             builder: (_) => TapBarForRegestrationScreen(number: number));
       case RoutsNames.follwarScreen:
@@ -34,7 +35,13 @@ class AppRouts {
       case RoutsNames.settingsScreen:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
       case RoutsNames.emergencyScreen:
-        return MaterialPageRoute(builder: (_) => EmergencyPage());
+        return MaterialPageRoute(builder: (_) => const EmergencyPage());
+      case RoutsNames.reportScreen:
+        return MaterialPageRoute(builder: (_) => const ReportScreen());
+      case RoutsNames.follwarNameScreen:
+        return MaterialPageRoute(builder: (_) => const FollwerNameScreen());
+      case RoutsNames.statisticsScreen:
+        return MaterialPageRoute(builder: (_) =>  SttisticsScreen());
     }
     return null;
   }

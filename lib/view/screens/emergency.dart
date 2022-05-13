@@ -7,13 +7,14 @@ class EmergencyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Center(
             child: Column(
           children: [
             TextButton(
-              onPressed: () {
-                canLaunchUrl(Uri(scheme: 'tel', path: '122'));
+              onPressed: () async{
+              await canLaunchUrl(Uri(scheme: 'tel', path: '122'));
               },
               child: const Text(
                 '122',

@@ -12,12 +12,12 @@ class FollwarScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(alignment: Alignment.bottomCenter, children: [
         Container(
-          padding: EdgeInsets.only(left: 20, top: 140),
+          padding: const EdgeInsets.only(left: 20, top: 140),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(color: ColorsApp.primaryColor),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
+          
             children: const [
               CustomText(
                 text: "Welcom To ",
@@ -35,32 +35,41 @@ class FollwarScreen extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(15),
           width: MediaQuery.of(context).size.width,
-          child: Column(
-          //  mainAxisAlignment: MainAxisAlignment.,
-          crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 45),
-                  child: CustomText(text: "Enter the patient code to follow him",color: Colors.black,fontSise: 23,fontWeight: FontWeight.w700,),
-                )),
-              const SizedBox(height: 30,),
-              const CustomTextField(
-                lableText: "Patient Code",
-              ),
-              const SizedBox(height: 20,),
-              const CustomTextField(
-                lableText: "Your Name",
-              ),
-              const SizedBox(height: 30,),
-              CustomDefaultButton(
-                radius: 10.0,
-                text: "Start",
-                ontap: () {},
-                width: 130,
-              ),
-            ],
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+            //  mainAxisAlignment: MainAxisAlignment.,
+            crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 45),
+                    child: CustomText(text: "Enter the patient code to follow him",color: Colors.black,fontSise: 23,fontWeight: FontWeight.w700,),
+                  )),
+                const SizedBox(height: 30,),
+                const CustomTextField(
+                  lableText: "Patient Code",
+                ),
+                const SizedBox(height: 20,),
+                const CustomTextField(
+                  lableText: "Your Name",
+                ),
+                const SizedBox(height: 30,),
+                const CustomTextField(
+                  lableText: "Your Phone number",
+                ),
+                const SizedBox(height: 30,),
+                CustomDefaultButton(
+                  radius: 10.0,
+                  text: "Start",
+                  ontap: () {},
+                  width: 130,
+                ),
+               
+               
+              ],
+            ),
           ),
           height: 450,
           decoration: const BoxDecoration(

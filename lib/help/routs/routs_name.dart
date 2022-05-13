@@ -11,4 +11,8 @@ class RoutsNames {
   static const emergencyScreen = '/emergency_screen';
   static const reportScreen = '/report_Screen';
   static const follwarScreen = '/follwar_screen';
+  static const follwarNameScreen = '/follwar_Name_Screen';
+    static const statisticsScreen = '/statisticsScreen';
+
 }
+
