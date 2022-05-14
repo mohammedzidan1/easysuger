@@ -8,6 +8,7 @@ import 'package:easysugar/view/screens/prediction_screen.dart';
 import 'package:easysugar/view/screens/rebort_screen.dart';
 import 'package:easysugar/view/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+
 import '../../view/screens/patient_home_screen.dart';
 import '../../view/screens/settings_screen.dart';
 import '../../view/screens/statistics_screen.dart';
@@ -37,11 +38,11 @@ class AppRouts {
       case RoutsNames.emergencyScreen:
         return MaterialPageRoute(builder: (_) => const EmergencyPage());
       case RoutsNames.reportScreen:
-        return MaterialPageRoute(builder: (_) => const ReportScreen());
+        return MaterialPageRoute(builder: (_) => ReportScreen());
       case RoutsNames.follwarNameScreen:
         return MaterialPageRoute(builder: (_) => const FollwerNameScreen());
       case RoutsNames.statisticsScreen:
-        return MaterialPageRoute(builder: (_) =>  SttisticsScreen());
+        return MaterialPageRoute(builder: (_) => SttisticsScreen());
     }
     return null;
   }

@@ -224,8 +224,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
         onPressed: () {
-          print(
-              "${dateController.text} ${timeController.text} ${fastingController.text} ${reminderController.text},");
           AuthBloc().createReport(
               dateController.text,
               timeController.text,

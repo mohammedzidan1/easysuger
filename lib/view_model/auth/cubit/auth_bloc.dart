@@ -24,8 +24,9 @@ class AuthBloc extends Cubit<AuthState> {
       //print("uid ${userModel.uId}");
       emit(state.copyWith(user: userModel));
       print("userF ${user}");
-      print("userModel ${state.user.toMap}");
-      print("stateUserId ${state.user.docId}");
+      print("userModel ${state.user?.toMap}");
+
+      print("stateUserId ${state.user?.docId}");
     }
   }
 
@@ -154,15 +155,16 @@ class AuthBloc extends Cubit<AuthState> {
     User? user = FirebaseAuth.instance.currentUser;
     UserModel? userModel =
         await FirestoreModel.use<UserModel>().find(user!.uid);
-    Report? report = userModel?.subCollection<Report>();
-    report?.date = date;
-    report?.time = time;
+    Report? report = Report();
+    report.uId = user.uid;
+    report.date = date;
+    report.time = time;
 
-    report?.fasting = fasting;
-    report?.reminder = reminder;
-    report?.pills = pills;
+    report.fasting = fasting;
+    report.reminder = reminder;
+    report.pills = pills;
 
-    await report?.create();
+    await report.create();
   }
 
   void createSurvey({
