@@ -1,4 +1,5 @@
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../help/routs/routs_name.dart';
@@ -43,8 +44,7 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               const SizedBox(
                 height: 20.0,
               ),
-             
-             
+
               const CustomTextField(
                 lableText: "Passward",
                 prefexIcon: Icons.lock_outlined,
@@ -70,7 +70,8 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               CustomDefaultButton(
                 text: "Log In",
                 ontap: () {
-                   Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForDoctor);
+                  Navigator.pushReplacementNamed(
+                      context, RoutsNames.homeScreenForDoctor);
                 },
                 height: 50,
                 width: 260,
@@ -117,7 +118,9 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               ),
               CustomButtonSocial(
                 text: ' Google',
-                onPress: () {},
+                onPress: () {
+                  AuthBloc().signInWithGoogle(context);
+                },
                 imageName: 'assets/images/google.png',
               ),
 
