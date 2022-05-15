@@ -135,10 +135,6 @@ class CustomDrawer extends StatelessWidget {
                                 "assets/images/icons8-glucose-meter-64.png",
                             fontSize: 18),
                         buildDrawerItem(context,
-                        ontap: (){
-                           Navigator.pushNamed(
-                              context, RoutsNames.addRecordScreen);
-                        },
                             text: "Add record ",
                             imagUrl: "assets/images/icons8-add-column-30.png",
                             fontSize: 18),

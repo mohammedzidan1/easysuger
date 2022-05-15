@@ -3,15 +3,17 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class SttisticsScreen extends StatelessWidget {
+  const SttisticsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text("Statistics"),
+      title: const Text("Statistics"),
       backgroundColor: ColorsApp.primaryColor,
     ),
     body: Card(
       
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
           elevation: 4,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),

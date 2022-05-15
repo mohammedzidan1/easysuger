@@ -129,10 +129,7 @@ class HomeScreenForDoctor extends StatelessWidget {
           ],
         ),
       ),
-      drawer: const Drawer(
-          // backgroundColor: Colors.amber,
-
-          ),
+     // drawer: Cust
     );
   }
 }

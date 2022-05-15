@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_drob_menue_long_action.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
-import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../custom_widet/custom_drob_down_menu.dart';
@@ -75,7 +75,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                 Container(
                   width: 100,
                   child: TextFormField(
-                    readOnly: true,
                     controller: dateController,
                     decoration: const InputDecoration(
 
@@ -109,7 +108,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                 Container(
                   width: 100,
                   child: TextFormField(
-                    readOnly: true,
                     controller: timeController,
                     onTap: () {},
                     decoration: const InputDecoration(
@@ -171,7 +169,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
               height: 18.0,
             ),
             buildFormFeild(context,
-                text: "Reminder", controller: reminderController),
+                text: "Reminder", controller: fastingController),
             const SizedBox(
               height: 18.0,
             ),
@@ -223,18 +221,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
-        onPressed: () {
-          print(
-              "${dateController.text} ${timeController.text} ${fastingController.text} ${reminderController.text},");
-          AuthBloc().createReport(
-              dateController.text,
-              timeController.text,
-              fastingController.text,
-              reminderController.text,
-              otheController.text == ''
-                  ? selectedItemPills
-                  : otheController.text);
-        },
+        onPressed: () {},
         child: const Icon(
           Icons.add,
         ),
