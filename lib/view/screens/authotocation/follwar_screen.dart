@@ -2,10 +2,18 @@ import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FollwarScreen extends StatelessWidget {
-  const FollwarScreen({Key? key}) : super(key: key);
+  TextEditingController? patientController = TextEditingController();
+  TextEditingController? nameController = TextEditingController();
+  TextEditingController? phoneController = TextEditingController();
+
+  FollwarScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,6 @@ class FollwarScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(color: ColorsApp.primaryColor),
           child: Column(
-          
             children: const [
               CustomText(
                 text: "Welcom To ",
@@ -38,36 +45,57 @@ class FollwarScreen extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-            //  mainAxisAlignment: MainAxisAlignment.,
-            crossAxisAlignment: CrossAxisAlignment.center,
+              //  mainAxisAlignment: MainAxisAlignment.,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 45),
-                    child: CustomText(text: "Enter the patient code to follow him",color: Colors.black,fontSise: 23,fontWeight: FontWeight.w700,),
-                  )),
-                const SizedBox(height: 30,),
-                const CustomTextField(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 45),
+                      child: CustomText(
+                        text: "Enter the patient code to follow him",
+                        color: Colors.black,
+                        fontSise: 23,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomTextField(
+                  controller: this.patientController,
                   lableText: "Patient Code",
                 ),
-                const SizedBox(height: 20,),
-                const CustomTextField(
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
+                  controller: nameController,
                   lableText: "Your Name",
                 ),
-                const SizedBox(height: 30,),
-                const CustomTextField(
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomTextField(
+                  controller: phoneController,
                   lableText: "Your Phone number",
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 CustomDefaultButton(
                   radius: 10.0,
                   text: "Start",
-                  ontap: () {},
+                  ontap: () {
+                    AuthVeiwModel auth = Get.put(AuthVeiwModel());
+                    auth.signInAsFollower(
+                        patientCode: patientController?.text.trim(),
+                        name: nameController?.text,
+                        phoneNum: phoneController?.text);
+                    print('FId2 ${auth.followerId}');
+                  },
                   width: 130,
                 ),
-               
-               
               ],
             ),
           ),

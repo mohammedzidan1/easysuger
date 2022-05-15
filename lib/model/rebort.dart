@@ -1,6 +1,6 @@
 import 'package:firestore_model/firestore_model.dart';
 
-class Report extends FirestoreModel<Report> {
+class Report extends SubCollectionModel<Report> {
   late String date;
   late String uId;
   late String time;

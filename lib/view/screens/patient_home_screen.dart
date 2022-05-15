@@ -1,14 +1,15 @@
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
-import 'package:easysugar/view/custom_widet/custom_background_curve.dart';
 import 'package:easysugar/view/custom_widet/custom_curve.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../custom_widet/custom_button.dart';
 
@@ -20,17 +21,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
   @override
   void initState() {
-    AuthBloc().getUserData();
+    if (authVeiwModel.followerId == '') {
+      authVeiwModel.getUserData();
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(authVeiwModel.user?.toMap);
     return ModelStreamSingleBuilder<UserModel>(
-        parentModel: AuthBloc().state.user,
-        docId: FirebaseAuth.instance.currentUser?.uid,
+        // parentModel: authVeiwModel.user,
+        docId:
+            FirebaseAuth.instance.currentUser?.uid ?? authVeiwModel.followerId,
         onError: (e) => Text('error'),
         onEmpty: () => Text('no result'),
         onSuccess: (user) {
@@ -186,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               CustomButton(
                                 ontap: () {
-                                   Navigator.pushNamed(
+                                  Navigator.pushNamed(
                                       context, RoutsNames.statisticsScreen);
                                 },
                                 text: "Statistics",

@@ -1,8 +1,10 @@
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/model/rebort.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ReportScreen extends StatelessWidget {
   ReportScreen({Key? key}) : super(key: key);
@@ -17,8 +19,7 @@ class ReportScreen extends StatelessWidget {
           ),
         ),
         body: ModelStreamGetBuilder<Report>(
-            // query: (q) =>
-            //     q.where('users.docId', isEqualTo: 'Njls2F58btTOkIejNP8wSQ5JjO'),
+            parentModel: Get.put(AuthVeiwModel()).user,
             onEmpty: () => const Center(
                     child: CustomText(
                   text: 'No Report Yet',
@@ -26,6 +27,7 @@ class ReportScreen extends StatelessWidget {
                 )),
             onLoading: () => const Center(child: CircularProgressIndicator()),
             onSuccess: (reports) {
+              // print(' ff ${Get.put(AuthVeiwModel()).user?.toMap}');
               return ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemCount: reports?.length,
