@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import '../../view_model/auth/cubit/auth_bloc.dart';
 import 'custom_text.dart';
 
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+class CustomDoctorDrawer extends StatelessWidget {
+  const CustomDoctorDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,82 +23,43 @@ class CustomDrawer extends StatelessWidget {
               return Column(children: [
                 SafeArea(
                   child: Container(
+                    width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * .9,
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutsNames.settingsScreen);
-                                },
-                                child: const CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: AssetImage(
-                                      "assets/images/icons8-meal-100.png"),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                children: [
-                                  CustomText(
-                                    text: user?.displayName,
-                                    fontSise: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  CustomText(
-                                    text: user?.email,
-                                    //  text: 'Mohmmedzidan@gmail.com.com',
-                                    color: Colors.white,
-                                    fontSise: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ],
-                              ),
-                            ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutsNames.doctorsettingsScreen);
+                          },
+                          child: const CircleAvatar(
+                            radius: 40,
+                            backgroundImage:
+                                AssetImage("assets/images/icons8-meal-100.png"),
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          width: 10,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: const [
-                                  CustomText(
-                                    text: "User Code",
-                                    color: Colors.white,
-                                    fontSise: 18,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  CustomText(
-                                    text: "mm12#!",
-                                    color: Colors.white,
-                                    fontSise: 15,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ],
-                              ),
-                              const Icon(
-                                Icons.wine_bar,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomText(
+                              text: user?.displayName,
+                              fontSise: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            CustomText(
+                              text: user?.email,
+                              //  text: 'Mohmmedzidan@gmail.com.com',
+                              color: Colors.white,
+                              fontSise: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -117,62 +78,29 @@ class CustomDrawer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buildDrawerItem(context, ontap: () {
-                          Navigator.pushNamed(
-                              context, RoutsNames.emergencyScreen);
-                        },
-                            text: "Emergency",
-                            imagUrl: "assets/images/icons8-emergency-64.png",
-                            fontSize: 23,
-                            color: Colors.red),
-                        buildDrawerItem(context,
-                            text: "Medications ",
-                            imagUrl: "assets/images/icons8-medications-64.png",
-                            fontSize: 18),
-                        buildDrawerItem(context,
-                            text: "Analysis",
-                            imagUrl:
-                                "assets/images/icons8-glucose-meter-64.png",
-                            fontSize: 18),
-                        buildDrawerItem(context,
-                            text: "Add record ",
-                            imagUrl: "assets/images/icons8-add-column-30.png",
-                            fontSize: 18),
-                        buildDrawerItem(context,
-                            text: "Get offer ",
-                            imagUrl: "assets/images/icons8-recieve-48.png",
-                            fontSize: 18),
-                        buildDrawerItem(context, text: "update", fontSize: 18),
-                        buildDrawerItem(context,
-                        ontap: (){
-                          Navigator.pushNamed(context, RoutsNames.follwarNameScreen);
-                        },
-                            text: "Followers", fontSize: 18),
-                        buildDrawerItem(context,
-                            text: "Doctor reseervation", fontSize: 18),
                         buildDrawerItem(
-                          context,
-                          text: "contact with doctor",
-                          fontSize: 18,
-                          imagUrl: "assets/images/icons8-new-contact-50.png",
-                        ),
-                        buildDrawerItem(
-                           
                           context,
                           ontap: () {
-                            Navigator.pushNamed(
-                                context, RoutsNames.reportScreen);
+                           Navigator.pushNamed(context,RoutsNames.consultingDoctorScreen);
                           },
-                          text: "Report",
+                          text: "Consulting",
                           fontSize: 18,
-                          imagUrl: "assets/images/icons8-report-64.png",
+                        ),
+                        buildDrawerItem(
+                          context,
+                          ontap: () {
+                             Navigator.pushNamed(context,RoutsNames.doctorProfileScreen);
+                          },
+                          text: "Profile",
+                          fontSize: 18,
+                          imagUrl: "assets/images/icons8-customer-16.png",
                         ),
                         buildDrawerItem(
                           context,
                           text: "Settings",
                           ontap: () {
                             Navigator.pushNamed(
-                                context, RoutsNames.settingsScreen);
+                                context, RoutsNames.doctorsettingsScreen);
                           },
                           fontSize: 18,
                           imagUrl: "assets/images/icons8-settings-100.png",
@@ -180,7 +108,7 @@ class CustomDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                            AuthBloc().logOut(context);
+                         //   AuthBloc().logOut(context);
                           },
                           text: "Log out",
                           fontSize: 18,
@@ -210,6 +138,7 @@ Widget buildDrawerItem(context,
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
                 text: text!,

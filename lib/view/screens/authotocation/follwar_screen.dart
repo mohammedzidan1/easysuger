@@ -3,7 +3,6 @@ import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:flutter/material.dart';
-
 class FollwarScreen extends StatelessWidget {
   const FollwarScreen({Key? key}) : super(key: key);
 
@@ -49,6 +48,7 @@ class FollwarScreen extends StatelessWidget {
                   )),
                 const SizedBox(height: 30,),
                 const CustomTextField(
+                  
                   lableText: "Patient Code",
                 ),
                 const SizedBox(height: 20,),

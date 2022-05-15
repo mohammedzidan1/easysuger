@@ -7,7 +7,7 @@ class CustomText extends StatelessWidget {
   final FontWeight? fontWeight;
   const CustomText(
       {Key? key,
-      this.text,
+      this.text = "",
       this.color = Colors.white,
       this.fontSise,
       this.fontWeight})
@@ -16,9 +16,8 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-     
       text!,
-       overflow:TextOverflow.clip,
+      overflow: TextOverflow.clip,
       style:
           TextStyle(color: color!, fontSize: fontSise, fontWeight: fontWeight),
     );

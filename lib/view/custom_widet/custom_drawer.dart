@@ -126,10 +126,18 @@ class CustomDrawer extends StatelessWidget {
                             fontSize: 23,
                             color: Colors.red),
                         buildDrawerItem(context,
+                          ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.medicationsScreen);
+                        },
                             text: "Medications ",
                             imagUrl: "assets/images/icons8-medications-64.png",
                             fontSize: 18),
                         buildDrawerItem(context,
+                          ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.analysisScreen);
+                        },
                             text: "Analysis",
                             imagUrl:
                                 "assets/images/icons8-glucose-meter-64.png",
@@ -143,19 +151,36 @@ class CustomDrawer extends StatelessWidget {
                             imagUrl: "assets/images/icons8-add-column-30.png",
                             fontSize: 18),
                         buildDrawerItem(context,
+                          ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.getOfferScreen);
+                        },
                             text: "Get offer ",
                             imagUrl: "assets/images/icons8-recieve-48.png",
                             fontSize: 18),
-                        buildDrawerItem(context, text: "update", fontSize: 18),
+                        buildDrawerItem(context, 
+                          ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.updateScreen);
+                        },
+                        text: "update", fontSize: 18),
                         buildDrawerItem(context,
                         ontap: (){
                           Navigator.pushNamed(context, RoutsNames.follwarNameScreen);
                         },
                             text: "Followers", fontSize: 18),
                         buildDrawerItem(context,
+                          ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.doctorReseervationScreen);
+                        },
                             text: "Doctor reseervation", fontSize: 18),
                         buildDrawerItem(
                           context,
+                            ontap: (){
+                           Navigator.pushNamed(
+                              context, RoutsNames.contactWhitDoctorScreen);
+                        },
                           text: "contact with doctor",
                           fontSize: 18,
                           imagUrl: "assets/images/icons8-new-contact-50.png",
@@ -214,6 +239,7 @@ Widget buildDrawerItem(context,
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
                 text: text!,

@@ -1,9 +1,10 @@
 import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/view/custom_widet/custom_doctor_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../view_model/auth/cubit/auth_bloc.dart';
+import '../../../view_model/auth/cubit/auth_bloc.dart';
 
 class HomeScreenForDoctor extends StatelessWidget {
   const HomeScreenForDoctor({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class HomeScreenForDoctor extends StatelessWidget {
           ],
         ),
       ),
-     // drawer: Cust
+      drawer: const CustomDoctorDrawer()
     );
   }
 }

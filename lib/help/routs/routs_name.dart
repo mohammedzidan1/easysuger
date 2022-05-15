@@ -1,4 +1,4 @@
-import 'package:easysugar/view/screens/doctor_home_screen.dart';
+import 'package:easysugar/view/screens/doctor/doctor_home_screen.dart';
 
 class RoutsNames {
   static const mainSplashScreen = '/';
@@ -19,6 +19,10 @@ static const medicationsScreen = '/medications_Screen';
   static const updateScreen = '/update_screen';
     static const doctorReseervationScreen = '/doctor_Reseervation_Screen';
       static const contactWhitDoctorScreen = '/contact_Whit_Doctor_Screen';
+static const doctorProfileScreen = '/doctor_profile_Screen';
+    static const doctorsettingsScreen = '/ddoctor_settings_Screen';
+      static const consultingDoctorScreen = '/consulting_doctor_screen';
+
 
 
 }

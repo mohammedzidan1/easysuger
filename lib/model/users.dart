@@ -3,6 +3,7 @@ import 'package:firestore_model/firestore_model.dart';
 
 class UserModel extends FirestoreModel<UserModel> {
   late String email;
+  late String uId;
   late String numPhone;
   late String displayName;
   late String userName;
@@ -22,6 +23,7 @@ class UserModel extends FirestoreModel<UserModel> {
 
   UserModel({
     this.displayName = '',
+    this.uId = '',
     this.email = '',
     this.numPhone = '',
     this.password = '',
@@ -50,6 +52,7 @@ class UserModel extends FirestoreModel<UserModel> {
   @override
   Map<String, dynamic> get toMap => {
         "displayName": displayName,
+        "uId": uId,
         "userName": email.split('@').first.trim() ?? '',
         'email': email,
         "numPhone": numPhone,
@@ -70,6 +73,7 @@ class UserModel extends FirestoreModel<UserModel> {
   UserModel.fromMap(Map<String, dynamic> map) {
     this.numPhone = map['numPhone'] ?? '';
     this.displayName = map['displayName'] ?? '';
+    this.uId = map['uId'] ?? '';
     this.userName = map['userName'] ?? '';
     this.email = map['email'] ?? '';
     this.gender = map['gender'] ?? '';
