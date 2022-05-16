@@ -2,6 +2,7 @@ import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../../view_model/auth/cubit/auth_bloc.dart';
 import '../../custom_widet/custom_button_social.dart';
 import '../../custom_widet/custom_default_button.dart';
 import '../../custom_widet/custom_text_field.dart';
@@ -180,7 +181,9 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
               ),
               CustomButtonSocial(
                 text: ' Google',
-                onPress: () {},
+                onPress: () {
+                  AuthBloc().signInWithGoogle(context);
+                },
                 imageName: 'assets/images/google.png',
               ),
             ],

@@ -32,7 +32,7 @@ class AppRouts {
         return MaterialPageRoute(
             builder: (_) => TapBarForRegestrationScreen(number: number));
       case RoutsNames.follwarScreen:
-        return MaterialPageRoute(builder: (_) => const FollwarScreen());
+        return MaterialPageRoute(builder: (_) => FollwarScreen());
       case RoutsNames.homeScreenForPatient:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case RoutsNames.predictionScreen:

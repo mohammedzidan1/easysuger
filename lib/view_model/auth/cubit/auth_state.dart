@@ -4,25 +4,25 @@ import 'package:equatable/equatable.dart';
 class AuthState extends Equatable {
   late final UserModel? user;
 
-  late final bool isWrite;
+  late final String followerId;
 
   AuthState({
-    this.isWrite = false,
+    this.followerId = '',
     this.user,
   });
 
   AuthState copyWith({
     UserModel? user,
-    bool? isWrite,
+    String? followerId,
   }) =>
       AuthState(
         user: user ?? this.user,
-        isWrite: isWrite ?? this.isWrite,
+        followerId: followerId ?? this.followerId,
       );
 
   @override
   List<Object> get props => [
-        isWrite,
+        followerId,
         user!,
       ];
 }
