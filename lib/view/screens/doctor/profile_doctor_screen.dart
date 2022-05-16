@@ -1,7 +1,5 @@
-import 'package:easysugar/help/my_colors_app.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easysugar/model/users.dart';
+import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,11 +38,17 @@ class PrfileDoctorScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.all(30.0),
+        margin: EdgeInsets.all(30.0),
         child: SingleChildScrollView(
-          child: ModelSingleBuilder<UserModel>(
+          child: ModelSingleBuilder<Doctor>(
               docId: FirebaseAuth.instance.currentUser?.uid,
               onSuccess: (user) {
+                addressController.text = user!.adress;
+                speicilityController.text = user!.spiciality;
+                degreeController.text = user!.degree;
+                locationController.text = user!.location;
+                bookingController.text = user!.booking;
+
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

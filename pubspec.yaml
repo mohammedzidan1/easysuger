@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.1.2
   fl_chart: ^0.50.1
   get:  ^4.6.3
+  get_storage: ^2.0.3
 dev_dependencies:
   flutter_test:
 

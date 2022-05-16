@@ -1,12 +1,15 @@
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'custom_widet/custom_default_button.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({Key? key}) : super(key: key);
+  StartScreen({Key? key}) : super(key: key);
+  final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
 //lkjhgfdfghjkl7777777777777777777777777
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,8 @@ class StartScreen extends StatelessWidget {
                   Navigator.pushReplacementNamed(
                       context, RoutsNames.tapBarForRegestrationScreen,
                       arguments: 1);
+
+                  authVeiwModel.enterTypeOfUser('Patient');
                 },
                 text: "Patient",
               ),
@@ -38,6 +43,7 @@ class StartScreen extends StatelessWidget {
                   Navigator.pushReplacementNamed(
                       context, RoutsNames.tapBarForRegestrationScreen,
                       arguments: 2);
+                  authVeiwModel.enterTypeOfUser('Doctor');
                 },
               ),
               const SizedBox(
@@ -46,7 +52,9 @@ class StartScreen extends StatelessWidget {
               CustomDefaultButton(
                 text: "Follwar",
                 ontap: () {
-                  Navigator.pushReplacementNamed(context, RoutsNames.follwarScreen);
+                  Navigator.pushReplacementNamed(
+                      context, RoutsNames.follwarScreen);
+                  authVeiwModel.enterTypeOfUser('Follower');
                 },
               ),
             ],

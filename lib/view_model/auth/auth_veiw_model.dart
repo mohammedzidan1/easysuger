@@ -1,12 +1,18 @@
+import 'package:easysugar/help/constant.dart';
+import 'package:easysugar/help/routs/routs_name.dart';
+import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/model/follower.dart';
 import 'package:easysugar/view/screens/patient_home_screen.dart';
+import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../model/users.dart';
 
 class AuthVeiwModel extends GetxController {
+  String? userType;
   UserModel? user;
   Future<void> getUserData() async {
     User? userF = FirebaseAuth.instance.currentUser;
@@ -45,5 +51,29 @@ class AuthVeiwModel extends GetxController {
 
       print('FId $followerId');
     }
+  }
+
+  void enterTypeOfUser(String userT) {
+    box.write('userType', userT);
+    userType = userT;
+    update();
+  }
+
+  void createAccountForDoctor({context, Doctor? doctor}) async {
+    User? user = await AuthService().register(doctor!.email, doctor.password);
+    if (user != null) {
+      doctor.docId = user.uid;
+      await doctor.create(docId: user.uid);
+      Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForDoctor);
+    } else {
+      print('user not found');
+    }
+  }
+
+  void logOutForDoctor(context) async {
+    await AuthService().logout();
+    Navigator.pushReplacementNamed(
+        context, RoutsNames.tapBarForRegestrationScreen,
+        arguments: 2);
   }
 }

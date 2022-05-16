@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../custom_widet/custom_default_button.dart';
 
@@ -22,13 +21,13 @@ class SettingDoctorScreen extends StatefulWidget {
 class _SettingDoctorScreenState extends State<SettingDoctorScreen> {
   File? image;
 
-  void pickImage()async{
+/*void pickImage()async{
     // ignore: invalid_use_of_visible_for_testing_member
     var image=await  ImagePicker.platform.pickImage(source: ImageSource.camera);
 setState(() {
   image=image!;
-});
-  }
+});*/
+
   var nameController = TextEditingController();
 
   var emailController = TextEditingController();
@@ -64,19 +63,18 @@ setState(() {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                   
                     Align(
                       alignment: Alignment.center,
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                           CircleAvatar(
+                          /* CircleAvatar(
                              radius: 80,
 
                           child:ClipOval(
                             child: image == null
                                 ?Image.asset(' assets/images/icons8-new-contact-50.png'): Image.file(image!),
-                          ),),
+                          ),),*/
 
                           Container(
                               margin: const EdgeInsets.all(16.0),
@@ -87,8 +85,7 @@ setState(() {
                               child: IconButton(
                                   //  color: Colors.white,
                                   onPressed: () {
-                                     pickImage();
-  
+                                    // pickImage();
                                   },
                                   icon: const Icon(
                                     Icons.camera_alt,
@@ -139,6 +136,4 @@ setState(() {
       ),
     );
   }
-
 }
-

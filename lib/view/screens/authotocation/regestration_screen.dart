@@ -2,6 +2,7 @@ import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/screens/authotocation/login_screen_for_doctor.dart';
 import 'package:easysugar/view/screens/authotocation/sign_up_screen_for_doctor.dart';
 import 'package:flutter/material.dart';
+
 import 'log_in_screen_for_patient.dart';
 import 'sign_up_screen_for_patient.dart';
 
@@ -60,9 +61,7 @@ class TapBarForRegestrationScreen extends StatelessWidget {
             number == 1
                 ? const LogInScreenforPatient()
                 : const LogInScreenforDoctor(),
-            number == 1
-                ? SignUpScreenForPatient()
-                : const SignUpScreenForDoctor(),
+            number == 1 ? SignUpScreenForPatient() : SignUpScreenForDoctor(),
           ],
         ),
       ),

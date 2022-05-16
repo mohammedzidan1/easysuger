@@ -1,6 +1,8 @@
-import 'package:easysugar/help/routs/routs_name.dart';
+import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../view_model/auth/cubit/auth_bloc.dart';
 import '../../custom_widet/custom_button_social.dart';
@@ -9,13 +11,23 @@ import '../../custom_widet/custom_text_field.dart';
 
 class SignUpScreenForDoctor extends StatefulWidget {
   final int? signNumer;
-  const SignUpScreenForDoctor({Key? key, this.signNumer}) : super(key: key);
+  SignUpScreenForDoctor({Key? key, this.signNumer}) : super(key: key);
 
   @override
   State<SignUpScreenForDoctor> createState() => _SignUpScreenForDoctorState();
 }
 
 class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
+  TextEditingController nameC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
+  TextEditingController repeatPasswordC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
+  TextEditingController addressC = TextEditingController();
+  TextEditingController speacialyC = TextEditingController();
+  TextEditingController degreeC = TextEditingController();
+  TextEditingController locationC = TextEditingController();
+  TextEditingController bookingC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +55,16 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
-                    children: const [
+                    children: [
                       CustomTextField(
-                          lableText: "Name", prefexIcon: Icons.person),
+                          controller: nameC,
+                          lableText: "Name",
+                          prefexIcon: Icons.person),
                       SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: emailC,
                         lableText: "Email",
                         prefexIcon: Icons.email_outlined,
                       ),
@@ -57,6 +72,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: passwordC,
                         lableText: "Create password",
                         prefexIcon: Icons.lock_outlined,
                         sufixIcon: Icons.password_outlined,
@@ -65,6 +81,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: repeatPasswordC,
                         lableText: "Repeat password",
                         prefexIcon: Icons.lock_outlined,
                         sufixIcon: Icons.password_outlined,
@@ -73,6 +90,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: phoneC,
                         lableText: "Phone",
                         prefexIcon: Icons.phone_android_outlined,
                       ),
@@ -80,6 +98,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: addressC,
                         lableText: "Address",
                         // prefexIcon: Icons.addres,
                       ),
@@ -87,24 +106,28 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: speacialyC,
                         lableText: "Speciality",
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: degreeC,
                         lableText: "Degree",
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: locationC,
                         lableText: "Location",
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
+                        controller: bookingC,
                         lableText: "Booking Data",
                       ),
                       SizedBox(
@@ -134,8 +157,19 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
               CustomDefaultButton(
                 text: "Sign Up",
                 ontap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutsNames.homeScreenForDoctor);
+                  Doctor doctor = Doctor(
+                    numPhone: phoneC.text,
+                    displayName: nameC.text,
+                    email: emailC.text,
+                    password: passwordC.text,
+                    adress: addressC.text,
+                    spiciality: speacialyC.text,
+                    degree: degreeC.text,
+                    location: locationC.text,
+                    booking: bookingC.text,
+                  );
+                  Get.put(AuthVeiwModel())
+                      .createAccountForDoctor(context: context, doctor: doctor);
                 },
                 height: 50,
                 width: 260,

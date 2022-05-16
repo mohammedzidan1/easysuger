@@ -1,3 +1,4 @@
+import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/approuts.dart';
 import 'package:easysugar/model/follower.dart';
@@ -8,18 +9,18 @@ import 'package:easysugar/model/users.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+
+import 'model/doctor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await box.initStorage;
   await Firebase.initializeApp();
-  FirestoreModel.injectAll([
-    UserModel(),
-    Prediction(),
-    Report(),
-    Survey(),
-    Follower(),
-  ]);
+
+  FirestoreModel.injectAll(
+      [UserModel(), Prediction(), Report(), Survey(), Follower(), Doctor()]);
   runApp(MyApp(
     appRouts: AppRouts(),
   ));

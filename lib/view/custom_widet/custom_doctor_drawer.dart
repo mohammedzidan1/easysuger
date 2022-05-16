@@ -1,10 +1,12 @@
 import 'package:easysugar/help/routs/routs_name.dart';
-import 'package:easysugar/model/users.dart';
+import 'package:easysugar/model/doctor.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../../view_model/auth/cubit/auth_bloc.dart';
 import 'custom_text.dart';
 
 class CustomDoctorDrawer extends StatelessWidget {
@@ -16,7 +18,7 @@ class CustomDoctorDrawer extends StatelessWidget {
       width: MediaQuery.of(context).size.width * .8,
       child: Drawer(
         backgroundColor: const Color(0xffE3F4FF),
-        child: ModelStreamSingleBuilder<UserModel>(
+        child: ModelStreamSingleBuilder<Doctor>(
             docId: FirebaseAuth.instance.currentUser?.uid,
             onSuccess: (user) {
               // print('userId ${FirebaseAuth.instance.currentUser?.uid}');
@@ -81,7 +83,8 @@ class CustomDoctorDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                           Navigator.pushNamed(context,RoutsNames.consultingDoctorScreen);
+                            Navigator.pushNamed(
+                                context, RoutsNames.consultingDoctorScreen);
                           },
                           text: "Consulting",
                           fontSize: 18,
@@ -89,7 +92,8 @@ class CustomDoctorDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                             Navigator.pushNamed(context,RoutsNames.doctorProfileScreen);
+                            Navigator.pushNamed(
+                                context, RoutsNames.doctorProfileScreen);
                           },
                           text: "Profile",
                           fontSize: 18,
@@ -108,7 +112,7 @@ class CustomDoctorDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                         //   AuthBloc().logOut(context);
+                            Get.put(AuthVeiwModel()).logOutForDoctor(context);
                           },
                           text: "Log out",
                           fontSize: 18,
