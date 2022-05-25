@@ -1,3 +1,4 @@
+import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,8 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               CustomButtonSocial(
                 text: ' Google',
                 onPress: () {
-                  AuthBloc().signInWithGoogle(context);
+                  AuthBloc().signInWithGoogle(
+                      context: context, page: RoutsNames.homeScreenForPatient);
                 },
                 imageName: 'assets/images/google.png',
               ),

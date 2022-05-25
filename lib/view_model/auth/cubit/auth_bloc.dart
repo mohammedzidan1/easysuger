@@ -93,7 +93,7 @@ class AuthBloc extends Cubit<AuthState> {
     }
   }
 
-  void signInWithGoogle(context) async {
+  void signInWithGoogle({context, String? page}) async {
     UserCredential? user = await AuthService().signInWithGoogle();
     print(user.user!.email);
 
@@ -104,7 +104,7 @@ class AuthBloc extends Cubit<AuthState> {
       }
       print('provider: ${user.user!.providerData.single.providerId}');
       await getUserData();
-      Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForPatient);
+      Navigator.pushReplacementNamed(context, page!);
 
       // Modular.to.pushReplacementNamed(AppRoutes.mainHome);
 

@@ -119,7 +119,8 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               CustomButtonSocial(
                 text: ' Google',
                 onPress: () {
-                  AuthBloc().signInWithGoogle(context);
+                  AuthBloc().signInWithGoogle(
+                      context: context, page: RoutsNames.homeScreenForDoctor);
                 },
                 imageName: 'assets/images/google.png',
               ),
