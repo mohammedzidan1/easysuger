@@ -1,22 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../custom_widet/custom_default_button.dart';
 
 class PrfileDoctorScreen extends StatelessWidget {
-  PrfileDoctorScreen({Key? key}) : super(key: key);
-
-  var addressController = TextEditingController();
-  var speicilityController = TextEditingController();
-  var degreeController = TextEditingController();
-  var locationController = TextEditingController();
-  var bookingController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,67 +33,106 @@ class PrfileDoctorScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.all(30.0),
+        margin: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
-          child: ModelSingleBuilder<Doctor>(
+          child: ModelStreamSingleBuilder<Doctor>(
               docId: FirebaseAuth.instance.currentUser?.uid,
               onSuccess: (user) {
-                addressController.text = user!.adress;
-                speicilityController.text = user!.spiciality;
-                degreeController.text = user!.degree;
-                locationController.text = user!.location;
-                bookingController.text = user!.booking;
-
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: addressController,
-                      lableText: "Addrees",
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: speicilityController,
-                      lableText: "Speciality",
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: degreeController,
-                      lableText: "Degree",
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: locationController,
-                      lableText: "Location",
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: bookingController,
-                      lableText: "Booking Data",
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
+                    customListTile(title: 'Address', trailing: user!.adress),
+                    customListTile(
+                        title: 'spiciality', trailing: user.spiciality),
+                    customListTile(title: 'degree', trailing: user.degree),
+                    customListTile(title: 'location', trailing: user.location),
+                    customListTile(title: 'booking', trailing: user.booking),
                     const SizedBox(
                       height: 50.0,
                     ),
                     CustomDefaultButton(
                       text: "Update",
                       ontap: () {
-                        user?.save(setOptions: SetOptions(merge: true));
+                        Notifications.dialog(context,
+                            child: AlertDialog(
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user.adress = value;
+                                      },
+                                      initValue: user.adress,
+                                      // controller: addressController,
+                                      lableText: "Addrees",
+
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user.spiciality = value;
+                                      },
+                                      initValue: user.spiciality,
+                                      lableText: "Speciality",
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user.degree = value;
+                                      },
+                                      initValue: user.degree,
+                                      lableText: "Degree",
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user.location = value;
+                                      },
+                                      initValue: user.location,
+                                      lableText: "Location",
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user.booking = value;
+                                      },
+                                      initValue: user.booking,
+                                      lableText: "Booking Data",
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () async {
+                                      await user.save(
+                                          setOptions: SetOptions(merge: true));
+                                      Navigator.pop(context);
+                                      Notifications.success(
+                                          'Success update profile information');
+                                    },
+                                    child: const Text('Save'))
+                              ],
+                            ));
+                        // user.save(setOptions: SetOptions(merge: true));
                       },
                       height: 50,
                       width: 260,
@@ -111,13 +145,22 @@ class PrfileDoctorScreen extends StatelessWidget {
     );
   }
 
-  // bool isUpdate(UserModel? user) {
-  //   if (user?.email == emailController.text ||
-  //       user?.userName == nameController.text ||
-  //       user?.numPhone == phoneController.text) {
-  //     return false;
-  //   }
-  //   ;
-  //   return true;
-  // }
+  Widget customListTile({String? title, trailing}) {
+    return ListTile(
+      title: Text(
+        title!,
+        style: GoogleFonts.cairo(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Text(
+        trailing,
+        style: GoogleFonts.cairo(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: ColorsApp.primaryColor),
+      ),
+    );
+  }
 }

@@ -14,7 +14,7 @@ class HomeScreenForDoctor extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.logout,
                 color: Colors.black,
               ),

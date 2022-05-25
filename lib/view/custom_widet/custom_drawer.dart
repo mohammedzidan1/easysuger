@@ -6,6 +6,7 @@ import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../view_model/auth/cubit/auth_bloc.dart';
 import 'custom_text.dart';
@@ -90,13 +91,10 @@ class CustomDrawer extends StatelessWidget {
                                   const SizedBox(
                                     height: 3,
                                   ),
-                                  CustomText(
-                                    text:
-                                        FirebaseAuth.instance.currentUser?.uid,
-                                    color: Colors.white,
-                                    fontSise: 15,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  SelectableText(
+                                    '${FirebaseAuth.instance.currentUser?.uid}',
+                                    style: GoogleFonts.cairo(),
+                                  )
                                 ],
                               ),
                               const Icon(

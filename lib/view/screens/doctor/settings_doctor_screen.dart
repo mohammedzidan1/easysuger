@@ -1,14 +1,17 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easysugar/model/users.dart';
+import 'package:easysugar/help/notifications.dart';
+import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../../help/my_colors_app.dart';
 import '../../custom_widet/custom_default_button.dart';
 
 class SettingDoctorScreen extends StatefulWidget {
@@ -57,7 +60,7 @@ setState(() {
       body: Container(
         margin: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
-          child: ModelSingleBuilder<UserModel>(
+          child: ModelSingleBuilder<Doctor>(
               docId: FirebaseAuth.instance.currentUser?.uid,
               onSuccess: (user) {
                 return Column(
@@ -84,9 +87,7 @@ setState(() {
                                   borderRadius: BorderRadius.circular(20)),
                               child: IconButton(
                                   //  color: Colors.white,
-                                  onPressed: () {
-                                    // pickImage();
-                                  },
+                                  onPressed: () {},
                                   icon: const Icon(
                                     Icons.camera_alt,
                                     size: 30,
@@ -94,37 +95,71 @@ setState(() {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: nameController,
-                      lableText: user?.displayName,
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: emailController,
-                      lableText: user?.email,
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    CustomTextField(
-                      controller: phoneController,
-                      lableText: user?.numPhone,
-                      width: MediaQuery.of(context).size.width * .8,
-                    ),
+                    customListTile(title: 'Name', trailing: user?.displayName),
+                    customListTile(title: 'Email', trailing: user?.email),
+                    customListTile(title: 'Phone', trailing: user?.numPhone),
                     const SizedBox(
                       height: 50.0,
                     ),
                     CustomDefaultButton(
                       text: "Update",
                       ontap: () {
-                        user?.save(setOptions: SetOptions(merge: true));
+                        Notifications.dialog(context,
+                            child: AlertDialog(
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user?.displayName = value;
+                                      },
+                                      initValue: user?.displayName,
+                                      lableText: 'name',
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user?.email = value;
+                                      },
+                                      initValue: user?.email,
+                                      lableText: 'Email',
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                    const SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    UpdateCustomTextField(
+                                      onChanged: (value) {
+                                        user?.numPhone = value;
+                                      },
+                                      initValue: user?.numPhone,
+                                      lableText: 'Phone',
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                CustomDefaultButton(
+                                  text: "Save",
+                                  ontap: () async {
+                                    await user?.save(
+                                        setOptions: SetOptions(merge: true));
+                                    Navigator.pop(context);
+                                    Notifications.success(
+                                        'Success update settings information');
+                                  },
+                                  height: 50,
+                                  width: 260,
+                                ),
+                              ],
+                            ));
                       },
                       height: 50,
                       width: 260,
@@ -133,6 +168,25 @@ setState(() {
                 );
               }),
         ),
+      ),
+    );
+  }
+
+  Widget customListTile({String? title, trailing}) {
+    return ListTile(
+      title: Text(
+        title!,
+        style: GoogleFonts.cairo(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Text(
+        trailing,
+        style: GoogleFonts.cairo(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: ColorsApp.primaryColor),
       ),
     );
   }
