@@ -7,6 +7,7 @@ class Doctor extends FirestoreModel<Doctor> {
   late String uId;
   late String numPhone;
   late String displayName;
+  late String imageUrl;
   late String adress;
   late String spiciality;
   late String degree;
@@ -15,6 +16,7 @@ class Doctor extends FirestoreModel<Doctor> {
 
   Doctor({
     this.displayName = '',
+    this.imageUrl = '',
     this.uId = '',
     this.email = '',
     this.numPhone = '',
@@ -36,6 +38,7 @@ class Doctor extends FirestoreModel<Doctor> {
   @override
   Map<String, dynamic> get toMap => {
         "displayName": displayName,
+        "imageUrl": imageUrl,
         "password": password,
         "uId": uId,
         "userName": email.split('@').first.trim() ?? '',
@@ -52,6 +55,7 @@ class Doctor extends FirestoreModel<Doctor> {
     this.numPhone = map['numPhone'] ?? '';
     this.password = map['password'] ?? '';
     this.displayName = map['displayName'] ?? '';
+    this.imageUrl = map['imageUrl'] ?? '';
     this.uId = map['uId'] ?? '';
 
     this.email = map['email'] ?? '';

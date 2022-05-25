@@ -34,10 +34,20 @@ class CustomDoctorDrawer extends StatelessWidget {
                             Navigator.pushNamed(
                                 context, RoutsNames.doctorsettingsScreen);
                           },
-                          child: const CircleAvatar(
-                            radius: 40,
-                            backgroundImage:
-                                AssetImage("assets/images/icons8-meal-100.png"),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            height: 100,
+                            width: 100,
+                            child: user?.imageUrl == ''
+                                ? Image.asset(
+                                    ' assets/images/icons8-new-contact-50.png')
+                                : Image.network(
+                                    user!.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                         const SizedBox(

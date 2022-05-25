@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/model/doctor.dart';
+import 'package:easysugar/service/firebase_storage.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
@@ -71,14 +73,21 @@ setState(() {
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          /* CircleAvatar(
-                             radius: 80,
-
-                          child:ClipOval(
-                            child: image == null
-                                ?Image.asset(' assets/images/icons8-new-contact-50.png'): Image.file(image!),
-                          ),),*/
-
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            height: 170,
+                            width: 170,
+                            child: user?.imageUrl == ''
+                                ? Image.asset(
+                                    ' assets/images/icons8-new-contact-50.png')
+                                : Image.network(
+                                    user!.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
                           Container(
                               margin: const EdgeInsets.all(16.0),
                               decoration: BoxDecoration(
@@ -87,7 +96,24 @@ setState(() {
                                   borderRadius: BorderRadius.circular(20)),
                               child: IconButton(
                                   //  color: Colors.white,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles(
+                                      type: FileType.image,
+
+                                      // allowedExtensions: ['jpg', ],
+                                    );
+
+                                    String? path = result?.paths[0];
+                                    if (path != null) {
+                                      print('path $path');
+                                      String? imageUrl =
+                                          await FirebaseStorageService
+                                              .uploadFile(path);
+                                      await user?.update(
+                                          data: {'imageUrl': imageUrl});
+                                    }
+                                  },
                                   icon: const Icon(
                                     Icons.camera_alt,
                                     size: 30,
