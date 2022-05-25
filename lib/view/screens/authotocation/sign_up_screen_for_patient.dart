@@ -1,3 +1,4 @@
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
@@ -134,17 +135,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                 ontap: () async {
                   print(emailController.text);
                   print(passwordController.text);
-                  UserModel userModel = UserModel(
-                    displayName: nameController.text,
-                    userName: nameController.text,
-                    email: emailController.text,
-                    numPhone: phoneController.text,
-                    age: ageController.text,
-                    gender: genderController.text,
-                    password: passwordController.text,
-                  );
-                  authBloc.createAccount(
-                      userModel: userModel, context: context);
+                  validationInput();
                 },
                 height: 50,
                 width: 260,
@@ -206,5 +197,34 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
         ),
       ),
     );
+  }
+
+  void validationInput() {
+    if (emailController.text.isEmpty || !emailController.text.contains('@')) {
+      Notifications.error('Please enter correct email');
+    } else if (nameController.text.isEmpty) {
+      Notifications.error('Please enter correct name');
+    } else if (passwordController.text.isEmpty) {
+      Notifications.error('Please enter correct password');
+    } else if (confirmPasswordController.text != passwordController.text) {
+      Notifications.error('Please enter the same password');
+    } else if (phoneController.text.isEmpty) {
+      Notifications.error('Please enter correct phone number');
+    } else if (ageController.text.isEmpty) {
+      Notifications.error('Please enter correct age');
+    } else if (genderController.text.isEmpty) {
+      Notifications.error('Please enter correct gender');
+    } else {
+      UserModel userModel = UserModel(
+        displayName: nameController.text,
+        userName: nameController.text,
+        email: emailController.text,
+        numPhone: phoneController.text,
+        age: ageController.text,
+        gender: genderController.text,
+        password: passwordController.text,
+      );
+      authBloc.createAccount(userModel: userModel, context: context);
+    }
   }
 }

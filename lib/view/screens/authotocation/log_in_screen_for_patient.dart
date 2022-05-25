@@ -3,6 +3,7 @@ import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../help/notifications.dart';
 import '../../custom_widet/custom_button_social.dart';
 import '../../custom_widet/custom_default_button.dart';
 import '../../custom_widet/custom_text_field.dart';
@@ -75,8 +76,7 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               CustomDefaultButton(
                 text: "Log In",
                 ontap: () {
-                  AuthBloc().signIn(
-                      context, emailController.text, passwordController.text);
+                  validationInput();
                 },
                 height: 50,
                 width: 260,
@@ -136,5 +136,15 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
         ),
       ),
     );
+  }
+
+  void validationInput() {
+    if (emailController.text.isEmpty || !emailController.text.contains('@')) {
+      Notifications.error('Please enter correct email');
+    } else if (passwordController.text.isEmpty) {
+      Notifications.error('Please enter correct password');
+    } else {
+      AuthBloc().signIn(context, emailController.text, passwordController.text);
+    }
   }
 }

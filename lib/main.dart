@@ -1,3 +1,4 @@
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/approuts.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide(color: ColorsApp.primaryColor))),
       ),
       debugShowCheckedModeBanner: false,
+      builder: asuka.builder,
       onGenerateRoute: appRouts!.genirateRoute,
     );
   }

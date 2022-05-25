@@ -9,6 +9,7 @@ import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../help/notifications.dart';
 import '../../model/users.dart';
 
 class AuthVeiwModel extends GetxController {
@@ -22,6 +23,7 @@ class AuthVeiwModel extends GetxController {
       //print("uid ${userModel.uId}");
       user = userModel;
       update();
+
       print("userF ${userF}");
       print("userModel ${user?.toMap}");
 
@@ -67,6 +69,16 @@ class AuthVeiwModel extends GetxController {
       Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForDoctor);
     } else {
       print('user not found');
+    }
+  }
+
+  void signIn(context, String email, String password) async {
+    User? user = await AuthService().signIn(email, password);
+    if (user != null) {
+      await getUserData();
+      Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForDoctor);
+      Notifications.success('تم تسجيل الدخول بنجاح');
+      // Modular.to.pushReplacementNamed(AppRoutes.mainHome);
     }
   }
 

@@ -1,7 +1,11 @@
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
+import '../../../help/notifications.dart';
 import '../../../help/routs/routs_name.dart';
 import '../../custom_widet/custom_button_social.dart';
 import '../../custom_widet/custom_default_button.dart';
@@ -15,7 +19,8 @@ class LogInScreenforDoctor extends StatefulWidget {
 }
 
 class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
-  var controllar = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +42,8 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               const SizedBox(
                 height: 20.0,
               ),
-              const CustomTextField(
+              CustomTextField(
+                controller: emailController,
                 lableText: "Email",
                 prefexIcon: Icons.email_outlined,
               ),
@@ -45,7 +51,8 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
                 height: 20.0,
               ),
 
-              const CustomTextField(
+              CustomTextField(
+                controller: passwordController,
                 lableText: "Passward",
                 prefexIcon: Icons.lock_outlined,
                 sufixIcon: Icons.password_outlined,
@@ -70,8 +77,7 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               CustomDefaultButton(
                 text: "Log In",
                 ontap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutsNames.homeScreenForDoctor);
+                  validationInput();
                 },
                 height: 50,
                 width: 260,
@@ -131,5 +137,17 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
         ),
       ),
     );
+  }
+
+  void validationInput() {
+    if (emailController.text.isEmpty || !emailController.text.contains('@')) {
+      Notifications.error('Please enter correct email');
+    } else if (passwordController.text.isEmpty) {
+      Notifications.error('Please enter correct password');
+    } else {
+      AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
+      authVeiwModel.signIn(
+          context, emailController.text, passwordController.text);
+    }
   }
 }

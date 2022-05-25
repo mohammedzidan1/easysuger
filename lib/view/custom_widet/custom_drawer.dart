@@ -80,18 +80,19 @@ class CustomDrawer extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
-                                children: const [
-                                  CustomText(
+                                children: [
+                                  const CustomText(
                                     text: "User Code",
                                     color: Colors.white,
                                     fontSise: 18,
                                     fontWeight: FontWeight.w700,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   CustomText(
-                                    text: "mm12#!",
+                                    text:
+                                        FirebaseAuth.instance.currentUser?.uid,
                                     color: Colors.white,
                                     fontSise: 15,
                                     fontWeight: FontWeight.w600,

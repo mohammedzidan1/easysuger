@@ -5,6 +5,7 @@ import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../help/notifications.dart';
 import '../../../view_model/auth/cubit/auth_bloc.dart';
 import '../../custom_widet/custom_button_social.dart';
 import '../../custom_widet/custom_default_button.dart';
@@ -158,19 +159,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
               CustomDefaultButton(
                 text: "Sign Up",
                 ontap: () {
-                  Doctor doctor = Doctor(
-                    numPhone: phoneC.text,
-                    displayName: nameC.text,
-                    email: emailC.text,
-                    password: passwordC.text,
-                    adress: addressC.text,
-                    spiciality: speacialyC.text,
-                    degree: degreeC.text,
-                    location: locationC.text,
-                    booking: bookingC.text,
-                  );
-                  Get.put(AuthVeiwModel())
-                      .createAccountForDoctor(context: context, doctor: doctor);
+                  validationInput();
                 },
                 height: 50,
                 width: 260,
@@ -227,5 +216,43 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
         ),
       ),
     );
+  }
+
+  void validationInput() {
+    if (emailC.text.isEmpty || !emailC.text.contains('@')) {
+      Notifications.error('Please enter correct email');
+    } else if (nameC.text.isEmpty) {
+      Notifications.error('Please enter correct name');
+    } else if (passwordC.text.isEmpty) {
+      Notifications.error('Please enter correct password');
+    } else if (repeatPasswordC.text != passwordC.text) {
+      Notifications.error('Please enter the same password');
+    } else if (phoneC.text.isEmpty) {
+      Notifications.error('Please enter correct phone number');
+    } else if (addressC.text.isEmpty) {
+      Notifications.error('Please enter correct address');
+    } else if (speacialyC.text.isEmpty) {
+      Notifications.error('Please enter correct speacialy');
+    } else if (degreeC.text.isEmpty) {
+      Notifications.error('Please enter correct degree');
+    } else if (locationC.text.isEmpty) {
+      Notifications.error('Please enter correct location');
+    } else if (bookingC.text.isEmpty) {
+      Notifications.error('Please enter correct books');
+    } else {
+      Doctor doctor = Doctor(
+        numPhone: phoneC.text,
+        displayName: nameC.text,
+        email: emailC.text,
+        password: passwordC.text,
+        adress: addressC.text,
+        spiciality: speacialyC.text,
+        degree: degreeC.text,
+        location: locationC.text,
+        booking: bookingC.text,
+      );
+      Get.put(AuthVeiwModel())
+          .createAccountForDoctor(context: context, doctor: doctor);
+    }
   }
 }

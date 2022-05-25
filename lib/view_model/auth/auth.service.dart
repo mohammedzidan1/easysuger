@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../help/notifications.dart';
+
 class AuthService {
   static bool get isLogin => auth.currentUser != null;
 
@@ -25,14 +27,14 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       print('register error ${e.toString()}');
       if (e.code == 'weak-password') {
-        // Notifications.error(e.message);
+        Notifications.error(e.message);
       } else if (e.code == 'email-already-in-use') {
-        // Notifications.error(e.message);
+        Notifications.error(e.message);
       }
     } catch (e) {
       print('register error ${e.toString()}');
 
-      // Notifications.error(e.message);
+      Notifications.error(e.toString());
     }
     return null!;
   }
@@ -46,16 +48,19 @@ class AuthService {
       return user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
+        Notifications.error(e.message);
         // Notifications.error('هذا البريد الالكتروني غير موجود');
       } else if (e.code == 'user-not-found') {
+        Notifications.error(e.message);
         // Notifications.error('هذا المستخدم غير موجود');
       } else if (e.code == 'wrong-password') {
+        Notifications.error(e.message);
         // Notifications.error('كلمة المرور غير صحيحة');
       } else if (e.code == 'user-disabled') {
-        // Notifications.error(e.message);
+        Notifications.error(e.message);
       }
     } catch (e) {
-      // Notifications.error(e.message);
+      Notifications.error(e.toString());
     }
     return null!;
   }
