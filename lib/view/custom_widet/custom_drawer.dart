@@ -40,10 +40,20 @@ class CustomDrawer extends StatelessWidget {
                                   Navigator.pushNamed(
                                       context, RoutsNames.settingsScreen);
                                 },
-                                child: const CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: AssetImage(
-                                      "assets/images/unknown-person.png"),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  clipBehavior: Clip.antiAlias,
+                                  height: 80,
+                                  width: 80,
+                                  child: user?.imageUrl == ''
+                                      ? Image.asset(
+                                          'assets/images/icons8-meal-100.png')
+                                      : Image.network(
+                                          user!.imageUrl,
+                                          fit: BoxFit.cover,
+                                        ),
                                 ),
                               ),
                               const SizedBox(
@@ -92,13 +102,13 @@ class CustomDrawer extends StatelessWidget {
                                   ),
                                   SelectableText(
                                     '${FirebaseAuth.instance.currentUser?.uid}',
-                                    style: GoogleFonts.cairo(color:Colors.white),
+                                    style:
+                                        GoogleFonts.cairo(color: Colors.white),
                                   )
                                 ],
                               ),
                               const Icon(
                                 Icons.star_rate_sharp,
-                                
                                 color: Colors.yellow,
                               )
                             ],
@@ -129,48 +139,44 @@ class CustomDrawer extends StatelessWidget {
                             imagUrl: "assets/images/icons8-emergency-64.png",
                             fontSize: 23,
                             color: Colors.red),
-                        buildDrawerItem(context,
-                        ontap: (){
-                          Navigator.pushNamed(context,RoutsNames.medicationsScreen);
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.medicationsScreen);
                         },
                             text: "Medications ",
                             imagUrl: "assets/images/icons8-medications-64.png",
                             fontSize: 18),
-                        buildDrawerItem(context,
-                        ontap: (){
-                          Navigator.pushNamed(context,RoutsNames.analysisScreen);
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.analysisScreen);
                         },
                             text: "Analysis",
                             imagUrl:
                                 "assets/images/icons8-glucose-meter-64.png",
                             fontSize: 18),
-                        buildDrawerItem(context,
-                        ontap: (){
-                          Navigator.pushNamed(context,RoutsNames.addRecordScreen);
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.addRecordScreen);
                         },
                             text: "Add record ",
                             imagUrl: "assets/images/icons8-add-column-30.png",
                             fontSize: 18),
-                        buildDrawerItem(context,
-                        ontap: (){
-                          Navigator.pushNamed(context,RoutsNames.getOfferScreen);
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.getOfferScreen);
                         },
                             text: "Get offer ",
                             imagUrl: "assets/images/icons8-recieve-48.png",
                             fontSize: 18),
-                        buildDrawerItem(context, 
-                        ontap: (){
-                          Navigator.pushNamed(context,RoutsNames.updateScreen);
-                        },
-                        text: "update", fontSize: 18),
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(context, RoutsNames.updateScreen);
+                        }, text: "update", fontSize: 18),
                         buildDrawerItem(context, ontap: () {
                           Navigator.pushNamed(
                               context, RoutsNames.follwarNameScreen);
                         }, text: "Followers", fontSize: 18),
-                       
-                       buildDrawerItem(context, ontap: () {
-                          Navigator.pushNamed(
-                              context, RoutsNames.askScreen);
+                        buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(context, RoutsNames.askScreen);
                         }, text: "Asking", fontSize: 18),
                         buildDrawerItem(
                           context,
@@ -195,7 +201,7 @@ class CustomDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                                showDialog(
+                            showDialog(
                                 context: context,
                                 barrierDismissible: false,
                                 builder: (BuildContext context) {
@@ -211,7 +217,7 @@ class CustomDrawer extends StatelessWidget {
                                       actions: [
                                         TextButton(
                                             onPressed: () {
-                                             AuthBloc().logOut(context);
+                                              AuthBloc().logOut(context);
                                             },
                                             child: const CustomText(
                                               text: "Ok",
@@ -234,7 +240,6 @@ class CustomDrawer extends StatelessWidget {
                                         ),
                                       ));
                                 });
-                           
                           },
                           text: "Log out",
                           fontSize: 18,

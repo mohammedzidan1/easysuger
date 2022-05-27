@@ -46,7 +46,9 @@ class MainSplashScrrn extends StatelessWidget {
         duration: 30,
         //    splash:const Image(image:  AssetImage("assets/images/icon.jpg") ,fit: BoxFit.fill,),
         splash: "assets/images/icon.jpg",
-        nextScreen: nextScreen(),
+        nextScreen: const TapBarForRegestrationScreen(
+          number: 1,
+        ),
         splashTransition: SplashTransition.slideTransition,
 
         // backgroundColor: Color(0xffE3F4FF),

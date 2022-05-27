@@ -41,7 +41,7 @@ class Doctor extends FirestoreModel<Doctor> {
         "imageUrl": imageUrl,
         "password": password,
         "uId": uId,
-        "userName": email.split('@').first.trim() ?? '',
+        "userName": email.split('@').first.trim(),
         'email': email,
         "numPhone": numPhone,
         "adress": adress,

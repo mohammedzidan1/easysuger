@@ -41,13 +41,13 @@ class AuthVeiwModel extends GetxController {
     update();
 
     if (userModel != null) {
-      Follower? follower = userModel?.subCollection<Follower>();
-      follower?.type = 'follower';
-      follower?.phoneNum = phoneNum!;
-      follower?.patientCode = patientCode!;
-      follower?.name = name!;
-      await follower?.create();
-      followerId = follower?.patientCode;
+      Follower? follower = userModel.subCollection<Follower>();
+      follower.type = 'follower';
+      follower.phoneNum = phoneNum!;
+      follower.patientCode = patientCode!;
+      follower.name = name!;
+      await follower.create();
+      followerId = follower.patientCode;
       update();
       Get.to(() => HomeScreen());
 

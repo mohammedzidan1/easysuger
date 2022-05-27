@@ -4,7 +4,6 @@ import 'package:easysugar/view/custom_widet/custom_curve.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
-import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
   @override
   void initState() {
-    if (authVeiwModel.followerId == '') {
-      authVeiwModel.getUserData();
-    }
+    authVeiwModel.getUserData();
+
     super.initState();
   }
 
@@ -42,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
         onSuccess: (user) {
           return Scaffold(
               appBar: AppBar(
-                
                 backgroundColor: const Color(0xff08877A),
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Color(0xff08877A),

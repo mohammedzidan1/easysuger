@@ -1,11 +1,13 @@
+import 'package:easysugar/model/follower.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
+import 'package:firestore_model/firestore_model.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../help/my_colors_app.dart';
-import '../../help/routs/routs_name.dart';
 import '../custom_widet/custom_curve.dart';
-import 'package:flutter/material.dart';
-
-import '../custom_widet/custom_background_curve.dart';
 import '../custom_widet/custom_text.dart';
 
 class EmergencyPage extends StatelessWidget {
@@ -26,14 +28,16 @@ class EmergencyPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon:  Icon(Icons.arrow_back_ios,color: Colors.black.withOpacity(.5),)),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black.withOpacity(.5),
+                )),
           ),
           SizedBox(
               width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.only(top: 150),
                 child: Column(
-                 
                   children: [
                     const CustomText(
                       text: "Emerrgency",
@@ -44,9 +48,9 @@ class EmergencyPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Image(
-                      image: AssetImage('assets/images/icons8-emergency-64.png'),
-                    ),
+                    // const Image(
+                    //   image: AssetImage('assets/images/icons8-emergency-64.png'),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -56,17 +60,31 @@ class EmergencyPage extends StatelessWidget {
                         await canLaunchUrl(Uri(scheme: 'tel', path: '122'));
                       },
                     ),
-                  Expanded(
-                    
-                    child: ListView.builder(
-                        
-                        itemCount: 2,
-                          itemBuilder: ((context, index) => (buildEmergencyNameItem(
-                              text: "01156094458",
-                              onTap: ()  {
-                                 canLaunchUrl(Uri(scheme: 'tel', path: '01156094458'));
-                              })))),
-                  )
+                    Expanded(
+                      child: ModelStreamGetBuilder<Follower>(
+                          parentModel: Get.put(AuthVeiwModel()).user,
+                          onEmpty: () => const CustomText(
+                                text: "No follower Yet",
+                                color: Colors.black,
+                                fontSise: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                          onLoading: () => const CircularProgressIndicator(),
+                          onSuccess: (followers) {
+                            return ListView.builder(
+                                itemCount: followers?.length,
+                                itemBuilder: ((context, index) {
+                                  Follower? follower = followers![index];
+                                  return buildEmergencyNameItem(
+                                      text: follower?.phoneNum,
+                                      onTap: () {
+                                        canLaunchUrl(Uri(
+                                            scheme: 'tel',
+                                            path: '01156094458'));
+                                      });
+                                }));
+                          }),
+                    )
                   ],
                 ),
               )),
@@ -99,12 +117,11 @@ Widget buildEmergencyNameItem({required text, required onTap}) {
               const SizedBox(
                 width: 13,
               ),
-              Container(
-
-                child: const Image(
-                  image: AssetImage("assets/images/icons8-callback-16.png"),
-                ),
-              ),
+              // Container(
+              //   child: const Image(
+              //     image: AssetImage("assets/images/icons8-callback-16.png"),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -115,4 +132,3 @@ Widget buildEmergencyNameItem({required text, required onTap}) {
     ],
   );
 }
-

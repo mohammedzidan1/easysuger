@@ -88,35 +88,36 @@ setState(() {
                                   ),
                           ),
                           Container(
-                              margin: const EdgeInsets.all(16.0),
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 233, 231, 231),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: IconButton(
-                                  //  color: Colors.white,
-                                  onPressed: () async {
-                                    FilePickerResult? result =
-                                        await FilePicker.platform.pickFiles(
-                                      type: FileType.image,
+                            margin: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 233, 231, 231),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: IconButton(
+                              //  color: Colors.white,
+                              onPressed: () async {
+                                FilePickerResult? result =
+                                    await FilePicker.platform.pickFiles(
+                                  type: FileType.image,
 
-                                      // allowedExtensions: ['jpg', ],
-                                    );
+                                  // allowedExtensions: ['jpg', ],
+                                );
 
-                                    String? path = result?.paths[0];
-                                    if (path != null) {
-                                      print('path $path');
-                                      String? imageUrl =
-                                          await FirebaseStorageService
-                                              .uploadFile(path);
-                                      await user?.update(
-                                          data: {'imageUrl': imageUrl});
-                                    }
-                                  },
-                                  icon: const Icon(
-                                    Icons.camera_alt,
-                                    size: 30,
-                                  )))
+                                String? path = result?.paths[0];
+                                if (path != null) {
+                                  print('path $path');
+                                  String? imageUrl =
+                                      await FirebaseStorageService.uploadFile(
+                                          path);
+                                  await user
+                                      ?.update(data: {'imageUrl': imageUrl});
+                                }
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                                size: 30,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -200,10 +201,9 @@ setState(() {
   Widget customListTile({String? title, trailing}) {
     return ListTile(
       title: Text(
-       
         title!,
         style: GoogleFonts.cairo(
-            color: ColorsApp.primaryColor,
+          color: ColorsApp.primaryColor,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -211,9 +211,7 @@ setState(() {
       trailing: Text(
         trailing,
         style: GoogleFonts.cairo(
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-            color: Colors.black),
+            fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

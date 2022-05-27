@@ -59,17 +59,17 @@ Widget bildListViewItem(context, {Report? report}) {
         ),
         buildContanerItem(
           context,
-          report.time ?? '',
+          report.time,
           MediaQuery.of(context).size.width * .3,
         ),
         buildContanerItem(
           context,
-          report.fasting ?? '',
+          report.fasting,
           MediaQuery.of(context).size.width * .4,
         ),
         buildContanerItem(
           context,
-          report.reminder ?? '',
+          report.reminder,
           MediaQuery.of(context).size.width * .5,
         ),
         buildContanerItem(
@@ -84,7 +84,7 @@ Widget bildListViewItem(context, {Report? report}) {
         ),
         buildContanerItem(
           context,
-          report.pills ?? '',
+          report.pills,
           MediaQuery.of(context).size.width * .8,
         ),
       ],
