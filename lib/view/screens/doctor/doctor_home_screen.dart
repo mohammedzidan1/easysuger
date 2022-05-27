@@ -4,6 +4,8 @@ import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../help/my_colors_app.dart';
+
 class HomeScreenForDoctor extends StatelessWidget {
   const HomeScreenForDoctor({Key? key}) : super(key: key);
 
@@ -12,34 +14,13 @@ class HomeScreenForDoctor extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                AuthVeiwModel().logOutForDoctor(context);
-              },
-            ),
-          ],
+          
           systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark),
           elevation: 0.0,
           toolbarHeight: 75,
-          // actions: const [
-          //   Padding(
-          //     padding: EdgeInsets.all(8.0),
-          //     child: CustomText(
-          //       color: Color(0xff4D8D6E),
-          //       text: """      Easy
-          //    Sugar""",
-          //       fontSise: 25.0,
-          //       fontWeight: FontWeight.bold,
-          //     ),
-          //   ),
-          // ],
+       
           backgroundColor: Colors.white,
           leading: Builder(
             builder: (BuildContext context) {
@@ -75,58 +56,158 @@ class HomeScreenForDoctor extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
               const CircleAvatar(
                 backgroundImage: AssetImage(
-                  "assets/images/icons8-meal-100.png",
+                  "assets/images/unknown-person.jpg",
                 ),
-                radius: 100,
+                radius: 75,
               ),
               const SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
-              Container(
-                child: const Center(
-                    child: CustomText(
-                  text: "Patients Names",
-                  fontSise: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff08776B),
-                )),
-                height: 110,
-                width: 250,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: const Color(0xffFBFBFB),
-                  // color: Colors.amber,
-                  border: Border.all(
-                    color: const Color(0xff086F64),
-                    style: BorderStyle.solid,
+              InkWell(
+                onTap:(){
+                  
+                  showModalBottomSheet(
+                      barrierColor: ColorsApp.primaryColor.withOpacity(.9),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      context: context,
+                      builder: (context) => Container(
+                            height: 240,
+                            child: Column(
+                              children: const [
+                                ListTile(
+                                  leading: CustomText(
+                                    text: "Ahmed  Mohamed  ",
+                                    color: Colors.black,
+                                    fontSise: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: CustomText(
+                                    text: " Emad Ahmed ",
+                                    color: Colors.black,
+                                    fontSise: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: CustomText(
+                                    text: " Mohamed zidan ",
+                                    color: Colors.black,
+                                    fontSise: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ));
+
+                },
+                child: Container(
+                  child: const Center(
+                      child: CustomText(
+                    text: "Patients Names",
+                    fontSise: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff08776B),
+                  )),
+                  height: 110,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: const Color(0xffFBFBFB),
+                    // color: Colors.amber,
+                    border: Border.all(
+                      color: const Color(0xff086F64),
+                      style: BorderStyle.solid,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 17.0,
+                height: 20.0,
               ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: const Center(
-                    child: CustomText(
-                  text: "Patients appointments",
-                  fontSise: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                )),
-                height: 180,
-                width: 260,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: const Color(0xff57A29B),
-                  // color: Colors.amber,
-                  border: Border.all(
-                    color: const Color(0xff086F64),
-                    style: BorderStyle.solid,
+              InkWell(
+                onTap: (){
+                  showModalBottomSheet(
+                      barrierColor: ColorsApp.primaryColor.withOpacity(.9),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      context: context,
+                      builder: (context) => Container(
+                        height: 240,
+                        child: Column(
+                          children: const [
+                            ListTile(
+                              leading: CustomText(
+                                text: " Monday. at : ",
+                                color: Colors.black,
+                                fontSise: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              title: CustomText(
+                                  text: "8.00  Pm", color: Colors.black),
+                              trailing: CustomText(
+                                  text: "Ahmed Mohamed ",
+                                  color: Colors.black),
+                            ),
+                            ListTile(
+                              leading: CustomText(
+                                text: " Friday. at : ",
+                                color: Colors.black,
+                                fontSise: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              title: CustomText(
+                                  text: "10.00  Am", color: Colors.black),
+                              trailing: CustomText(
+                                  text: "Emad Ahmed ",
+                                  color: Colors.black),
+                            ),
+                            ListTile(
+                              leading: CustomText(
+                                text: " Saturday. at : ",
+                                color: Colors.black,
+                                fontSise: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              title: CustomText(
+                                  text: "12.00  Am", color: Colors.black),
+                              trailing: CustomText(
+                                  text: "Mohamed zidan ",
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
+                      ));
+
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const Center(
+                      child: CustomText(
+                    text: "Patients appointments",
+                    fontSise: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  )),
+                  height: 180,
+                  width: 260,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: const Color(0xff57A29B),
+                    // color: Colors.amber,
+                    border: Border.all(
+                      color: const Color(0xff086F64),
+                      style: BorderStyle.solid,
+                    ),
                   ),
                 ),
               ),

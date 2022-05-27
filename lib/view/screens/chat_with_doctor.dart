@@ -1,26 +1,26 @@
-import 'package:easysugar/view/custom_widet/custom_doctor_drawer.dart';
-import 'package:flutter/material.dart';
-
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 
+import 'package:flutter/material.dart';
 
-class ConsultingDoctorScreen extends StatelessWidget {
-  const ConsultingDoctorScreen({Key? key}) : super(key: key);
+class ChatWithDoctorScreen extends StatelessWidget {
+  const ChatWithDoctorScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (){
-            Navigator.pushNamed(context, RoutsNames.homeScreenForDoctor);
-          }, icon: const Icon(Icons.home_filled))
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RoutsNames.homeScreenForPatient);
+              },
+              icon: const Icon(Icons.home_filled))
         ],
         backgroundColor: const Color(0xff08877A),
-        title: const Text("Inbox"),
+        title: const Text("Chat With Doctor"),
       ),
       body: Container(
         color: const Color(0xff0F8F81).withOpacity(.5),
@@ -47,7 +47,7 @@ class ConsultingDoctorScreen extends StatelessWidget {
                     buildChatItem(
                       context,
                       text:
-                      "Thanks Salma , I am Mohamed oh no , I am type-1 What medications are U taking ? ",
+                          "Thanks Salma , I am Mohamed oh no , I am type-1 What medications are U taking ? ",
                       align: Alignment.topRight,
                       color: const Color(0xffAED4D1),
                     ),
@@ -116,7 +116,7 @@ class ConsultingDoctorScreen extends StatelessWidget {
           ],
         ),
       ),
-      drawer: const CustomDoctorDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

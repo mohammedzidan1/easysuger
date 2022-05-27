@@ -16,18 +16,18 @@ class CustomButtonSocial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28),
+      padding: const EdgeInsets.symmetric(horizontal: 28),
       width: 240,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(11),
         color: Colors.grey.shade200,
       ),
-      child: TextButton(
-        onPressed: onPress,
+      child: InkWell(
+        onTap: onPress,
         child: Row(
           children: [
             Image.asset(imageName!),
-            SizedBox(
+            const SizedBox(
               width: 50,
             ),
             CustomText(

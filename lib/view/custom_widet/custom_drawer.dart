@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../view_model/auth/cubit/auth_bloc.dart';
@@ -44,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
                                 child: const CircleAvatar(
                                   radius: 40,
                                   backgroundImage: AssetImage(
-                                      "assets/images/icons8-meal-100.png"),
+                                      "assets/images/unknown-person.png"),
                                 ),
                               ),
                               const SizedBox(
@@ -93,13 +92,14 @@ class CustomDrawer extends StatelessWidget {
                                   ),
                                   SelectableText(
                                     '${FirebaseAuth.instance.currentUser?.uid}',
-                                    style: GoogleFonts.cairo(),
+                                    style: GoogleFonts.cairo(color:Colors.white),
                                   )
                                 ],
                               ),
                               const Icon(
-                                Icons.wine_bar,
-                                color: Colors.white,
+                                Icons.star_rate_sharp,
+                                
+                                color: Colors.yellow,
                               )
                             ],
                           ),
@@ -130,35 +130,48 @@ class CustomDrawer extends StatelessWidget {
                             fontSize: 23,
                             color: Colors.red),
                         buildDrawerItem(context,
+                        ontap: (){
+                          Navigator.pushNamed(context,RoutsNames.medicationsScreen);
+                        },
                             text: "Medications ",
                             imagUrl: "assets/images/icons8-medications-64.png",
                             fontSize: 18),
                         buildDrawerItem(context,
+                        ontap: (){
+                          Navigator.pushNamed(context,RoutsNames.analysisScreen);
+                        },
                             text: "Analysis",
                             imagUrl:
                                 "assets/images/icons8-glucose-meter-64.png",
                             fontSize: 18),
                         buildDrawerItem(context,
+                        ontap: (){
+                          Navigator.pushNamed(context,RoutsNames.addRecordScreen);
+                        },
                             text: "Add record ",
                             imagUrl: "assets/images/icons8-add-column-30.png",
                             fontSize: 18),
                         buildDrawerItem(context,
+                        ontap: (){
+                          Navigator.pushNamed(context,RoutsNames.getOfferScreen);
+                        },
                             text: "Get offer ",
                             imagUrl: "assets/images/icons8-recieve-48.png",
                             fontSize: 18),
-                        buildDrawerItem(context, text: "update", fontSize: 18),
+                        buildDrawerItem(context, 
+                        ontap: (){
+                          Navigator.pushNamed(context,RoutsNames.updateScreen);
+                        },
+                        text: "update", fontSize: 18),
                         buildDrawerItem(context, ontap: () {
                           Navigator.pushNamed(
                               context, RoutsNames.follwarNameScreen);
                         }, text: "Followers", fontSize: 18),
-                        buildDrawerItem(context,
-                            text: "Doctor reseervation", fontSize: 18),
-                        buildDrawerItem(
-                          context,
-                          text: "contact with doctor",
-                          fontSize: 18,
-                          imagUrl: "assets/images/icons8-new-contact-50.png",
-                        ),
+                       
+                       buildDrawerItem(context, ontap: () {
+                          Navigator.pushNamed(
+                              context, RoutsNames.askScreen);
+                        }, text: "Asking", fontSize: 18),
                         buildDrawerItem(
                           context,
                           ontap: () {
@@ -182,7 +195,46 @@ class CustomDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                            AuthBloc().logOut(context);
+                                showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      backgroundColor:
+                                          const Color.fromARGB(255, 7, 82, 74),
+                                      title: const Center(
+                                          child: Text(
+                                        "Are your sure to log out ?",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 22),
+                                      )),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                             AuthBloc().logOut(context);
+                                            },
+                                            child: const CustomText(
+                                              text: "Ok",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const CustomText(
+                                              text: "Cancel",
+                                              fontWeight: FontWeight.bold,
+                                            ))
+                                      ],
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(100),
+                                          bottomLeft: Radius.circular(100),
+                                          topRight: Radius.circular(130),
+                                        ),
+                                      ));
+                                });
+                           
                           },
                           text: "Log out",
                           fontSize: 18,
@@ -212,6 +264,7 @@ Widget buildDrawerItem(context,
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
                 text: text!,

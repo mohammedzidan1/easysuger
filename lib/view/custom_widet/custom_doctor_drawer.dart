@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import 'custom_text.dart';
 
@@ -43,7 +42,7 @@ class CustomDoctorDrawer extends StatelessWidget {
                             width: 100,
                             child: user?.imageUrl == ''
                                 ? Image.asset(
-                                    ' assets/images/icons8-new-contact-50.png')
+                                    ' assets/images/unknown-person.jpg')
                                 : Image.network(
                                     user!.imageUrl,
                                     fit: BoxFit.cover,
@@ -122,7 +121,46 @@ class CustomDoctorDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                            Get.put(AuthVeiwModel()).logOutForDoctor(context);
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      backgroundColor:
+                                          const Color.fromARGB(255, 7, 82, 74),
+                                      title: const Center(
+                                          child: Text(
+                                        "Are your sure to log out ?",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 22),
+                                      )),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              AuthVeiwModel()
+                                                  .logOutForDoctor(context);
+                                            },
+                                            child: const CustomText(
+                                              text: "Ok",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const CustomText(
+                                              text: "Cancel",
+                                              fontWeight: FontWeight.bold,
+                                            ))
+                                      ],
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(100),
+                                          bottomLeft: Radius.circular(100),
+                                          topRight: Radius.circular(130),
+                                        ),
+                                      ));
+                                });
                           },
                           text: "Log out",
                           fontSize: 18,

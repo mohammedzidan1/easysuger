@@ -1,14 +1,13 @@
-import 'package:easysugar/view/custom_widet/custom_doctor_drawer.dart';
-import 'package:flutter/material.dart';
-
-import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 
+import 'package:flutter/material.dart';
 
-class ConsultingDoctorScreen extends StatelessWidget {
-  const ConsultingDoctorScreen({Key? key}) : super(key: key);
+import '../../help/routs/routs_name.dart';
+
+class ChatWhithComunityScreen extends StatelessWidget {
+  const ChatWhithComunityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,61 +15,61 @@ class ConsultingDoctorScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(onPressed: (){
-            Navigator.pushNamed(context, RoutsNames.homeScreenForDoctor);
+            Navigator.pushNamed(context, RoutsNames.homeScreenForPatient);
           }, icon: const Icon(Icons.home_filled))
         ],
         backgroundColor: const Color(0xff08877A),
-        title: const Text("Inbox"),
+        title: const Text("Chat With Community "),
       ),
       body: Container(
         color: const Color(0xff0F8F81).withOpacity(.5),
-        child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(top: 70, left: 30, right: 10),
-              height: MediaQuery.of(context).size.height * .57,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color(0xff0F8F81).withOpacity(.30),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    buildChatItem(
-                      context,
-                      text: "Hi my name is Salma , I am type-1 , and U ?",
-                      align: Alignment.topLeft,
-                      color: const Color.fromARGB(255, 23, 24, 24)
-                          .withOpacity(.30),
-                    ),
-                    buildChatItem(
-                      context,
-                      text:
-                      "Thanks Salma , I am Mohamed oh no , I am type-1 What medications are U taking ? ",
-                      align: Alignment.topRight,
-                      color: const Color(0xffAED4D1),
-                    ),
-                    buildChatItem(
-                      context,
-                      text: "Hi my name is Salma , I am type-1 , and U ?",
-                      align: Alignment.topLeft,
-                      color: const Color.fromARGB(255, 23, 24, 24)
-                          .withOpacity(.30),
-                    ),
-                    buildChatItem(context,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.only(top: 70, left: 30, right: 10),
+                height: MediaQuery.of(context).size.height * .57,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xff0F8F81).withOpacity(.30),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      buildChatItem(
+                        context,
                         text: "Hi my name is Salma , I am type-1 , and U ?",
+                        align: Alignment.topLeft,
+                        color: const Color.fromARGB(255, 23, 24, 24)
+                            .withOpacity(.30),
+                      ),
+                      buildChatItem(
+                        context,
+                        text:
+                            "Thanks Salma , I am Mohamed oh no , I am type-1 What medications are U taking ? ",
                         align: Alignment.topRight,
-                        color: const Color(0xffAED4D1)),
-                  ],
+                        color: const Color(0xffAED4D1),
+                      ),
+                      buildChatItem(
+                        context,
+                        text: "Hi my name is Salma , I am type-1 , and U ?",
+                        align: Alignment.topLeft,
+                        color: const Color.fromARGB(255, 23, 24, 24)
+                            .withOpacity(.30),
+                      ),
+                      buildChatItem(context,
+                          text: "Hi my name is Salma , I am type-1 , and U ?",
+                          align: Alignment.topRight,
+                          color: const Color(0xffAED4D1)),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Expanded(
-              child: Container(
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
                 width: MediaQuery.of(context).size.width,
                 height: 200,
                 decoration: const BoxDecoration(
@@ -111,12 +110,12 @@ class ConsultingDoctorScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
-      drawer: const CustomDoctorDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

@@ -20,8 +20,8 @@ class CustomDefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         ontap!();
       },
       child: Container(

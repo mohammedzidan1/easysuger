@@ -42,14 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onSuccess: (user) {
           return Scaffold(
               appBar: AppBar(
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.logout),
-                    onPressed: () {
-                      AuthBloc().logOut(context);
-                    },
-                  ),
-                ],
+                
                 backgroundColor: const Color(0xff08877A),
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Color(0xff08877A),
@@ -92,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: Colors.black,
                                               fontWeight: FontWeight.w700,
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 5,
                                             ),
                                             CustomText(
