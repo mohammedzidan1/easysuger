@@ -11,12 +11,23 @@ import 'package:get/get.dart';
 
 import '../../help/notifications.dart';
 import '../../model/users.dart';
+import '../../view/screens/authotocation/follwar_screen.dart';
 
 class AuthVeiwModel extends GetxController {
   String? userType;
   UserModel? user;
+  String? patientId;
+
   Future<void> getUserData() async {
+    print(box.read('patientId'));
     User? userF = FirebaseAuth.instance.currentUser;
+    if (box.read('userType') == 'Follower') {
+      UserModel? userModel =
+          await FirestoreModel.use<UserModel>().find(box.read('patientId'));
+      user = userModel;
+      update();
+      print("userModel ${user?.toMap}");
+    }
     if (userF != null) {
       UserModel? userModel =
           await FirestoreModel.use<UserModel>().find(userF.uid);
@@ -31,7 +42,13 @@ class AuthVeiwModel extends GetxController {
     }
   }
 
+  logOutInFollower() {
+    box.remove('patientId');
+    Get.to(FollwarScreen());
+  }
+
   String? followerId;
+
   signInAsFollower({String? phoneNum, patientCode, name}) async {
     print('id $patientCode');
     UserModel? userModel =
@@ -50,6 +67,8 @@ class AuthVeiwModel extends GetxController {
       followerId = follower.patientCode;
       update();
       Get.to(() => HomeScreen());
+
+      box.write('patientId', patientCode);
 
       print('FId $followerId');
     }

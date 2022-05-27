@@ -5,6 +5,7 @@ import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../help/constant.dart';
 import 'custom_widet/custom_default_button.dart';
 
 class StartScreen extends StatelessWidget {
@@ -50,11 +51,12 @@ class StartScreen extends StatelessWidget {
                 height: 25,
               ),
               CustomDefaultButton(
-                text: "Follwar",
+                text: "Follower",
                 ontap: () {
                   Navigator.pushReplacementNamed(
                       context, RoutsNames.follwarScreen);
                   authVeiwModel.enterTypeOfUser('Follower');
+                  box.write('patientId', '');
                 },
               ),
             ],

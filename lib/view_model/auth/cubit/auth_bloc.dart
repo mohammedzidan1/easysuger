@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/perdictions.dart';
 import 'package:easysugar/model/rebort.dart';
@@ -146,6 +147,7 @@ class AuthBloc extends Cubit<AuthState> {
   }
 
   void createReport(
+    context,
     String date,
     time,
     fasting,
@@ -155,16 +157,18 @@ class AuthBloc extends Cubit<AuthState> {
     User? user = FirebaseAuth.instance.currentUser;
     UserModel? userModel =
         await FirestoreModel.use<UserModel>().find(user!.uid);
-    Report? report = Report();
-    report.uId = user.uid;
-    report.date = date;
-    report.time = time;
+    Report? report = userModel?.subCollection<Report>();
+    report?.uId = user.uid;
+    report?.date = date;
+    report?.time = time;
 
-    report.fasting = fasting;
-    report.reminder = reminder;
-    report.pills = pills;
+    report?.fasting = fasting;
+    report?.reminder = reminder;
+    report?.pills = pills;
 
-    await report.create();
+    await report?.create();
+    Notifications.success('success create report');
+    Navigator.pop(context);
   }
 
   void createSurvey({

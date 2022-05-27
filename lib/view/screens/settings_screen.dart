@@ -9,6 +9,7 @@ import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../help/constant.dart';
 import '../../help/notifications.dart';
 import '../../service/firebase_storage.dart';
 import '../custom_widet/custom_default_button.dart';
@@ -44,7 +45,8 @@ class SettingsScreen extends StatelessWidget {
         margin: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
           child: ModelSingleBuilder<UserModel>(
-              docId: FirebaseAuth.instance.currentUser?.uid,
+              docId: FirebaseAuth.instance.currentUser?.uid ??
+                  box.read('patientId'),
               onSuccess: (user) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

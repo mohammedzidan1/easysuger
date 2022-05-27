@@ -7,6 +7,8 @@ import 'package:easysugar/view/start_screen.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:flutter/material.dart';
 
+import 'authotocation/follwar_screen.dart';
+
 class MainSplashScrrn extends StatelessWidget {
   const MainSplashScrrn({Key? key}) : super(key: key);
   @override
@@ -14,6 +16,13 @@ class MainSplashScrrn extends StatelessWidget {
     Widget nextScreen() {
       var userT = box.read('userType');
       if (userT != null) {
+        if (userT == 'Follower') {
+          if (box.read('patientId') != '') {
+            return const HomeScreen();
+          } else {
+            return FollwarScreen();
+          }
+        }
         if (AuthService.isLogin) {
           if (userT == 'Doctor') {
             return const HomeScreenForDoctor();
@@ -46,9 +55,7 @@ class MainSplashScrrn extends StatelessWidget {
         duration: 30,
         //    splash:const Image(image:  AssetImage("assets/images/icon.jpg") ,fit: BoxFit.fill,),
         splash: "assets/images/icon.jpg",
-        nextScreen: const TapBarForRegestrationScreen(
-          number: 1,
-        ),
+        nextScreen: nextScreen(),
         splashTransition: SplashTransition.slideTransition,
 
         // backgroundColor: Color(0xffE3F4FF),

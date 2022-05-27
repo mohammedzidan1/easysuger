@@ -221,9 +221,9 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
-       
         onPressed: () {
           AuthBloc().createReport(
+              context,
               dateController.text,
               timeController.text,
               fastingController.text,
@@ -232,7 +232,6 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                   ? selectedItemPills
                   : otheController.text);
         },
-
         child: const Icon(
           Icons.add,
         ),

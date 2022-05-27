@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../help/constant.dart';
 import '../../view_model/auth/cubit/auth_bloc.dart';
 import 'custom_text.dart';
 
@@ -15,14 +16,17 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('code ${box.read('patientId')}');
+    print('usert ${box.read('userType')}');
+
     final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
     return SizedBox(
       width: MediaQuery.of(context).size.width * .8,
       child: Drawer(
         backgroundColor: const Color(0xffE3F4FF),
         child: ModelStreamSingleBuilder<UserModel>(
-            docId: FirebaseAuth.instance.currentUser?.uid ??
-                authVeiwModel.followerId,
+            docId:
+                FirebaseAuth.instance.currentUser?.uid ?? box.read('patientId'),
             onSuccess: (user) {
               // print('userId ${FirebaseAuth.instance.currentUser?.uid}');
               return Column(children: [
@@ -131,14 +135,17 @@ class CustomDrawer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buildDrawerItem(context, ontap: () {
-                          Navigator.pushNamed(
-                              context, RoutsNames.emergencyScreen);
-                        },
-                            text: "Emergency",
-                            imagUrl: "assets/images/icons8-emergency-64.png",
-                            fontSize: 23,
-                            color: Colors.red),
+                        box.read('userType') != 'Follower'
+                            ? buildDrawerItem(context, ontap: () {
+                                Navigator.pushNamed(
+                                    context, RoutsNames.emergencyScreen);
+                              },
+                                text: "Emergency",
+                                imagUrl:
+                                    "assets/images/icons8-emergency-64.png",
+                                fontSize: 23,
+                                color: Colors.red)
+                            : SizedBox(),
                         buildDrawerItem(context, ontap: () {
                           Navigator.pushNamed(
                               context, RoutsNames.medicationsScreen);
@@ -171,10 +178,11 @@ class CustomDrawer extends StatelessWidget {
                         buildDrawerItem(context, ontap: () {
                           Navigator.pushNamed(context, RoutsNames.updateScreen);
                         }, text: "update", fontSize: 18),
-                        buildDrawerItem(context, ontap: () {
-                          Navigator.pushNamed(
-                              context, RoutsNames.follwarNameScreen);
-                        }, text: "Followers", fontSize: 18),
+                        if (box.read('userType') != 'Follower')
+                          buildDrawerItem(context, ontap: () {
+                            Navigator.pushNamed(
+                                context, RoutsNames.follwarNameScreen);
+                          }, text: "Followers", fontSize: 18),
                         buildDrawerItem(context, ontap: () {
                           Navigator.pushNamed(context, RoutsNames.askScreen);
                         }, text: "Asking", fontSize: 18),
@@ -217,7 +225,14 @@ class CustomDrawer extends StatelessWidget {
                                       actions: [
                                         TextButton(
                                             onPressed: () {
-                                              AuthBloc().logOut(context);
+                                              if (box.read('userType') ==
+                                                  'Follower') {
+                                                authVeiwModel
+                                                    .logOutInFollower();
+                                                Navigator.pop(context);
+                                              } else {
+                                                AuthBloc().logOut(context);
+                                              }
                                             },
                                             child: const CustomText(
                                               text: "Ok",

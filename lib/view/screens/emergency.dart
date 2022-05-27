@@ -78,9 +78,10 @@ class EmergencyPage extends StatelessWidget {
                                   return buildEmergencyNameItem(
                                       text: follower?.phoneNum,
                                       onTap: () {
+                                        // launch('tel:+91 88888888888');
                                         canLaunchUrl(Uri(
                                             scheme: 'tel',
-                                            path: '01156094458'));
+                                            path: follower?.phoneNum));
                                       });
                                 }));
                           }),

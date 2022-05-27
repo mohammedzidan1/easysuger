@@ -1,3 +1,4 @@
+import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_curve.dart';
@@ -23,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
   @override
   void initState() {
+    print('init');
     authVeiwModel.getUserData();
+    print('end');
 
     super.initState();
   }
@@ -33,8 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(authVeiwModel.user?.toMap);
     return ModelStreamSingleBuilder<UserModel>(
         // parentModel: authVeiwModel.user,
-        docId:
-            FirebaseAuth.instance.currentUser?.uid ?? authVeiwModel.followerId,
+        docId: FirebaseAuth.instance.currentUser?.uid ?? box.read('patientId'),
         onError: (e) => Text('error'),
         onEmpty: () => Text('no result'),
         onSuccess: (user) {
