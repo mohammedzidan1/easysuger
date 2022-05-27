@@ -49,7 +49,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                 height: 20.0,
               ),
 
-              Container(
+              SizedBox(
                 height: 200,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -59,7 +59,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                           controller: nameController,
                           lableText: "Name",
                           prefexIcon: Icons.person),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
@@ -67,7 +67,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                         lableText: "Email",
                         prefexIcon: Icons.email_outlined,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
@@ -76,7 +76,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                         prefexIcon: Icons.lock_outlined,
                         sufixIcon: Icons.password_outlined,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
@@ -85,23 +85,26 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                         prefexIcon: Icons.lock_outlined,
                         sufixIcon: Icons.password_outlined,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
                         controller: phoneController,
+                        keyBordType: TextInputType.phone,
                         lableText: "Phone",
                         prefexIcon: Icons.phone_android_outlined,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
                         controller: ageController,
+                                                keyBordType: TextInputType.phone,
+
                         lableText: "Age",
                         prefexIcon: Icons.man,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(

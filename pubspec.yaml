@@ -52,7 +52,7 @@ dependencies:
   asuka: ^2.0.0+1
   google_fonts: ^3.0.1
   get:  ^4.6.3
-  get_storage: ^2.0.3
+  get_storage: 2.0.0
 dev_dependencies:
   flutter_test:
 

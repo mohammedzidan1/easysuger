@@ -17,6 +17,9 @@ import 'package:easysugar/view/screens/rebort_screen.dart';
 import 'package:easysugar/view/screens/splash_screen.dart';
 import 'package:easysugar/view/screens/update_screen.dart';
 import 'package:flutter/material.dart';
+import '../../view/screens/asking_screen.dart';
+import '../../view/screens/chat_with_comunity.dart';
+import '../../view/screens/chat_with_doctor.dart';
 import '../../view/screens/patient_home_screen.dart';
 import '../../view/screens/settings_screen.dart';
 import '../../view/screens/statistics_screen.dart';
@@ -65,10 +68,13 @@ class AppRouts {
         return MaterialPageRoute(builder: (_) =>  const GetOfferScreen());
          case RoutsNames.updateScreen:
         return MaterialPageRoute(builder: (_) => const UpdateScreen ());
-         case RoutsNames.doctorReseervationScreen:
-        return MaterialPageRoute(builder: (_) =>  const DoctorReseervationScreen());
+          case RoutsNames.contactWhitCommunityScreen:
+        return MaterialPageRoute(builder: (_) =>  const ChatWhithComunityScreen());
         case RoutsNames.contactWhitDoctorScreen:
-        return MaterialPageRoute(builder: (_) =>  const ContactWhithDoctorScreen());
+        return MaterialPageRoute(builder: (_) =>  const ChatWithDoctorScreen());
+case RoutsNames.askScreen:
+        return MaterialPageRoute(builder: (_) =>  const AskScreen());
+
     }
     }
     

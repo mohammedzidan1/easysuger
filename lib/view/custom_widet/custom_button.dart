@@ -26,8 +26,8 @@ final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         ontap!();
       },
       child: Container(

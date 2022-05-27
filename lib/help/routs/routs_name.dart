@@ -12,18 +12,17 @@ class RoutsNames {
   static const reportScreen = '/report_Screen';
   static const follwarScreen = '/follwar_screen';
   static const follwarNameScreen = '/follwar_Name_Screen';
-    static const statisticsScreen = '/statisticsScreen';
-static const medicationsScreen = '/medications_Screen';
+  static const statisticsScreen = '/statisticsScreen';
+  static const medicationsScreen = '/medications_Screen';
   static const analysisScreen = '/analysis_Screen';
   static const getOfferScreen = '/getOffer_Screen';
   static const updateScreen = '/update_screen';
-    static const doctorReseervationScreen = '/doctor_Reseervation_Screen';
-      static const contactWhitDoctorScreen = '/contact_Whit_Doctor_Screen';
-static const doctorProfileScreen = '/doctor_profile_Screen';
-    static const doctorsettingsScreen = '/ddoctor_settings_Screen';
-      static const consultingDoctorScreen = '/consulting_doctor_screen';
 
+  static const doctorProfileScreen = '/doctor_profile_Screen';
+  static const doctorsettingsScreen = '/ddoctor_settings_Screen';
+  static const consultingDoctorScreen = '/consulting_doctor_screen';
+  static const askScreen = '/ask_Screen';
 
-
+  static const contactWhitDoctorScreen = '/contact_Whit_Doctor_Screen';
+  static const contactWhitCommunityScreen = '/contactWhitCommunityScreen';
 }
-

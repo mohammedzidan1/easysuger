@@ -10,7 +10,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../help/my_colors_app.dart';
@@ -82,7 +81,7 @@ setState(() {
                             width: 170,
                             child: user?.imageUrl == ''
                                 ? Image.asset(
-                                    ' assets/images/icons8-new-contact-50.png')
+                                    ' assets/images/unknown-person.jpg')
                                 : Image.network(
                                     user!.imageUrl,
                                     fit: BoxFit.cover,
@@ -201,8 +200,10 @@ setState(() {
   Widget customListTile({String? title, trailing}) {
     return ListTile(
       title: Text(
+       
         title!,
         style: GoogleFonts.cairo(
+            color: ColorsApp.primaryColor,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -210,9 +211,9 @@ setState(() {
       trailing: Text(
         trailing,
         style: GoogleFonts.cairo(
-            fontSize: 20,
+            fontSize: 17,
             fontWeight: FontWeight.bold,
-            color: ColorsApp.primaryColor),
+            color: Colors.black),
       ),
     );
   }
