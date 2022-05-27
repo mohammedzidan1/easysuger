@@ -1,12 +1,12 @@
-import 'package:easysugar/model/users.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../help/constant.dart';
 import '../../help/my_colors_app.dart';
 
 class CustomDrobDownMenuShortAction extends StatefulWidget {
- 
   const CustomDrobDownMenuShortAction({Key? key}) : super(key: key);
 
   @override
@@ -17,12 +17,13 @@ class CustomDrobDownMenuShortAction extends StatefulWidget {
 class _CustomDrobDownMenuShortActionState
     extends State<CustomDrobDownMenuShortAction> {
   String selectedItemShortAction = "Actrapid";
+  var auth = Get.put(AuthVeiwModel());
 
   @override
   Widget build(BuildContext context) {
     return Container(
       //width: MediaQuery.of(context).size.width ,
-    // width: w,
+      // width: w,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         border: Border.all(color: ColorsApp.primaryColor),
@@ -32,19 +33,20 @@ class _CustomDrobDownMenuShortActionState
         //mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DropdownButton<String>(
-            value: selectedItemShortAction,
+            value: auth.shortAction,
             items: shortActionList.map((e) {
               return DropdownMenuItem(value: e, child: Text(e));
             }).toList(),
             onChanged: (String? value) {
               setState(() {
-                selectedItemShortAction = value!;
-                UserModel userModel = UserModel();
-                userModel.update(
-                    docId: FirebaseAuth.instance.currentUser?.uid,
-                    data: {
-                      "shortAction": selectedItemShortAction,
-                    });
+                auth.shortAction = value!;
+                print('sh ${auth.shortAction}');
+                // UserModel userModel = UserModel();
+                // userModel.update(
+                //     docId: FirebaseAuth.instance.currentUser?.uid,
+                //     data: {
+                //       "shortAction": selectedItemShortAction,
+                //     });
               });
             },
           ),

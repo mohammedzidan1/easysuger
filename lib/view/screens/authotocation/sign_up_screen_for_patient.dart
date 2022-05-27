@@ -99,8 +99,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       ),
                       CustomTextField(
                         controller: ageController,
-                                                keyBordType: TextInputType.phone,
-
+                        keyBordType: TextInputType.phone,
                         lableText: "Age",
                         prefexIcon: Icons.man,
                       ),
@@ -203,8 +202,11 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
   }
 
   void validationInput() {
-    if (emailController.text.isEmpty || !emailController.text.contains('@')) {
-      Notifications.error('Please enter correct email');
+    if (emailController.text.isEmpty ||
+        !emailController.text.contains('@') ||
+        emailController.text.contains('doctor')) {
+      Notifications.error(
+          'Please enter correct email and not contain doctor word');
     } else if (nameController.text.isEmpty) {
       Notifications.error('Please enter correct name');
     } else if (passwordController.text.isEmpty) {

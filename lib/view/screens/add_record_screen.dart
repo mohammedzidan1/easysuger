@@ -1,12 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_drob_menue_long_action.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../../view_model/auth/cubit/auth_bloc.dart';
 import '../custom_widet/custom_drob_down_menu.dart';
 
 class AddRecordScreen extends StatefulWidget {
@@ -222,21 +225,33 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
         onPressed: () {
-          AuthBloc().createReport(
-              context,
-              dateController.text,
-              timeController.text,
-              fastingController.text,
-              reminderController.text,
-              otheController.text == ''
-                  ? selectedItemPills
-                  : otheController.text);
+          validationInput();
         },
         child: const Icon(
           Icons.add,
         ),
       ),
     );
+  }
+
+  validationInput() {
+    if (dateController.text.isEmpty) {
+      Notifications.error('You must enter date');
+    } else if (timeController.text.isEmpty) {
+      Notifications.error('You must enter time');
+    } else if (fastingController.text.isEmpty) {
+      Notifications.error('You must enter fasting');
+    } else if (reminderController.text.isEmpty) {
+      Notifications.error('You must enter reminder');
+    } else {
+      Get.put(AuthVeiwModel()).createReport(
+          context,
+          dateController.text,
+          timeController.text,
+          fastingController.text,
+          reminderController.text,
+          otheController.text == '' ? selectedItemPills : otheController.text);
+    }
   }
 }
 

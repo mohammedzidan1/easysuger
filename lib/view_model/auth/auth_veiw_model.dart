@@ -2,6 +2,7 @@ import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/model/follower.dart';
+import 'package:easysugar/model/rebort.dart';
 import 'package:easysugar/view/screens/patient_home_screen.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,8 @@ class AuthVeiwModel extends GetxController {
   String? userType;
   UserModel? user;
   String? patientId;
+  String? shortAction;
+  String? longAction;
 
   Future<void> getUserData() async {
     print(box.read('patientId'));
@@ -106,5 +109,43 @@ class AuthVeiwModel extends GetxController {
     Navigator.pushReplacementNamed(
         context, RoutsNames.tapBarForRegestrationScreen,
         arguments: 2);
+  }
+
+  void createReport(
+    context,
+    String date,
+    time,
+    fasting,
+    reminder,
+    pills,
+  ) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    UserModel? userModel =
+        await FirestoreModel.use<UserModel>().find(user!.uid);
+    Report? report = userModel?.subCollection<Report>();
+    report?.uId = user.uid;
+    report?.date = date;
+    report?.time = time;
+    report?.shortAction = shortAction!;
+    report?.longAction = longAction!;
+
+    report?.fasting = fasting;
+    report?.reminder = reminder;
+    report?.pills = pills;
+
+    await report?.create();
+    Notifications.success('success create report');
+    Navigator.pop(context);
+  }
+
+  getActionData({
+    String? shortAction,
+    String? longAction,
+  }) {
+    shortAction;
+    update();
+    longAction;
+    update();
+    print('action ${shortAction}');
   }
 }

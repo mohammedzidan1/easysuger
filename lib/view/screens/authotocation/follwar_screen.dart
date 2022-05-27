@@ -1,4 +1,5 @@
 import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
@@ -87,12 +88,7 @@ class FollwarScreen extends StatelessWidget {
                   radius: 10.0,
                   text: "Start",
                   ontap: () {
-                    AuthVeiwModel auth = Get.put(AuthVeiwModel());
-                    auth.signInAsFollower(
-                        patientCode: patientController?.text.trim(),
-                        name: nameController?.text,
-                        phoneNum: phoneController?.text);
-                    print('FId2 ${auth.followerId}');
+                    validationInput();
                   },
                   width: 130,
                 ),
@@ -121,5 +117,22 @@ class FollwarScreen extends StatelessWidget {
         )
       ]),
     );
+  }
+
+  validationInput() {
+    if (nameController!.text.isEmpty) {
+      Notifications.error('You must enter your name');
+    } else if (patientController!.text.isEmpty) {
+      Notifications.error('You must enter patient code');
+    } else if (phoneController!.text.isEmpty) {
+      Notifications.error('You must enter your phone');
+    } else {
+      AuthVeiwModel auth = Get.put(AuthVeiwModel());
+      auth.signInAsFollower(
+          patientCode: patientController?.text.trim(),
+          name: nameController?.text,
+          phoneNum: phoneController?.text);
+      print('FId2 ${auth.followerId}');
+    }
   }
 }

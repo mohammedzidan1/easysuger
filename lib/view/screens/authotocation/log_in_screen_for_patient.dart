@@ -139,8 +139,11 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
   }
 
   void validationInput() {
-    if (emailController.text.isEmpty || !emailController.text.contains('@')) {
-      Notifications.error('Please enter correct email');
+    if (emailController.text.isEmpty ||
+        !emailController.text.contains('@') ||
+        emailController.text.contains('doctor')) {
+      Notifications.error(
+          'Please enter correct email and not contain doctor word');
     } else if (passwordController.text.isEmpty) {
       Notifications.error('Please enter correct password');
     } else {

@@ -219,8 +219,10 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
   }
 
   void validationInput() {
-    if (emailC.text.isEmpty || !emailC.text.contains('@')) {
-      Notifications.error('Please enter correct email');
+    if (emailC.text.isEmpty ||
+        !emailC.text.contains('@') ||
+        !emailC.text.contains('doctor')) {
+      Notifications.error('Please enter correct email and contain doctor word');
     } else if (nameC.text.isEmpty) {
       Notifications.error('Please enter correct name');
     } else if (passwordC.text.isEmpty) {

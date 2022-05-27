@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easysugar/help/my_colors_app.dart';
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_drawer.dart';
@@ -250,29 +251,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorsApp.primaryColor,
         onPressed: () {
-          UserModel userModel = UserModel(
-            date: dateController.text,
-            time: timeController.text,
-            lunch: selectedItemTypeOfFood,
-            activityType: activityController.text,
-            duration: durationControllar.text,
-            glucose: glucoseController.text,
-          );
-          userModel.update(
-            data: {
-              "time": timeController.text,
-              "date": dateController.text,
-              "activityType": activityController.text,
-              "duration": durationControllar.text,
-              "glucose": glucoseController.text,
-              // "longAction": longAction,
-              "lunch": selectedItemTypeOfFood,
-              "cal": calController.text,
-              "carbs": carbsController.text,
-              // "shortAction": shortAction,
-            },
-            docId: FirebaseAuth.instance.currentUser?.uid,
-          );
+          validationInput();
         },
         child: const Icon(
           Icons.add,
@@ -281,5 +260,51 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
       drawer: const CustomDrawer(),
     );
+  }
+
+  validationInput() {
+    if (dateController.text.isEmpty) {
+      Notifications.error('You must enter date');
+    } else if (timeController.text.isEmpty) {
+      Notifications.error('You must enter time');
+    } else if (glucoseController.text.isEmpty) {
+      Notifications.error('You must enter glucose');
+    } else if (activityController.text.isEmpty) {
+      Notifications.error('You must enter activity type');
+    } else if (durationControllar.text.isEmpty) {
+      Notifications.error('You must enter duration');
+    } else if (selectedItemTypeOfFood.isEmpty) {
+      Notifications.error('You must enter food type');
+    } else if (calController.text.isEmpty) {
+      Notifications.error('You must enter cal');
+    } else if (carbsController.text.isEmpty) {
+      Notifications.error('You must enter carb');
+    } else {
+      UserModel userModel = UserModel(
+        date: dateController.text,
+        time: timeController.text,
+        lunch: selectedItemTypeOfFood,
+        activityType: activityController.text,
+        duration: durationControllar.text,
+        glucose: glucoseController.text,
+      );
+      userModel.update(
+        data: {
+          "time": timeController.text,
+          "date": dateController.text,
+          "activityType": activityController.text,
+          "duration": durationControllar.text,
+          "glucose": glucoseController.text,
+          // "longAction": longAction,
+          "lunch": selectedItemTypeOfFood,
+          "cal": calController.text,
+          "carbs": carbsController.text,
+          // "shortAction": shortAction,
+        },
+        docId: FirebaseAuth.instance.currentUser?.uid,
+      );
+      Notifications.success('success create prediction');
+      Navigator.pop(context);
+    }
   }
 }
