@@ -176,7 +176,7 @@ class CustomDrawer extends StatelessWidget {
                             imagUrl: "assets/images/icons8-recieve-48.png",
                             fontSize: 18),
                         buildDrawerItem(context, ontap: () {
-                          Navigator.pushNamed(context, RoutsNames.updateScreen);
+                          Navigator.pushNamed(context, RoutsNames.surveyPage);
                         }, text: "update", fontSize: 18),
                         if (box.read('userType') != 'Follower')
                           buildDrawerItem(context, ontap: () {

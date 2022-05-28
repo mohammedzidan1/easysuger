@@ -3,6 +3,8 @@ import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/model/follower.dart';
 import 'package:easysugar/model/rebort.dart';
+import 'package:easysugar/model/survey.dart';
+import 'package:easysugar/view/screens/authotocation/follwar_screen.dart';
 import 'package:easysugar/view/screens/patient_home_screen.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,11 +14,11 @@ import 'package:get/get.dart';
 
 import '../../help/notifications.dart';
 import '../../model/users.dart';
-import '../../view/screens/authotocation/follwar_screen.dart';
 
 class AuthVeiwModel extends GetxController {
   String? userType;
   UserModel? user;
+  Follower? _follower;
   String? patientId;
   String? shortAction;
   String? longAction;
@@ -45,9 +47,10 @@ class AuthVeiwModel extends GetxController {
     }
   }
 
-  logOutInFollower() {
+  logOutInFollower() async {
     box.remove('patientId');
     Get.to(FollwarScreen());
+    print('follower ${_follower?.docId}');
   }
 
   String? followerId;
@@ -59,7 +62,14 @@ class AuthVeiwModel extends GetxController {
     print('user ${userModel?.toMap}');
     user = userModel;
     update();
-
+    // bool? isFollow =
+    //     await user?.subCollection<Follower>().exists(box.read('patientId'));
+    // print('isFollow $isFollow');
+    // if (isFollow == true) {
+    //   Get.to(() => HomeScreen());
+    //
+    //   box.write('patientId', patientCode);
+    // } else
     if (userModel != null) {
       Follower? follower = userModel.subCollection<Follower>();
       follower.type = 'follower';
@@ -69,8 +79,10 @@ class AuthVeiwModel extends GetxController {
       await follower.create();
       followerId = follower.patientCode;
       update();
+      _follower = follower;
+      update();
+      print('follower ${_follower?.toMap}');
       Get.to(() => HomeScreen());
-
       box.write('patientId', patientCode);
 
       print('FId $followerId');
@@ -138,14 +150,10 @@ class AuthVeiwModel extends GetxController {
     Navigator.pop(context);
   }
 
-  getActionData({
-    String? shortAction,
-    String? longAction,
-  }) {
-    shortAction;
-    update();
-    longAction;
-    update();
-    print('action ${shortAction}');
+  void createSurvey({
+    Survey? survey,
+  }) async {
+    survey = user?.subCollection<Survey>();
+    survey?.create();
   }
 }

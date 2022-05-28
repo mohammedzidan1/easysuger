@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/perdictions.dart';
-import 'package:easysugar/model/survey.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
@@ -147,27 +146,5 @@ class AuthBloc extends Cubit<AuthState> {
     prediction?.cal = cal;
     prediction?.carbs = cal;
     await prediction?.create();
-  }
-
-  void createSurvey({
-    String? survey1,
-    String? survey2,
-    String? survey3,
-    String? survey4,
-    String? survey5,
-    String? survey6,
-    String? survey7,
-    String? survey8,
-    String? survey9,
-    String? survey10,
-    String? survey11,
-    String? survey12,
-    String? survey13,
-    String? survey14,
-  }) async {
-    User? user = FirebaseAuth.instance.currentUser;
-    UserModel? userModel =
-        await FirestoreModel.use<UserModel>().find(user!.uid);
-    Survey? survey = userModel?.subCollection<Survey>();
   }
 }

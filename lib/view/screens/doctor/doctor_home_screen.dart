@@ -1,6 +1,6 @@
 import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view/custom_widet/custom_doctor_drawer.dart';
-import 'package:easysugar/view/custom_widet/custom_textdel.dart';
+import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

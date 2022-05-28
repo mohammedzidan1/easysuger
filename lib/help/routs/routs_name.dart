@@ -1,5 +1,3 @@
-import 'package:easysugar/view/screens/doctor/doctor_home_screen.dart';
-
 class RoutsNames {
   static const mainSplashScreen = '/';
   static const tapBarForRegestrationScreen = '/tap_bar_for_regestration_screen';
@@ -17,6 +15,7 @@ class RoutsNames {
   static const analysisScreen = '/analysis_Screen';
   static const getOfferScreen = '/getOffer_Screen';
   static const updateScreen = '/update_screen';
+  static const surveyPage = '/surveyPage';
 
   static const doctorProfileScreen = '/doctor_profile_Screen';
   static const doctorsettingsScreen = '/ddoctor_settings_Screen';

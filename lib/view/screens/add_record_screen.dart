@@ -172,7 +172,7 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
               height: 18.0,
             ),
             buildFormFeild(context,
-                text: "Reminder", controller: fastingController),
+                text: "Reminder", controller: reminderController),
             const SizedBox(
               height: 18.0,
             ),
