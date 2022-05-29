@@ -9,14 +9,18 @@ class CustomTextField extends StatelessWidget {
   final double? width;
   final Color? color;
   final bool? readOnly;
+  final bool? obscureText;
   final TextEditingController? controller;
   final Function? onTap;
+  final Function? onTapS;
 
   final ValueChanged<String>? onChanged;
   const CustomTextField(
       {Key? key,
       this.keyBordType = TextInputType.name,
       this.onTap,
+      this.obscureText = false,
+      this.onTapS,
       this.onChanged,
       this.controller,
       this.color = const Color.fromARGB(255, 246, 245, 245),
@@ -41,6 +45,7 @@ class CustomTextField extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 10, top: 1),
             child: TextFormField(
+                obscureText: obscureText!,
                 keyboardType: keyBordType,
                 onChanged: onChanged,
                 readOnly: readOnly!,
@@ -54,7 +59,11 @@ class CustomTextField extends StatelessWidget {
                     labelText: lableText,
                     labelStyle: const TextStyle(color: Colors.grey),
                     prefixIconColor: Colors.teal,
-                    suffixIcon: Icon(sufixIcon),
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          onTapS!();
+                        },
+                        child: Icon(sufixIcon)),
                     prefixIcon: Icon(prefexIcon)))));
   }
 }

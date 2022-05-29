@@ -1,3 +1,4 @@
+import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_curve.dart';
@@ -21,12 +22,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final AuthVeiwModel authVeiwModel = Get.put(AuthVeiwModel());
-
   @override
   void initState() {
-    if (authVeiwModel.followerId == '') {
-      authVeiwModel.getUserData();
-    }
+    print('init');
+    authVeiwModel.getUserData();
+    print('end');
+
     super.initState();
   }
 
@@ -35,8 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(authVeiwModel.user?.toMap);
     return ModelStreamSingleBuilder<UserModel>(
         // parentModel: authVeiwModel.user,
-        docId:
-            FirebaseAuth.instance.currentUser?.uid ?? authVeiwModel.followerId,
+        docId: FirebaseAuth.instance.currentUser?.uid ?? box.read('patientId'),
         onError: (e) => Text('error'),
         onEmpty: () => Text('no result'),
         onSuccess: (user) {
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   statusBarColor: Color(0xff08877A),
                 ),
                 title: const CustomText(
-                  text: "Welcome To Easy Sugar",
+                  text: "Welcom To Easy Sugar",
                   fontSise: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -58,35 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     alignment: Alignment.topCenter,
                     children: [
                       CustomBackground(),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * .5,
-                          width: MediaQuery.of(context).size.width,
-                          child: const Image(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/images/main.png"))),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 45, left: 7),
-                        child: Column(
-                          children: const [
-                            CustomText(
-                              text: "Welcome To",
-                              fontSise: 40,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            CustomText(
-                              text: "Easy Sugar",
-                              fontSise: 50,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ],
-                        ),
-                      ),
+                      customBuildContainer(context),
                       Padding(
                         padding: const EdgeInsets.only(top: 60),
-                        child: customBuildContainer(context),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 140),
                         child: customContainer(context,
                             child: user?.date != ''
                                 ? Container(
@@ -185,58 +159,55 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 330),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CustomButton(
-                                  ontap: () {
-                                    Navigator.pushNamed(
-                                        context, RoutsNames.predictionScreen);
-                                    print("object");
-                                  },
-                                  text: "Predict the insukine unit",
-                                  radiusLeftTop: 25,
-                                  fontSize: 22.0,
-                                  radiusButtomRight: 25,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                CustomButton(
-                                  ontap: () {
-                                    Navigator.pushNamed(
-                                        context, RoutsNames.statisticsScreen);
-                                  },
-                                  text: "Statistics",
-                                  radiusLeftTop: 25,
-                                  fontSize: 22.0,
-                                  radiusButtomRight: 25,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                CustomButton(
-                                  ontap: () {
-                                    Navigator.pushNamed(
-                                        context, RoutsNames.addRecordScreen);
-                                  },
-                                  text: "Add record +",
-                                  radiusLeftTop: 25,
-                                  radiusButtomRight: 25,
-                                  fontSize: 22.0,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomButton(
+                                ontap: () {
+                                  Navigator.pushNamed(
+                                      context, RoutsNames.predictionScreen);
+                                  print("object");
+                                },
+                                text: "Predict the insukine unit",
+                                radiusLeftTop: 25,
+                                fontSize: 22.0,
+                                radiusButtomRight: 25,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomButton(
+                                ontap: () {
+                                  Navigator.pushNamed(
+                                      context, RoutsNames.statisticsScreen);
+                                },
+                                text: "Statistics",
+                                radiusLeftTop: 25,
+                                fontSize: 22.0,
+                                radiusButtomRight: 25,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomButton(
+                                ontap: () {
+                                  Navigator.pushNamed(
+                                      context, RoutsNames.addRecordScreen);
+                                },
+                                text: "Add record +",
+                                radiusLeftTop: 25,
+                                radiusButtomRight: 25,
+                                fontSize: 22.0,
+                              ),
+                            ]),
+                      ),
+                    ],
                   ),
                 ],
               ),

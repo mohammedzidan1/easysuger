@@ -20,6 +20,12 @@ class ReportScreen extends StatelessWidget {
         ),
         body: ModelStreamGetBuilder<Report>(
             parentModel: Get.put(AuthVeiwModel()).user,
+            onError: (e) => CustomText(
+                  text: e.toString(),
+                  color: Colors.black,
+                  fontSise: 30,
+                  fontWeight: FontWeight.bold,
+                ),
             onEmpty: () => const Center(
                     child: CustomText(
                   text: 'No Report Yet',

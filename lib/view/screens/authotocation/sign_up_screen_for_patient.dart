@@ -60,7 +60,6 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                           controller: nameController,
                           lableText: "Name",
                           keyBordType: TextInputType.name,
-
                           prefexIcon: Icons.person),
                       const SizedBox(
                         height: 20.0,
@@ -84,6 +83,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        obscureText: true,
                         controller: confirmPasswordController,
                         lableText: "Repeat password",
                         prefexIcon: Icons.lock_outlined,

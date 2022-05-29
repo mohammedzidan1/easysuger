@@ -49,7 +49,8 @@ class EmergencyPage extends StatelessWidget {
                       height: 20,
                     ),
                     const Image(
-                      image: AssetImage('assets/images/icons8-emergency-64.png'),
+                      image:
+                          AssetImage('assets/images/icons8-emergency-64.png'),
                     ),
                     const SizedBox(
                       height: 20,

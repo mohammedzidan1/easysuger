@@ -16,12 +16,23 @@ import '../../help/notifications.dart';
 import '../../model/users.dart';
 
 class AuthVeiwModel extends GetxController {
+  bool? isHiddine = false;
   String? userType;
   UserModel? user;
   Follower? _follower;
   String? patientId;
-  String? shortAction='';
-  String? longAction='Gensulin N';
+  String? shortAction = '';
+  String? longAction = 'Gensulin N';
+
+  void showPassword() {
+    if (isHiddine == false) {
+      isHiddine == true;
+      update();
+    } else {
+      isHiddine == false;
+      update();
+    }
+  }
 
   Future<void> getUserData() async {
     print(box.read('patientId'));
@@ -76,7 +87,8 @@ class AuthVeiwModel extends GetxController {
       follower.phoneNum = phoneNum!;
       follower.patientCode = patientCode!;
       follower.name = name!;
-      await follower.create();
+      await follower.create(
+          docId: '${user?.docId}${follower.phoneNum}${follower.name}');
       followerId = follower.patientCode;
       update();
       _follower = follower;

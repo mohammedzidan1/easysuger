@@ -62,7 +62,6 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                           controller: nameC,
                           lableText: "Name",
                           keyBordType: TextInputType.name,
-
                           prefexIcon: Icons.person),
                       SizedBox(
                         height: 20.0,
@@ -71,15 +70,15 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         controller: emailC,
                         lableText: "Email",
                         keyBordType: TextInputType.emailAddress,
-
                         prefexIcon: Icons.email_outlined,
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
                       CustomTextField(
+                        obscureText: true,
                         controller: passwordC,
-                       // keyBordType: TextInputType.visiblePassword,
+                        // keyBordType: TextInputType.visiblePassword,
 
                         lableText: "Create password",
                         prefexIcon: Icons.lock_outlined,
@@ -89,6 +88,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                         height: 20.0,
                       ),
                       CustomTextField(
+                        obscureText: true,
                         controller: repeatPasswordC,
                         lableText: "Repeat password",
                         prefexIcon: Icons.lock_outlined,
@@ -151,7 +151,6 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
               const SizedBox(
                 height: 20.0,
               ),
-
               const SizedBox(
                 height: 18.0,
               ),

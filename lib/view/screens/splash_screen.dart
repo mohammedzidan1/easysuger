@@ -3,7 +3,6 @@ import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/view/screens/authotocation/regestration_screen.dart';
 import 'package:easysugar/view/screens/doctor/doctor_home_screen.dart';
 import 'package:easysugar/view/screens/patient_home_screen.dart';
-import 'package:easysugar/view/screens/survey/Survey.page.dart';
 import 'package:easysugar/view/start_screen.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ class MainSplashScrrn extends StatelessWidget {
             if (box.read('SurveyState') == 'Complete') {
               return const HomeScreen();
             }
-            return SurveyPage();
+            return HomeScreen();
           }
         } else {
           if (userT == 'Doctor') {
@@ -60,8 +59,10 @@ class MainSplashScrrn extends StatelessWidget {
         duration: 30,
         //    splash:const Image(image:  AssetImage("assets/images/icon.jpg") ,fit: BoxFit.fill,),
         splash: "assets/images/icon.jpg",
-       // nextScreen: nextScreen(),
-        nextScreen: StartScreen(),
+        nextScreen: const TapBarForRegestrationScreen(
+          number: 1,
+        ),
+        //  nextScreen: StartScreen(),
         splashTransition: SplashTransition.slideTransition,
 
         // backgroundColor: Color(0xffE3F4FF),

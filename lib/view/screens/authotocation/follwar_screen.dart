@@ -4,7 +4,6 @@ import 'package:easysugar/view/custom_widet/custom_default_button.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view/custom_widet/custom_text_field.dart';
 import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

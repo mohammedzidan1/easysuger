@@ -43,7 +43,6 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
                 controller: emailController,
                 lableText: "Email",
                 keyBordType: TextInputType.emailAddress,
-
                 prefexIcon: Icons.email_outlined,
               ),
               const SizedBox(
@@ -51,6 +50,7 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               ),
 
               CustomTextField(
+                obscureText: true,
                 controller: passwordController,
                 lableText: "Passward",
                 prefexIcon: Icons.lock_outlined,
@@ -59,17 +59,17 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               const SizedBox(
                 height: 20.0,
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     TextButton(
-              //         onPressed: () {},
-              //         child: const CustomText(
-              //           text: "Forget passward ?",
-              //           color: Colors.black45,
-              //         )),
-              //   ],
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                      onPressed: () {},
+                      child: const CustomText(
+                        text: "Forget passward ?",
+                        color: Colors.black45,
+                      )),
+                ],
+              ),
               const SizedBox(
                 height: 18.0,
               ),

@@ -1,3 +1,4 @@
+import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/doctor.dart';
 import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
@@ -120,46 +121,44 @@ class CustomDoctorDrawer extends StatelessWidget {
                         buildDrawerItem(
                           context,
                           ontap: () {
-                            showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                      backgroundColor:
-                                          const Color.fromARGB(255, 7, 82, 74),
-                                      title: const Center(
-                                          child: Text(
-                                        "Are your sure to log out ?",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 22),
-                                      )),
-                                      actions: [
-                                        TextButton(
-                                            onPressed: () {
-                                              AuthVeiwModel()
-                                                  .logOutForDoctor(context);
-                                            },
-                                            child: const CustomText(
-                                              text: "Ok",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const CustomText(
-                                              text: "Cancel",
-                                              fontWeight: FontWeight.bold,
-                                            ))
-                                      ],
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(100),
-                                          bottomLeft: Radius.circular(100),
-                                          topRight: Radius.circular(130),
-                                        ),
-                                      ));
-                                });
+                            Notifications.dialog(
+                              context,
+                              child: AlertDialog(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 7, 82, 74),
+                                  title: const Center(
+                                      child: Text(
+                                    "Are your sure to log out ?",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 22),
+                                  )),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          AuthVeiwModel()
+                                              .logOutForDoctor(context);
+                                        },
+                                        child: const CustomText(
+                                          text: "Ok",
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const CustomText(
+                                          text: "Cancel",
+                                          fontWeight: FontWeight.bold,
+                                        ))
+                                  ],
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(100),
+                                      bottomLeft: Radius.circular(100),
+                                      topRight: Radius.circular(130),
+                                    ),
+                                  )),
+                            );
                           },
                           text: "Log out",
                           fontSize: 18,

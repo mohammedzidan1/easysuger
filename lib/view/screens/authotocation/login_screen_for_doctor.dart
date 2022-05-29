@@ -46,7 +46,6 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
                 controller: emailController,
                 lableText: "Email",
                 keyBordType: TextInputType.emailAddress,
-
                 prefexIcon: Icons.email_outlined,
               ),
               const SizedBox(
@@ -54,6 +53,7 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               ),
 
               CustomTextField(
+                obscureText: true,
                 controller: passwordController,
                 lableText: "Passward",
                 prefexIcon: Icons.lock_outlined,
