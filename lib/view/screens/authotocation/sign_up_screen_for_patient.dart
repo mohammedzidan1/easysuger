@@ -26,6 +26,8 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
   var phoneController = TextEditingController();
   var ageController = TextEditingController();
   var genderController = TextEditingController();
+  List<String> list = ['Meal', 'Female'];
+  String? Gender = 'Meal';
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +112,23 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      CustomTextField(
-                        controller: genderController,
-                        lableText: "Male/female",
-                        prefexIcon: Icons.male_outlined,
-                      ),
+                      DropdownButton(
+                        value: Gender,
+                        items: list.map((e) {
+                          return DropdownMenuItem(value: e, child: Text(e));
+                        }).toList(),
+                        onChanged: (String? value) {
+                          setState(() {
+                            Gender = value;
+                            print(Gender);
+                          });
+                        },
+                      )
+                      // CustomTextField(
+                      //   controller: genderController,
+                      //   lableText: "Male/female",
+                      //   prefexIcon: Icons.male_outlined,
+                      // ),
                     ],
                   ),
                 ),
@@ -230,7 +244,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
         email: emailController.text,
         numPhone: phoneController.text,
         age: ageController.text,
-        gender: genderController.text,
+        gender: Gender!,
         password: passwordController.text,
       );
       authBloc.createAccount(userModel: userModel, context: context);
