@@ -48,9 +48,9 @@ class EmergencyPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    // const Image(
-                    //   image: AssetImage('assets/images/icons8-emergency-64.png'),
-                    // ),
+                    const Image(
+                      image: AssetImage('assets/images/icons8-emergency-64.png'),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -118,11 +118,11 @@ Widget buildEmergencyNameItem({required text, required onTap}) {
               const SizedBox(
                 width: 13,
               ),
-              // Container(
-              //   child: const Image(
-              //     image: AssetImage("assets/images/icons8-callback-16.png"),
-              //   ),
-              // ),
+              Container(
+                child: const Image(
+                  image: AssetImage("assets/images/icons8-callback-16.png"),
+                ),
+              ),
             ],
           ),
         ),

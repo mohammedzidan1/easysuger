@@ -16,9 +16,7 @@ class LogInScreenforPatient extends StatefulWidget {
 }
 
 class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
-  var controllar = TextEditingController();
   var emailController = TextEditingController();
-
   var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -44,6 +42,8 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               CustomTextField(
                 controller: emailController,
                 lableText: "Email",
+                keyBordType: TextInputType.emailAddress,
+
                 prefexIcon: Icons.email_outlined,
               ),
               const SizedBox(
@@ -59,17 +59,17 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
               const SizedBox(
                 height: 20.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: const CustomText(
-                        text: "Forget passward ?",
-                        color: Colors.black45,
-                      )),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     TextButton(
+              //         onPressed: () {},
+              //         child: const CustomText(
+              //           text: "Forget passward ?",
+              //           color: Colors.black45,
+              //         )),
+              //   ],
+              // ),
               const SizedBox(
                 height: 18.0,
               ),

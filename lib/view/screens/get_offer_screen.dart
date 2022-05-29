@@ -51,15 +51,16 @@ class GetOfferScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.pushNamed(context, RoutsNames.medicationsScreen);
                   },
-                    text: "MEDICATION",
-                    image: "assets/images/icons8-medications-64.png"),
+                    text: "MEDICATION",),
+                   // image: "assets/images/icons8-medications-64.png"),
                 buildFollwerNameItem(
                     onTap: (){
                       Navigator.pushNamed(context, RoutsNames.analysisScreen);
                     },
-                    text: "ANALYSES",
-                    image: "assets/images/icons8-analysis-32.png"),
-              ],
+    text: "ANALYSES",
+
+    //image: "assets/images/icons8-analysis-32_2.png"),
+                )],
             ),
           ),
         ],
@@ -68,7 +69,7 @@ class GetOfferScreen extends StatelessWidget {
   }
 }
 
-Widget buildFollwerNameItem({required text, required image,required onTap}) {
+Widget buildFollwerNameItem({required text,required onTap}) {
   return Column(
     children: [
       InkWell(
@@ -91,9 +92,9 @@ Widget buildFollwerNameItem({required text, required image,required onTap}) {
               const SizedBox(
                 width: 13,
               ),
-              Image(
-                image: AssetImage(image),
-              ),
+              // Image(
+              //   image: AssetImage(image),
+              // ),
             ],
           ),
         ),

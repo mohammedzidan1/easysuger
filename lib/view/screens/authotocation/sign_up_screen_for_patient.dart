@@ -26,6 +26,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
   var phoneController = TextEditingController();
   var ageController = TextEditingController();
   var genderController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +59,8 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       CustomTextField(
                           controller: nameController,
                           lableText: "Name",
+                          keyBordType: TextInputType.name,
+
                           prefexIcon: Icons.person),
                       const SizedBox(
                         height: 20.0,
@@ -65,6 +68,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       CustomTextField(
                         controller: emailController,
                         lableText: "Email",
+                        keyBordType: TextInputType.emailAddress,
                         prefexIcon: Icons.email_outlined,
                       ),
                       const SizedBox(
@@ -99,7 +103,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       ),
                       CustomTextField(
                         controller: ageController,
-                        keyBordType: TextInputType.phone,
+                        keyBordType: TextInputType.name,
                         lableText: "Age",
                         prefexIcon: Icons.man,
                       ),
@@ -118,17 +122,17 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
               const SizedBox(
                 height: 20.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: const CustomText(
-                        text: "Forget passward ?",
-                        color: Colors.black45,
-                      )),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     TextButton(
+              //         onPressed: () {},
+              //         child: const CustomText(
+              //           text: "Forget passward ?",
+              //           color: Colors.black45,
+              //         )),
+              //   ],
+              // ),
               const SizedBox(
                 height: 18.0,
               ),

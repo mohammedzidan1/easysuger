@@ -45,6 +45,8 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               CustomTextField(
                 controller: emailController,
                 lableText: "Email",
+                keyBordType: TextInputType.emailAddress,
+
                 prefexIcon: Icons.email_outlined,
               ),
               const SizedBox(
@@ -60,17 +62,17 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
               const SizedBox(
                 height: 20.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: const CustomText(
-                        text: "Forget passward ?",
-                        color: Colors.black45,
-                      )),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     TextButton(
+              //         onPressed: () {},
+              //         child: const CustomText(
+              //           text: "Forget passward ?",
+              //           color: Colors.black45,
+              //         )),
+              //   ],
+              // ),
               const SizedBox(
                 height: 18.0,
               ),
@@ -94,10 +96,10 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
                     color: Colors.grey,
                   ),
                   const SizedBox(
-                    width: 10.0,
+                    width: 18.0,
                   ),
                   const CustomText(
-                    text: "Or conected with",
+                    text: " Or connected with",
                     color: Colors.black,
                   ),
                   const SizedBox(
@@ -111,7 +113,7 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
                 ],
               ),
               const SizedBox(
-                height: 12.0,
+                height: 20.0,
               ),
               CustomButtonSocial(
                 text: ' Facebook',

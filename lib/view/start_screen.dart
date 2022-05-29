@@ -1,11 +1,10 @@
-import 'package:easysugar/help/my_colors_app.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
 import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../help/constant.dart';
+import 'custom_widet/custom_curve.dart';
 import 'custom_widet/custom_default_button.dart';
 
 class StartScreen extends StatelessWidget {
@@ -15,97 +14,76 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: ColorsApp.primaryColor,
-          title: const CustomText(
-            text: "Welcome To Easy Sugar",
-          )),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomDefaultButton(
-                ontap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutsNames.tapBarForRegestrationScreen,
-                      arguments: 1);
 
-                  authVeiwModel.enterTypeOfUser('Patient');
-                },
-                text: "Patient",
+      body: Stack(
+        children:  [
+
+          CustomBackground(),
+          SizedBox(
+              height: MediaQuery.of(context).size.height*.5,
+              width: MediaQuery.of(context).size.width,
+              child: const Image(
+
+                  fit: BoxFit.scaleDown,
+                  image: AssetImage("assets/images/main.png"))),
+          Padding(
+            padding: const EdgeInsets.only(top: 45,left: 7),
+            child: Column(
+
+              children: const [
+                CustomText(text: "Welcome To",fontSise: 40,fontWeight: FontWeight.w500,),
+                CustomText(text: "Easy Suger",fontSise: 50,fontWeight: FontWeight.bold,),
+              ],
+            ),
+          )
+          ,
+
+
+          Padding(
+            padding:EdgeInsets.only(top: MediaQuery.of(context).size.height*.35),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomDefaultButton(
+                    ontap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RoutsNames.tapBarForRegestrationScreen,
+                          arguments: 1);
+
+                      authVeiwModel.enterTypeOfUser('Patient');
+                    },
+                    text: "Patient",
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  CustomDefaultButton(
+                    text: "Doctor",
+                    ontap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RoutsNames.tapBarForRegestrationScreen,
+                          arguments: 2);
+                      authVeiwModel.enterTypeOfUser('Doctor');
+                    },
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  CustomDefaultButton(
+                    text: "Follwar",
+                    ontap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RoutsNames.follwarScreen);
+                      authVeiwModel.enterTypeOfUser('Follower');
+                    },
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 25,
-              ),
-              CustomDefaultButton(
-                text: "Doctor",
-                ontap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutsNames.tapBarForRegestrationScreen,
-                      arguments: 2);
-                  authVeiwModel.enterTypeOfUser('Doctor');
-                },
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              CustomDefaultButton(
-                text: "Follower",
-                ontap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutsNames.follwarScreen);
-                  authVeiwModel.enterTypeOfUser('Follower');
-                  box.write('patientId', '');
-                },
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
-//        Column(
-//         children: [
-//           Stack(
-//             children: [
-//                Opacity(
-//                  opacity: 0.4,
-//                  child: ClipPath(
-//                              child: Container(
-//                   width: MediaQuery.of(context).size.width,
-//                   height: 200,
-//                   color: Colors.red,
-//                              ),
-//                              clipper: CustomClipPath(),
-//                            ),
-//                ),
-//             ClipPath(
-
-//               child: Container(
-//                 width: MediaQuery.of(context).size.width,
-//                 height: 180,
-//                 color: Colors.red,
-//               ),
-//               clipper: CustomClipPath(),
-//             ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-// class CustomClipPath extends CustomClipper<Path> {
-//   var radius=5.0;
-//   @override
-//   Path getClip(Size size) {
-//     Path path = Path();
-//     path.lineTo(size.width / 9, size.height);
-//     path.lineTo(size.width, 0.7);
-//     return path;
-//   }
-//   @override
-//   bool shouldReclip(CustomClipper<Path> oldClipper) => true;
-// }

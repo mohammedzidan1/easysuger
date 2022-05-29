@@ -61,6 +61,8 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       CustomTextField(
                           controller: nameC,
                           lableText: "Name",
+                          keyBordType: TextInputType.name,
+
                           prefexIcon: Icons.person),
                       SizedBox(
                         height: 20.0,
@@ -68,6 +70,8 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       CustomTextField(
                         controller: emailC,
                         lableText: "Email",
+                        keyBordType: TextInputType.emailAddress,
+
                         prefexIcon: Icons.email_outlined,
                       ),
                       SizedBox(
@@ -75,6 +79,8 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       ),
                       CustomTextField(
                         controller: passwordC,
+                       // keyBordType: TextInputType.visiblePassword,
+
                         lableText: "Create password",
                         prefexIcon: Icons.lock_outlined,
                         sufixIcon: Icons.password_outlined,
@@ -93,6 +99,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       ),
                       CustomTextField(
                         controller: phoneC,
+                        keyBordType: TextInputType.phone,
                         lableText: "Phone",
                         prefexIcon: Icons.phone_android_outlined,
                       ),
@@ -101,6 +108,8 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       ),
                       CustomTextField(
                         controller: addressC,
+                        keyBordType: TextInputType.streetAddress,
+
                         lableText: "Address",
                         // prefexIcon: Icons.addres,
                       ),
@@ -142,17 +151,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
               const SizedBox(
                 height: 20.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: const CustomText(
-                        text: "Forget passward ?",
-                        color: Colors.black45,
-                      )),
-                ],
-              ),
+
               const SizedBox(
                 height: 18.0,
               ),
@@ -179,7 +178,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                     width: 10.0,
                   ),
                   const CustomText(
-                    text: "Or conected with",
+                    text: "Or connected with",
                     color: Colors.black,
                   ),
                   const SizedBox(
@@ -193,7 +192,7 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                 ],
               ),
               const SizedBox(
-                height: 12.0,
+                height: 20.0,
               ),
               CustomButtonSocial(
                 text: ' Facebook',

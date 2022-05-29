@@ -4,7 +4,6 @@ import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_model/firestore_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'custom_text.dart';
 
