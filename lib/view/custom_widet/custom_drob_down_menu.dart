@@ -33,7 +33,7 @@ class _CustomDrobDownMenuShortActionState
         //mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DropdownButton<String>(
-            value: auth.shortAction,
+            value: auth.shortAction ?? selectedItemShortAction,
             items: shortActionList.map((e) {
               return DropdownMenuItem(value: e, child: Text(e));
             }).toList(),

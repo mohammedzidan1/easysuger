@@ -21,6 +21,7 @@ class SurveyPage extends StatelessWidget {
     '12.Presence of ketones in urine',
     '13.recurrent infections',
   ];
+
   List<Widget> surveyWidget = [
     survey1(),
     survey2(),
@@ -30,7 +31,6 @@ class SurveyPage extends StatelessWidget {
     survey6(),
     survey7(),
     survey8(),
-    survey9(),
     survey9(),
     survey10(),
     survey11(),
@@ -43,10 +43,11 @@ class SurveyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           child: PageView.builder(
               controller: controller,
+              // physics: const NeverScrollableScrollPhysics(),
               itemCount: 14,
               itemBuilder: (_, index) {
                 return Stack(
@@ -63,30 +64,30 @@ class SurveyPage extends StatelessWidget {
                             fontSise: 32,
                             fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
                           Text(
                             '  ${survey[index]}   ',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               backgroundColor: ColorsApp.primaryColor,
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: ColorsApp.primaryColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     bottomRight: Radius.circular(20),
                                   )),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: surveyWidget[index],
                               ),
                             ),

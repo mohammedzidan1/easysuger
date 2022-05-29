@@ -13,7 +13,7 @@ import 'package:easysugar/view/screens/medication_screen.dart';
 import 'package:easysugar/view/screens/prediction_screen.dart';
 import 'package:easysugar/view/screens/rebort_screen.dart';
 import 'package:easysugar/view/screens/splash_screen.dart';
-import 'package:easysugar/view/screens/survey/survey.dart';
+import 'package:easysugar/view/screens/survey/Survey.page.dart';
 import 'package:easysugar/view/screens/update_screen.dart';
 import 'package:flutter/material.dart';
 

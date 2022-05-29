@@ -50,7 +50,7 @@ class AuthBloc extends Cubit<AuthState> {
     if (user != null) {
       userModel.docId = user.uid;
       await userModel.create(docId: user.uid);
-      Navigator.pushReplacementNamed(context, RoutsNames.homeScreenForPatient);
+      Navigator.pushReplacementNamed(context, RoutsNames.surveyPage);
     } else {
       print('user not found');
     }

@@ -32,7 +32,7 @@ class _CustomDrobDownMenuLongActionState
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DropdownButton<String>(
-            value: auth.longAction,
+            value: auth.longAction ?? selectedItemLongAction,
             items: longActionList.map((e) {
               return DropdownMenuItem(value: e, child: Text(e));
             }).toList(),

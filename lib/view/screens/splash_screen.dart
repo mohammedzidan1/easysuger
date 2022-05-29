@@ -3,6 +3,7 @@ import 'package:easysugar/help/constant.dart';
 import 'package:easysugar/view/screens/authotocation/regestration_screen.dart';
 import 'package:easysugar/view/screens/doctor/doctor_home_screen.dart';
 import 'package:easysugar/view/screens/patient_home_screen.dart';
+import 'package:easysugar/view/screens/survey/Survey.page.dart';
 import 'package:easysugar/view/start_screen.dart';
 import 'package:easysugar/view_model/auth/auth.service.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class MainSplashScrrn extends StatelessWidget {
   const MainSplashScrrn({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    box.write('userType', 'Patient');
     Widget nextScreen() {
       var userT = box.read('userType');
       if (userT != null) {
@@ -27,7 +29,10 @@ class MainSplashScrrn extends StatelessWidget {
           if (userT == 'Doctor') {
             return const HomeScreenForDoctor();
           } else if (userT == 'Patient') {
-            return const HomeScreen();
+            if (box.read('SurveyState') == 'Complete') {
+              return const HomeScreen();
+            }
+            return SurveyPage();
           }
         } else {
           if (userT == 'Doctor') {

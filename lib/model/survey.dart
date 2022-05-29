@@ -65,7 +65,7 @@ class Survey extends SubCollectionModel<Survey> {
     this.survey11 = map['survey11'] ?? '';
     this.survey12 = map['survey12'] ?? '';
     this.survey13 = map['survey13'] ?? '';
-    this.survey4 = map['survey14'] ?? '';
+    this.survey14 = map['survey14'] ?? '';
   }
 
   @override

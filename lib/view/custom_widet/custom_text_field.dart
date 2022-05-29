@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String? lableText;
-final TextInputType? keyBordType;
+  final TextInputType? keyBordType;
   final IconData? prefexIcon;
   final IconData? sufixIcon;
   final double? width;
@@ -15,7 +15,7 @@ final TextInputType? keyBordType;
   final ValueChanged<String>? onChanged;
   const CustomTextField(
       {Key? key,
-      this.keyBordType=TextInputType.name,
+      this.keyBordType = TextInputType.name,
       this.onTap,
       this.onChanged,
       this.controller,
@@ -41,7 +41,7 @@ final TextInputType? keyBordType;
         child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 10, top: 1),
             child: TextFormField(
-              keyboardType: keyBordType,
+                keyboardType: keyBordType,
                 onChanged: onChanged,
                 readOnly: readOnly!,
                 controller: controller,
@@ -101,9 +101,9 @@ class UpdateCustomTextField extends StatelessWidget {
                 onChanged: onChanged,
                 initialValue: initValue!,
                 readOnly: readOnly!,
-                onTap: () {
-                  onTap!();
-                },
+                // onTap: () {
+                //   onTap!();
+                // },
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
                     border: InputBorder.none,

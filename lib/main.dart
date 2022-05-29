@@ -44,6 +44,11 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       builder: asuka.builder,
+
+      // getPages: [
+      //   GetPage(name: RoutsNames.surveyPage, page: () => SurveyPage())
+      // ],
+      // initialRoute: RoutsNames.surveyPage,
       onGenerateRoute: appRouts!.genirateRoute,
     );
   }

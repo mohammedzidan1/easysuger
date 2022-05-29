@@ -20,8 +20,8 @@ class AuthVeiwModel extends GetxController {
   UserModel? user;
   Follower? _follower;
   String? patientId;
-  String? shortAction;
-  String? longAction;
+  String? shortAction='';
+  String? longAction='Gensulin N';
 
   Future<void> getUserData() async {
     print(box.read('patientId'));
