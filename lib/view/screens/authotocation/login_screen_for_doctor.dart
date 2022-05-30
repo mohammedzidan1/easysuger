@@ -52,13 +52,18 @@ class _LogInScreenforDoctorState extends State<LogInScreenforDoctor> {
                 height: 20.0,
               ),
 
-              CustomTextField(
-                obscureText: true,
-                controller: passwordController,
-                lableText: "Passward",
-                prefexIcon: Icons.lock_outlined,
-                sufixIcon: Icons.password_outlined,
-              ),
+              GetBuilder<AuthVeiwModel>(builder: (auth) {
+                return CustomTextField(
+                  obscureText: auth.isPassword,
+                  controller: passwordController,
+                  lableText: "Passward",
+                  prefexIcon: Icons.lock_outlined,
+                  sufixIcon: auth.suffix,
+                  onTapS: () {
+                    auth.changePasswordVisibility();
+                  },
+                );
+              }),
               const SizedBox(
                 height: 20.0,
               ),

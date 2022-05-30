@@ -75,25 +75,35 @@ class _SignUpScreenForDoctorState extends State<SignUpScreenForDoctor> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      CustomTextField(
-                        obscureText: true,
-                        controller: passwordC,
-                        // keyBordType: TextInputType.visiblePassword,
+                      GetBuilder<AuthVeiwModel>(builder: (auth) {
+                        return CustomTextField(
+                          obscureText: auth.isPassword,
+                          controller: passwordC,
+                          // keyBordType: TextInputType.visiblePassword,
 
-                        lableText: "Create password",
-                        prefexIcon: Icons.lock_outlined,
-                        sufixIcon: Icons.password_outlined,
-                      ),
+                          lableText: "Create password",
+                          prefexIcon: Icons.lock_outlined,
+                          sufixIcon: auth.suffix,
+                          onTapS: () {
+                            auth.changePasswordVisibility();
+                          },
+                        );
+                      }),
                       SizedBox(
                         height: 20.0,
                       ),
-                      CustomTextField(
-                        obscureText: true,
-                        controller: repeatPasswordC,
-                        lableText: "Repeat password",
-                        prefexIcon: Icons.lock_outlined,
-                        sufixIcon: Icons.password_outlined,
-                      ),
+                      GetBuilder<AuthVeiwModel>(builder: (auth) {
+                        return CustomTextField(
+                          obscureText: auth.isPassword,
+                          controller: repeatPasswordC,
+                          lableText: "Repeat password",
+                          prefexIcon: Icons.lock_outlined,
+                          sufixIcon: auth.suffix,
+                          onTapS: () {
+                            auth.changePasswordVisibility();
+                          },
+                        );
+                      }),
                       SizedBox(
                         height: 20.0,
                       ),

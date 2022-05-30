@@ -1,7 +1,9 @@
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../help/notifications.dart';
 import '../../custom_widet/custom_button_social.dart';
@@ -18,6 +20,7 @@ class LogInScreenforPatient extends StatefulWidget {
 class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  AuthVeiwModel c = Get.put(AuthVeiwModel());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +52,18 @@ class _LogInScreenforPatientState extends State<LogInScreenforPatient> {
                 height: 20.0,
               ),
 
-              CustomTextField(
-                obscureText: true,
-                controller: passwordController,
-                lableText: "Passward",
-                prefexIcon: Icons.lock_outlined,
-                sufixIcon: Icons.password_outlined,
-              ),
+              GetBuilder<AuthVeiwModel>(builder: (auth) {
+                return CustomTextField(
+                  obscureText: auth.isPassword,
+                  controller: passwordController,
+                  lableText: "Passward",
+                  prefexIcon: Icons.lock_outlined,
+                  sufixIcon: auth.suffix,
+                  onTapS: () {
+                    auth.changePasswordVisibility();
+                  },
+                );
+              }),
               const SizedBox(
                 height: 20.0,
               ),

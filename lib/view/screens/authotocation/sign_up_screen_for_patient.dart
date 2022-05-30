@@ -2,8 +2,10 @@ import 'package:easysugar/help/notifications.dart';
 import 'package:easysugar/help/routs/routs_name.dart';
 import 'package:easysugar/model/users.dart';
 import 'package:easysugar/view/custom_widet/custom_text.dart';
+import 'package:easysugar/view_model/auth/auth_veiw_model.dart';
 import 'package:easysugar/view_model/auth/cubit/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../custom_widet/custom_button_social.dart';
 import '../../custom_widet/custom_default_button.dart';
@@ -27,7 +29,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
   var ageController = TextEditingController();
   var genderController = TextEditingController();
   List<String> list = ['Meal', 'Female'];
-  String? Gender = 'Meal';
+  String? gender = 'Meal';
 
   @override
   Widget build(BuildContext context) {
@@ -75,22 +77,35 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      CustomTextField(
-                        controller: passwordController,
-                        lableText: "Create password",
-                        prefexIcon: Icons.lock_outlined,
-                        sufixIcon: Icons.password_outlined,
-                      ),
+                      GetBuilder<AuthVeiwModel>(builder: (auth) {
+                        return CustomTextField(
+                          obscureText: auth.isPassword,
+                          controller: passwordController,
+                          // keyBordType: TextInputType.visiblePassword,
+
+                          lableText: "Create password",
+                          prefexIcon: Icons.lock_outlined,
+                          sufixIcon: auth.suffix,
+                          onTapS: () {
+                            auth.changePasswordVisibility();
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 20.0,
                       ),
-                      CustomTextField(
-                        obscureText: true,
-                        controller: confirmPasswordController,
-                        lableText: "Repeat password",
-                        prefexIcon: Icons.lock_outlined,
-                        sufixIcon: Icons.password_outlined,
-                      ),
+                      GetBuilder<AuthVeiwModel>(builder: (auth) {
+                        return CustomTextField(
+                          obscureText: auth.isPassword,
+                          controller: confirmPasswordController,
+                          lableText: "Repeat password",
+                          prefexIcon: Icons.lock_outlined,
+                          sufixIcon: auth.suffix,
+                          onTapS: () {
+                            auth.changePasswordVisibility();
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 20.0,
                       ),
@@ -113,14 +128,14 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                         height: 20.0,
                       ),
                       DropdownButton(
-                        value: Gender,
+                        value: gender,
                         items: list.map((e) {
                           return DropdownMenuItem(value: e, child: Text(e));
                         }).toList(),
                         onChanged: (String? value) {
                           setState(() {
-                            Gender = value;
-                            print(Gender);
+                            gender = value;
+                            print(gender);
                           });
                         },
                       )
@@ -155,6 +170,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
                 ontap: () async {
                   print(emailController.text);
                   print(passwordController.text);
+                  print(gender);
                   validationInput();
                 },
                 height: 50,
@@ -235,7 +251,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
       Notifications.error('Please enter correct phone number');
     } else if (ageController.text.isEmpty) {
       Notifications.error('Please enter correct age');
-    } else if (genderController.text.isEmpty) {
+    } else if (gender!.isEmpty) {
       Notifications.error('Please enter correct gender');
     } else {
       UserModel userModel = UserModel(
@@ -244,7 +260,7 @@ class _SignUpScreenForPatientState extends State<SignUpScreenForPatient> {
         email: emailController.text,
         numPhone: phoneController.text,
         age: ageController.text,
-        gender: Gender!,
+        gender: gender!,
         password: passwordController.text,
       );
       authBloc.createAccount(userModel: userModel, context: context);

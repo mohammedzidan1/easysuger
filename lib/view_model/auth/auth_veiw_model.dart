@@ -16,7 +16,8 @@ import '../../help/notifications.dart';
 import '../../model/users.dart';
 
 class AuthVeiwModel extends GetxController {
-  bool? isHiddine = false;
+  bool isPassword = true;
+  IconData suffix = Icons.visibility_outlined;
   String? userType;
   UserModel? user;
   Follower? _follower;
@@ -24,14 +25,12 @@ class AuthVeiwModel extends GetxController {
   String? shortAction = '';
   String? longAction = 'Gensulin N';
 
-  void showPassword() {
-    if (isHiddine == false) {
-      isHiddine == true;
-      update();
-    } else {
-      isHiddine == false;
-      update();
-    }
+  void changePasswordVisibility() {
+    isPassword = !isPassword;
+    update();
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    update();
   }
 
   Future<void> getUserData() async {

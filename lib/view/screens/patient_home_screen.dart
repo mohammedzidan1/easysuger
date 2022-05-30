@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onSuccess: (user) {
           return Scaffold(
               appBar: AppBar(
+                elevation: 0,
                 backgroundColor: const Color(0xff08877A),
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Color(0xff08877A),
